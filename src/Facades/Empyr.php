@@ -15,6 +15,6 @@ class Empyr extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return new \Linusx\Empyr\Empyr( false );
+        return new \Linusx\Empyr\Empyr(false);
     }
 }

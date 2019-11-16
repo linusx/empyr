@@ -15,19 +15,19 @@ use Linusx\Empyr\Exceptions\EmpyrUserNotFoundException;
 class EmpyrUser extends Empyr
 {
     /**
-     * Create new Empyr user
+     * Create new Empyr user.
      *
      * @param array $data Data to set field with.
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws EmpyrEmptyEmailException
      */
-    public function __construct( $data )
+    public function __construct($data)
     {
-        parent::__construct( false, $data );
+        parent::__construct(false, $data);
     }
 
     /**
-     * Lookup user by email
+     * Lookup user by email.
      *
      * https://www.mogl.com/api/docs/v2/Users/lookup
      *
@@ -36,33 +36,37 @@ class EmpyrUser extends Empyr
      * @throws GuzzleException
      * @throws EmpyrEmptyEmailException
      */
-    public function lookup( $email = '' ) {
-        if ( empty( $email ) && ! empty( $this->email ) ) {
+    public function lookup($email = '')
+    {
+        if (empty($email) && ! empty($this->email)) {
             $email = $this->email;
-        } elseif ( empty( $email ) && empty( $this->email ) ) {
-            throw new EmpyrEmptyEmailException('No email given.' );
+        } elseif (empty($email) && empty($this->email)) {
+            throw new EmpyrEmptyEmailException('No email given.');
         }
 
-        $data = $this->call_api( 'users/lookup', [ 'email' => $email ] );
+        $data = $this->call_api('users/lookup', ['email' => $email]);
+
         return $data->response->user ?? false;
     }
 
     /**
-     * Lookup user by ID
+     * Lookup user by ID.
      *
      * https://www.mogl.com/api/docs/v2/Users/get
      *
-     * @param integer $id User ID to get
+     * @param int $id User ID to get
      * @return bool|mixed
      * @throws GuzzleException
      */
-    public function get( $id ) {
-        $data = $this->call_api( 'users/' . $id );
+    public function get($id)
+    {
+        $data = $this->call_api('users/'.$id);
+
         return $data->response->user ?? false;
     }
 
     /**
-     * Get alerts for a user
+     * Get alerts for a user.
      *
      * https://www.mogl.com/api/docs/v2/Users/alerts
      *
@@ -74,13 +78,15 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function alerts( $options = [] ) {
-        $alerts = $this->call_user_api( 'users/alerts', $options );
+    public function alerts($options = [])
+    {
+        $alerts = $this->call_user_api('users/alerts', $options);
+
         return $alerts->response->results ?? false;
     }
 
     /**
-     * Get donation list for a user
+     * Get donation list for a user.
      *
      * https://www.mogl.com/api/docs/v2/Users/donateList
      *
@@ -92,13 +98,15 @@ class EmpyrUser extends Empyr
      * @throws EmpyrUserNotFoundException
      * @throws GuzzleException
      */
-    public function donations( $options = [] ) {
-        $data = $this->call_user_api( 'users/donate/donateList', $options );
+    public function donations($options = [])
+    {
+        $data = $this->call_user_api('users/donate/donateList', $options);
+
         return $data->response->donation ?? false;
     }
 
     /**
-     * Get donation list for a user
+     * Get donation list for a user.
      *
      * https://www.mogl.com/api/docs/v2/Users/forgotPassword
      *
@@ -107,20 +115,21 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function forgotPassword() {
+    public function forgotPassword()
+    {
 
         // Make sure we have an email address.
-        if ( empty( $this->email ) ) {
+        if (empty($this->email)) {
             throw new EmpyrEmptyEmailException('Missing user email address.');
         }
 
-        $data = $this->call_user_api( 'users/forgotPassword', ['email' => $this->email ], 'post' );
+        $data = $this->call_user_api('users/forgotPassword', ['email' => $this->email], 'post');
 
         return (bool) $data->response->result;
     }
 
     /**
-     * Get donation list for a user
+     * Get donation list for a user.
      *
      * https://www.mogl.com/api/docs/v2/Users/listOAuth
      *
@@ -131,8 +140,10 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function listOAuth() {
-        $data = $this->call_user_api( 'users/listOAuth' );
+    public function listOAuth()
+    {
+        $data = $this->call_user_api('users/listOAuth');
+
         return $data->response ?? false;
     }
 
@@ -148,8 +159,10 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function notificationSettings() {
-        $data = $this->call_user_api( 'users/notificationSettings' );
+    public function notificationSettings()
+    {
+        $data = $this->call_user_api('users/notificationSettings');
+
         return $data->response->results ?? false;
     }
 
@@ -166,8 +179,10 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function payments( $options = [] ) {
-        $data = $this->call_user_api( 'users/payments', $options );
+    public function payments($options = [])
+    {
+        $data = $this->call_user_api('users/payments', $options);
+
         return $data->response->payables ?? false;
     }
 
@@ -184,8 +199,10 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function rewardList( $options = [] ) {
-        $data = $this->call_user_api( 'users/admin/rewardList', $options );
+    public function rewardList($options = [])
+    {
+        $data = $this->call_user_api('users/admin/rewardList', $options);
+
         return $data->response->results ?? false;
     }
 
@@ -205,9 +222,11 @@ class EmpyrUser extends Empyr
      * @throws GuzzleException
      * @throws EmpyrEmptyEmailException
      */
-    public function search( $query = '', $options = [] ) {
+    public function search($query = '', $options = [])
+    {
         $options['query'] = $query;
-        $data = $this->call_api( 'users/search', $options );
+        $data = $this->call_api('users/search', $options);
+
         return $data->response->results ?? false;
     }
 
@@ -224,7 +243,9 @@ class EmpyrUser extends Empyr
      * @throws GuzzleException
      * @throws EmpyrEmptyEmailException
      */
-    public function signupWithCard() { }
+    public function signupWithCard()
+    {
+    }
 
     /**
      * Retrieves a list of friends for the user.
@@ -239,13 +260,14 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function friendsList( $options = [] ) {
-
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function friendsList($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_user_api( 'users/friends/' . $this->user->id . '/', $options );
+        $data = $this->call_user_api('users/friends/'.$this->user->id.'/', $options);
+
         return $data->response->results ?? false;
     }
 
@@ -260,12 +282,14 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function fundraiserHistory( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function fundraiserHistory($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_user_api( 'users/' . $this->user->id . '/fundraiserHistory', $options );
+        $data = $this->call_user_api('users/'.$this->user->id.'/fundraiserHistory', $options);
+
         return $data->response->results ?? false;
     }
 
@@ -280,12 +304,14 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyEmailException
      * @throws EmpyrUserNotFoundException
      */
-    public function leaderboard( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function leaderboard($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_api( 'users/friends/' . $this->user->id . '/leaderboard', $options );
+        $data = $this->call_api('users/friends/'.$this->user->id.'/leaderboard', $options);
+
         return $data->response->results ?? false;
     }
 
@@ -303,16 +329,17 @@ class EmpyrUser extends Empyr
      * @throws EmpyrUserNotFoundException
      * @throws EmpyrEmptyBusinesses
      */
-    public function recommendations( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function recommendations($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        if ( empty( $options['businesses'] ) ) {
-            throw new EmpyrEmptyBusinesses('No businesses provided.' );
+        if (empty($options['businesses'])) {
+            throw new EmpyrEmptyBusinesses('No businesses provided.');
         }
 
-        $data = $this->call_api( 'users/' . $this->user->id . '/recommendations', $options );
+        $data = $this->call_api('users/'.$this->user->id.'/recommendations', $options);
 
         return $data->response->results ?? false;
     }
@@ -329,12 +356,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrUserNotFoundException
      * @throws EmpyrEmptyBusinesses
      */
-    public function summary( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function summary($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_api( 'users/' . $this->user->id . '/summary', $options );
+        $data = $this->call_api('users/'.$this->user->id.'/summary', $options);
 
         return $data->response->userSummary ?? false;
     }
@@ -358,12 +386,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrUserNotFoundException
      * @throws EmpyrEmptyBusinesses
      */
-    public function transactions( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function transactions($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_api( 'users/' . $this->user->id . '/transactions', $options );
+        $data = $this->call_api('users/'.$this->user->id.'/transactions', $options);
 
         return $data->response->transactions ?? false;
     }
@@ -386,12 +415,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrUserNotFoundException
      * @throws EmpyrEmptyBusinesses
      */
-    public function venueHistory( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function venueHistory($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_api( 'users/' . $this->user->id . '/venueHistory', $options );
+        $data = $this->call_api('users/'.$this->user->id.'/venueHistory', $options);
 
         return $data->response->results ?? false;
     }
@@ -415,12 +445,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function addReward( $options = [] ) {
-        if ( empty( $options['amount'] ) ) {
-            throw new EmpyrEmptyRewardAmount( 'No amount given to reward user.' );
+    public function addReward($options = [])
+    {
+        if (empty($options['amount'])) {
+            throw new EmpyrEmptyRewardAmount('No amount given to reward user.');
         }
 
-        $data = $this->call_user_api( 'users/admin/addReward', $options, 'post' );
+        $data = $this->call_user_api('users/admin/addReward', $options, 'post');
 
         return $data->response->reward ?? false;
     }
@@ -441,8 +472,10 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function alertsDismiss( $options = [] ) {
-        $data = $this->call_user_api( 'users/alertsDismiss', $options, 'post' );
+    public function alertsDismiss($options = [])
+    {
+        $data = $this->call_user_api('users/alertsDismiss', $options, 'post');
+
         return $data->response->user ?? false;
     }
 
@@ -462,19 +495,20 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function friendApprove( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function friendApprove($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        if ( empty( $options['user'] ) ) {
-            throw new EmpyrUserNotFoundException( 'No friend ID given.' );
+        if (empty($options['user'])) {
+            throw new EmpyrUserNotFoundException('No friend ID given.');
         }
 
         $user = $options['user'];
-        unset( $options['user'] );
+        unset($options['user']);
 
-        $data = $this->call_user_api( 'users/friends/' . $user . '/approve', $options, 'post' );
+        $data = $this->call_user_api('users/friends/'.$user.'/approve', $options, 'post');
 
         return (bool) $data->response->friend;
     }
@@ -495,19 +529,20 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function friendDeny( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function friendDeny($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        if ( empty( $options['user'] ) ) {
-            throw new EmpyrUserNotFoundException( 'No friend ID given.' );
+        if (empty($options['user'])) {
+            throw new EmpyrUserNotFoundException('No friend ID given.');
         }
 
         $user = $options['user'];
-        unset( $options['user'] );
+        unset($options['user']);
 
-        $data = $this->call_user_api( 'users/friends/' . $user . '/deny', $options, 'post' );
+        $data = $this->call_user_api('users/friends/'.$user.'/deny', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -530,16 +565,17 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function donate( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function donate($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        if ( empty( $options['user'] ) ) {
-            throw new EmpyrUserNotFoundException( 'No friend ID given.' );
+        if (empty($options['user'])) {
+            throw new EmpyrUserNotFoundException('No friend ID given.');
         }
 
-        $data = $this->call_user_api( 'users/donate', $options, 'post' );
+        $data = $this->call_user_api('users/donate', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -563,16 +599,17 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function invite( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function invite($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        if ( empty( $options['invitees'] ) ) {
-            throw new EmpyrUserNotFoundException( 'No friend ID given.' );
+        if (empty($options['invitees'])) {
+            throw new EmpyrUserNotFoundException('No friend ID given.');
         }
 
-        $data = $this->call_user_api( 'users/invite', $options, 'post' );
+        $data = $this->call_user_api('users/invite', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -595,16 +632,17 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function offerLink( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function offerLink($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        if ( empty( $options['offer'] ) ) {
-            throw new EmpyrUserNotFoundException( 'No offer given.' );
+        if (empty($options['offer'])) {
+            throw new EmpyrUserNotFoundException('No offer given.');
         }
 
-        $data = $this->call_user_api( 'users/offers/link', $options, 'post' );
+        $data = $this->call_user_api('users/offers/link', $options, 'post');
 
         return $data->response->link;
     }
@@ -623,12 +661,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function offerLinksList( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function offerLinksList($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_user_api( 'users/offers/linksList', $options, 'post' );
+        $data = $this->call_user_api('users/offers/linksList', $options, 'post');
 
         return $data->response->links;
     }
@@ -650,12 +689,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function oauthLink( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function oauthLink($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_user_api( 'users/oauthLink', $options, 'post' );
+        $data = $this->call_user_api('users/oauthLink', $options, 'post');
 
         return $data->response->results;
     }
@@ -676,12 +716,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function oauthUnlink( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function oauthUnlink($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_user_api( 'users/oauthUnlink', $options, 'post' );
+        $data = $this->call_user_api('users/oauthUnlink', $options, 'post');
 
         return $data->response->results;
     }
@@ -702,19 +743,20 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function friendRequest( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function friendRequest($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        if ( empty( $options['user'] ) ) {
-            throw new EmpyrUserNotFoundException( 'No friend ID given.' );
+        if (empty($options['user'])) {
+            throw new EmpyrUserNotFoundException('No friend ID given.');
         }
 
         $user = $options['user'];
-        unset( $options['user'] );
+        unset($options['user']);
 
-        $data = $this->call_user_api( 'users/friends/' . $user . '/request', $options, 'post' );
+        $data = $this->call_user_api('users/friends/'.$user.'/request', $options, 'post');
 
         return $data->response->friend;
     }
@@ -735,12 +777,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function offerUnlink( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function offerUnlink($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_user_api( 'users/offers/unlink', $options, 'post' );
+        $data = $this->call_user_api('users/offers/unlink', $options, 'post');
 
         return $data->response;
     }
@@ -770,7 +813,8 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyRewardAmount
      * @throws EmpyrMissingRequiredFields
      */
-    public function add( $options = [] ) {
+    public function add($options = [])
+    {
         $defaults = [];
         $defaults['firstName'] = '';
         $defaults['lastName'] = '';
@@ -782,23 +826,23 @@ class EmpyrUser extends Empyr
         $defaults['provider'] = '';
         $defaults['ss'] = '';
 
-        $params = collect( $defaults )->merge( $options )->reject( function( $value ){
-            if ( empty( $value ) ) {
+        $params = collect($defaults)->merge($options)->reject(function ($value) {
+            if (empty($value)) {
                 return true;
             }
         });
 
         if (
-            empty( $params['firstName'] ) ||
-            empty( $params['lastName'] ) ||
-            empty( $params['address.postalCode'] ) ||
-            empty( $params['password'] ) ||
-            empty( $params['email'] )
+            empty($params['firstName']) ||
+            empty($params['lastName']) ||
+            empty($params['address.postalCode']) ||
+            empty($params['password']) ||
+            empty($params['email'])
         ) {
-            throw new EmpyrMissingRequiredFields( 'Missing required fields' );
+            throw new EmpyrMissingRequiredFields('Missing required fields');
         }
 
-        $data = $this->call_api( 'users', $params, 'post' );
+        $data = $this->call_api('users', $params, 'post');
 
         return $data->response->user ?? $data->response;
     }
@@ -819,9 +863,10 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function update( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function update($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
         $defaults = [];
@@ -852,13 +897,13 @@ class EmpyrUser extends Empyr
         $defaults['userEmailPreference.pushNotifyJackpotSlip'] = '';
         $defaults['userEmailPreference.pushNotifyNewVenues'] = '';
 
-        $params = collect( $defaults )->merge( $options )->reject( function( $value ){
-            if ( empty( $value ) ) {
+        $params = collect($defaults)->merge($options)->reject(function ($value) {
+            if (empty($value)) {
                 return true;
             }
         });
 
-        $data = $this->call_user_api( 'users/update', $params, 'post' );
+        $data = $this->call_user_api('users/update', $params, 'post');
 
         return $data->response->user;
     }
@@ -874,23 +919,24 @@ class EmpyrUser extends Empyr
      * @throws GuzzleException
      * @throws EmpyrEmptyEmailException
      */
-    public function updatePhoto( $file_path ) {
+    public function updatePhoto($file_path)
+    {
         // Make sure we have an email address.
-        if ( empty( $this->email ) ) {
+        if (empty($this->email)) {
             throw new EmpyrEmptyEmailException('Missing user email address.');
         }
 
         $options['user_token'] = $this->email;
 
-        $url = $this->generateURL( 'users/updatePhoto', $options );
+        $url = $this->generateURL('users/updatePhoto', $options);
 
-        $this->log( 'POST request: ' . $url );
+        $this->log('POST request: '.$url);
 
         try {
-            $file_content = File::get( $file_path );
-            $file_name = File::name( $file_path );
+            $file_content = File::get($file_path);
+            $file_name = File::name($file_path);
 
-            $response = $this->client->post( $url, [
+            $response = $this->client->post($url, [
                 'multipart' => [
                     [
                         'name' => 'file',
@@ -899,18 +945,19 @@ class EmpyrUser extends Empyr
                     ],
                 ],
             ]);
+        } catch (ClientException $e) {
+            $this->log($e->getMessage());
 
-        } catch ( ClientException $e ) {
-            $this->log( $e->getMessage() );
             return false;
-        } catch ( ServerException $e ) {
-            $this->log( $e->getMessage() );
+        } catch (ServerException $e) {
+            $this->log($e->getMessage());
+
             return false;
         }
 
-        $data_response = \json_decode( $response->getBody() );
+        $data_response = \json_decode($response->getBody());
 
-        if ( ! empty( $data_response->meta ) && 200 !== (int) $data_response->meta->code ) {
+        if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
             return false;
         }
 
@@ -918,7 +965,7 @@ class EmpyrUser extends Empyr
     }
 
     /**
-     * Updates a user's secure settings requiring a password
+     * Updates a user's secure settings requiring a password.
      *
      * https://www.mogl.com/api/docs/v2/Users/updateSecure
      *
@@ -935,12 +982,13 @@ class EmpyrUser extends Empyr
      * @throws EmpyrEmptyBusinesses
      * @throws EmpyrEmptyRewardAmount
      */
-    public function updatePassword( $options = [] ) {
-        if ( empty( $this->user ) ) {
-            throw new EmpyrUserNotFoundException( 'User not found.' );
+    public function updatePassword($options = [])
+    {
+        if (empty($this->user)) {
+            throw new EmpyrUserNotFoundException('User not found.');
         }
 
-        $data = $this->call_user_api( 'users/secure', $options, 'post' );
+        $data = $this->call_user_api('users/secure', $options, 'post');
 
         return $data->response->user;
     }
