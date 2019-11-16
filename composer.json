@@ -1,0 +1,43 @@
+{
+    "name": "linusx/empyr",
+    "description": ":Empyr API SDK",
+    "license": "license",
+    "authors": [
+        {
+            "name": "Bill Van Pelt",
+            "email": "linusx@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/linusx/empyr",
+    "keywords": ["Laravel", "empyr"],
+    "require": {
+        "illuminate/support": "~5",
+        "ext-json": "^1.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "linusx\\empyr\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "linusx\\empyr\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "linusx\\empyr\\empyrServiceProvider"
+            ],
+            "aliases": {
+                "Empyr": "linusx\\empyr\\Facades\\empyr"
+            }
+        }
+    }
+}
