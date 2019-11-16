@@ -1,7 +1,7 @@
 {
     "name": "linusx/empyr",
-    "description": ":Empyr API SDK",
-    "license": "license",
+    "description": "Empyr API SDK",
+    "license": "MIT",
     "authors": [
         {
             "name": "Bill Van Pelt",
