@@ -6,14 +6,20 @@ Contributions are accepted via Pull Requests on [Github](https://github.com/linu
 
 # Things you could do
 If you want to contribute but do not know where to start, this list provides some starting points.
-- Add license text
-- Remove rewriteRules.php
-- Set up TravisCI, StyleCI, ScrutinizerCI
-- Write a comprehensive ReadMe
+* Billing Accounts (https://www.mogl.com/api/docs/v2/BillingAccounts/accounts)
+* Cards (https://www.mogl.com/api/docs/v2/Cards/get)
+* Devices (https://www.mogl.com/api/docs/v2/Devices/get)
+* Fundraisers (https://www.mogl.com/api/docs/v2/Fundraisers/get)
+* Invoices (https://www.mogl.com/api/docs/v2/Invoices/invoice)
+* Metros (https://www.mogl.com/api/docs/v2/Metros/get)
+* Offers (https://www.mogl.com/api/docs/v2/Offers/add)
+* Payments (https://www.mogl.com/api/docs/v2/Payments/get)
+* Stats Lookup (https://www.mogl.com/api/docs/v2/Reports/statsLookup)
+* Transaction Report (https://www.mogl.com/api/docs/v2/Reports/txReportLookup)
+* Subscriptions (https://www.mogl.com/api/docs/v2/Subscriptions/get)
+* Utilities
 
 ## Pull Requests
-
-- **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
 - **Document any change in behaviour** - Make sure the `readme.md` and any other relevant documentation are kept up-to-date.
 
