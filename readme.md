@@ -1,7 +1,8 @@
 # Empyr
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Latest Stable Version](https://poser.pugx.org/linusx/empyr/v/stable)](https://packagist.org/packages/linusx/empyr)
+[![Latest Unstable Version](https://poser.pugx.org/linusx/empyr/v/unstable)](https://packagist.org/packages/linusx/empyr)
+[![Total Downloads](https://poser.pugx.org/linusx/empyr/downloads)](https://packagist.org/packages/linusx/empyr)
 [![Build Status][ico-travis]][link-travis]
 [![StyleCI](https://github.styleci.io/repos/222042425/shield?branch=master)](https://github.styleci.io/repos/222042425)
 
