@@ -1,4 +1,6 @@
-<?php /** @noinspection ALL */
+<?php
+
+/** @noinspection ALL */
 
 namespace Linusx\Empyr;
 
@@ -7,12 +9,10 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Support\Facades\Log;
-use Linusx\Empyr\Exceptions\EmpyrEmptyEmailException;
-use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
-use Linusx\Empyr\Exceptions\EmpyrUserNotFoundException;
-use Linusx\Empyr\Facades\Empyr;
 use Illuminate\Support\Str;
-use \stdClass;
+use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
+use Linusx\Empyr\Facades\Empyr;
+use stdClass;
 
 class EmpyrController
 {
@@ -123,15 +123,15 @@ class EmpyrController
         $this->data = $data;
 
         // Set class variables from instantiation.
-        if (!empty($data)) {
+        if (! empty($data)) {
             foreach ($data as $field => $value) {
                 $this->{$field} = $value;
             }
         }
 
-        $this->token_session_key = $this->partner ? $this->token_session_key . '_partner' : $this->token_session_key;
+        $this->token_session_key = $this->partner ? $this->token_session_key.'_partner' : $this->token_session_key;
 
-        if (!empty($this->email)) {
+        if (! empty($this->email)) {
             $this->user = Empyr::user()->lookup($this->email);
         }
 
@@ -157,7 +157,7 @@ class EmpyrController
      */
     public function __get($name)
     {
-        if (!isset($this->{$name})) {
+        if (! isset($this->{$name})) {
             return false;
         }
 
@@ -165,7 +165,7 @@ class EmpyrController
     }
 
     /**
-     * Magic method for setting variables
+     * Magic method for setting variables.
      *
      * @param $name
      * @param $value
@@ -186,14 +186,14 @@ class EmpyrController
      */
     public function getAccessToken($grant_type = 'client_credentials', $user_email = '')
     {
-        if (!empty($user_email)) {
-            $this->token_session_key = $this->token_session_key . '_' . Str::slug($user_email);
+        if (! empty($user_email)) {
+            $this->token_session_key = $this->token_session_key.'_'.Str::slug($user_email);
         }
 
-        $token_expire = session()->get($this->token_session_key . '_expires');
+        $token_expire = session()->get($this->token_session_key.'_expires');
         $token_arr = session()->get($this->token_session_key);
 
-        if (time() < $token_expire && (!empty($token_arr) && (int)$token_arr->expires_in > 5)) {
+        if (time() < $token_expire && (! empty($token_arr) && (int) $token_arr->expires_in > 5)) {
             return $token_arr;
         }
 
@@ -203,34 +203,34 @@ class EmpyrController
             'grant_type' => $grant_type,
         ];
 
-        if (!empty($user_email)) {
+        if (! empty($user_email)) {
             $params['user_token'] = $user_email;
         }
 
-        $url = config('empyr.api_token_url') . '/oauth/token?' . http_build_query($params);
+        $url = config('empyr.api_token_url').'/oauth/token?'.http_build_query($params);
 
-        $this->log(__METHOD__ . ' GET request: ' . $url);
+        $this->log(__METHOD__.' GET request: '.$url);
 
         try {
             $response = $this->client->get($url);
-            $status = (int)$response->getStatusCode();
+            $status = (int) $response->getStatusCode();
         } catch (ClientException $e) {
-            $this->log(__METHOD__ . ' Error: ' . $e->getResponse()->getBody()->getContents());
+            $this->log(__METHOD__.' Error: '.$e->getResponse()->getBody()->getContents());
 
             return [];
         }
 
         if (200 !== $status) {
-            $this->log(__METHOD__ . ' Error: ' . $status . ' was returned');
+            $this->log(__METHOD__.' Error: '.$status.' was returned');
 
             return [];
         }
 
         $token_arr = json_decode($response->getBody());
 
-        $expire_date = time() + (int)$token_arr->expires_in;
+        $expire_date = time() + (int) $token_arr->expires_in;
 
-        session()->put($this->token_session_key . '_expires', $expire_date);
+        session()->put($this->token_session_key.'_expires', $expire_date);
         session()->put($this->token_session_key, $token_arr);
 
         session()->save();
@@ -261,7 +261,7 @@ class EmpyrController
 
         $url = $this->generateURL($url, $options);
 
-        $this->log(strtoupper($method) . ' request: ' . $url);
+        $this->log(strtoupper($method).' request: '.$url);
 
         try {
             if ('get' === strtolower($method)) {
@@ -271,15 +271,18 @@ class EmpyrController
             }
         } catch (ClientException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
+
             return $this->handleEmpyrError($error);
         } catch (ServerException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
+
             return $this->handleEmpyrError($error);
         }
 
         $data_response = json_decode($response->getBody());
-        if (!empty($data_response->meta) && 200 !== (int)$data_response->meta->code) {
+        if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
             $this->set_error('Bad request. No error given.');
+
             return false;
         }
 
@@ -300,7 +303,7 @@ class EmpyrController
     {
         $url = $this->generateURL($url, $options);
 
-        $this->log(strtoupper($method) . ' request: ' . $url);
+        $this->log(strtoupper($method).' request: '.$url);
 
         try {
             if ('get' === strtolower($method)) {
@@ -310,15 +313,18 @@ class EmpyrController
             }
         } catch (ClientException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
+
             return $this->handleEmpyrError($error);
         } catch (ServerException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
+
             return $this->handleEmpyrError($error);
         }
 
         $data_response = json_decode($response->getBody());
-        if (!empty($data_response->meta) && 200 !== (int)$data_response->meta->code) {
+        if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
             $this->set_error('Bad request. No error given.');
+
             return false;
         }
 
@@ -355,6 +361,7 @@ class EmpyrController
         if (false === $this->is_error()) {
             return '';
         }
+
         return $this->error;
     }
 
@@ -369,15 +376,15 @@ class EmpyrController
         $code = 500;
         $message = '';
 
-        if (!empty($error->meta) && !empty($error->meta->code)) {
-            $code = (int)$error->meta->code;
+        if (! empty($error->meta) && ! empty($error->meta->code)) {
+            $code = (int) $error->meta->code;
         }
 
-        if (!empty($error->meta) && !empty($error->meta->error)) {
+        if (! empty($error->meta) && ! empty($error->meta->error)) {
             $message = $error->meta->error;
         }
 
-        $this->log('Empyr Error: ' . $code . ' - ' . $message);
+        $this->log('Empyr Error: '.$code.' - '.$message);
 
         $this->set_error($message);
 
@@ -391,7 +398,7 @@ class EmpyrController
      */
     protected function log($mesage): void
     {
-        if (true === (bool)config('empyr.debug')) {
+        if (true === (bool) config('empyr.debug')) {
             Log::info($mesage);
         }
     }
@@ -423,7 +430,7 @@ class EmpyrController
 
         $params = collect($path_params)->merge($extra);
 
-        $url = $this->base_url . '/' . $url . '?' . http_build_query($params->all());
+        $url = $this->base_url.'/'.$url.'?'.http_build_query($params->all());
 
         return $url;
     }
@@ -441,7 +448,8 @@ class EmpyrController
         $ret = new stdClass();
         $ret->status = true;
         $ret->message = $msg;
-        $ret->data = (object)$data;
+        $ret->data = (object) $data;
+
         return $ret;
     }
 
@@ -458,7 +466,7 @@ class EmpyrController
         $ret = new stdClass();
         $ret->status = false;
         $ret->message = $msg;
-        $ret->data = (object)$data;
+        $ret->data = (object) $data;
 
         return $ret;
     }
@@ -488,6 +496,7 @@ class EmpyrController
                 }
             }
         }
+
         return $saved;
     }
 }

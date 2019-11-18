@@ -7,7 +7,6 @@ use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 class Empyr
 {
-
     /**
      * Data passed to the controller.
      * @var array
@@ -33,9 +32,10 @@ class Empyr
      */
     public function billingAccount($data = [])
     {
-        if ( isset($this->data) && is_array( $this->data)) {
-            $data = array_merge( $this->data, $data );
+        if (isset($this->data) && is_array($this->data)) {
+            $data = array_merge($this->data, $data);
         }
+
         return new EmpyrBillingAccounts($data);
     }
 
@@ -49,9 +49,10 @@ class Empyr
      */
     public function Venue($data = [])
     {
-        if ( isset($this->data) && is_array( $this->data)) {
-            $data = array_merge( $this->data, $data );
+        if (isset($this->data) && is_array($this->data)) {
+            $data = array_merge($this->data, $data);
         }
+
         return new EmpyrVenue($data);
     }
 
@@ -65,9 +66,10 @@ class Empyr
      */
     public function User($data = [])
     {
-        if ( isset($this->data) && is_array( $this->data)) {
-            $data = array_merge( $this->data, $data );
+        if (isset($this->data) && is_array($this->data)) {
+            $data = array_merge($this->data, $data);
         }
+
         return new EmpyrUser($data);
     }
 }

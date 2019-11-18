@@ -1,4 +1,6 @@
-<?php /** @noinspection DuplicatedCode */
+<?php
+
+/** @noinspection DuplicatedCode */
 
 namespace Linusx\Empyr;
 
@@ -556,7 +558,6 @@ class EmpyrUser extends EmpyrController
      * @throws EmpyrMissingRequiredFields
      *
      * @todo Get the CSV file working properly.
-     *
      */
     public function invite($options = [])
     {
@@ -587,7 +588,6 @@ class EmpyrUser extends EmpyrController
      * @throws EmpyrMissingRequiredFields
      *
      * @todo Test this. Find an offer to link.
-     *
      */
     public function offerLink($options = [])
     {
@@ -768,6 +768,7 @@ class EmpyrUser extends EmpyrController
             if (empty($value)) {
                 return true;
             }
+
             return $value;
         });
 
@@ -837,6 +838,7 @@ class EmpyrUser extends EmpyrController
             if (empty($value)) {
                 return true;
             }
+
             return $value;
         });
 

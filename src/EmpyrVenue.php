@@ -1,4 +1,6 @@
-<?php /** @noinspection DuplicatedCode */
+<?php
+
+/** @noinspection DuplicatedCode */
 
 namespace Linusx\Empyr;
 
@@ -220,6 +222,7 @@ class EmpyrVenue extends EmpyrController
             if (empty($value)) {
                 return true;
             }
+
             return $value;
         });
 
@@ -426,6 +429,7 @@ class EmpyrVenue extends EmpyrController
             if (empty($value)) {
                 return true;
             }
+
             return $value;
         });
 
