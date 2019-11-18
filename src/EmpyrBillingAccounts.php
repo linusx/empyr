@@ -32,16 +32,17 @@ class EmpyrBillingAccounts extends EmpyrController
      */
     public function get($id)
     {
-        if ( ! isset( $this->partner) || false === $this->partner ) {
+        if (! isset($this->partner) || false === $this->partner) {
             throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
         }
 
         $data = $this->call_api('billingAccounts/'.$id);
 
-        if ( ! $this->is_error() ) {
+        if (! $this->is_error()) {
             return $this->return_success($data->response);
         }
-        return $this->return_error([], $this->get_error() );
+
+        return $this->return_error([], $this->get_error());
     }
 
     /**
@@ -62,16 +63,17 @@ class EmpyrBillingAccounts extends EmpyrController
      */
     public function search($options = [])
     {
-        if ( ! isset( $this->partner) || false === $this->partner ) {
+        if (! isset($this->partner) || false === $this->partner) {
             throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
         }
 
         $data = $this->call_api('billingAccounts/search', $options);
 
-        if ( ! $this->is_error() ) {
+        if (! $this->is_error()) {
             return $this->return_success($data->response->results);
         }
-        return $this->return_error('', $this->get_error() );
+
+        return $this->return_error('', $this->get_error());
     }
 
     /**
@@ -100,14 +102,15 @@ class EmpyrBillingAccounts extends EmpyrController
 
         if (! empty($options['billing_account'])) {
             $this->billing_account = $options['billing_account'];
-            unset( $options['billing_account'] );
+            unset($options['billing_account']);
         }
 
-        $data = $this->call_api('billingAccounts/' . (int) $this->billing_account . '/links', $options);
-        if ( ! $this->is_error() ) {
+        $data = $this->call_api('billingAccounts/'.(int) $this->billing_account.'/links', $options);
+        if (! $this->is_error()) {
             return $this->return_success($data->response);
         }
-        return $this->return_error([], $this->get_error() );
+
+        return $this->return_error([], $this->get_error());
     }
 
     /**
@@ -154,6 +157,7 @@ class EmpyrBillingAccounts extends EmpyrController
             if (empty($value)) {
                 return true;
             }
+
             return false;
         });
 
@@ -167,8 +171,8 @@ class EmpyrBillingAccounts extends EmpyrController
 
         $user_exists = $this->search(['query' => $options['account.name'], 'numResults' => 100]);
         $found = [];
-        if ( true === $user_exists->status && ! empty( $user_exists->data->results ) ) {
-            foreach ( $user_exists->data->results as $user ) {
+        if (true === $user_exists->status && ! empty($user_exists->data->results)) {
+            foreach ($user_exists->data->results as $user) {
                 if (
                     strtolower($options['account.name']) === strtolower($user->name) &&
                     strtolower($options['account.accountingEmail']) === strtolower($user->email) &&
@@ -179,15 +183,16 @@ class EmpyrBillingAccounts extends EmpyrController
             }
         }
 
-        if ( ! empty( $found ) ) {
+        if (! empty($found)) {
             return $this->return_error($found, 'Name, Email Address, and Payment Method  already exists.');
         }
 
         $data = $this->call_api('billingAccounts/', $options, 'post');
-        if ( ! $this->is_error() ) {
+        if (! $this->is_error()) {
             return $this->return_success($data->response);
         }
-        return $this->return_error('', 'Error adding new Billing Account' );
+
+        return $this->return_error('', 'Error adding new Billing Account');
     }
 
     /**
@@ -208,21 +213,22 @@ class EmpyrBillingAccounts extends EmpyrController
 
         if (! empty($options['billing_account'])) {
             $this->billing_account = $options['billing_account'];
-            unset( $options['billing_account'] );
+            unset($options['billing_account']);
         }
 
-        if ( empty( $options['business'] ) ) {
+        if (empty($options['business'])) {
             throw new EmpyrMissingRequiredFields('No business given to link to.');
         }
 
         // Filter options to only allow the business.
         $options = $this->allowedKeys($options, ['business']);
 
-        $data = $this->call_api('billingAccounts/' . (int) $this->billing_account . '/link', $options, 'post');
-        if ( ! $this->is_error() ) {
+        $data = $this->call_api('billingAccounts/'.(int) $this->billing_account.'/link', $options, 'post');
+        if (! $this->is_error()) {
             return $this->return_success($data->response);
         }
-        return $this->return_error([], $this->get_error() );
+
+        return $this->return_error([], $this->get_error());
     }
 
     /**
@@ -256,7 +262,7 @@ class EmpyrBillingAccounts extends EmpyrController
 
         if (! empty($options['billing_account'])) {
             $this->billing_account = $options['billing_account'];
-            unset( $options['billing_account'] );
+            unset($options['billing_account']);
         }
 
         // Filter options to only allow the business.
@@ -274,10 +280,11 @@ class EmpyrBillingAccounts extends EmpyrController
             'echeck.routingNumber',
         ]);
 
-        $data = $this->call_api('billingAccounts/' . (int) $this->billing_account . '/update', $options, 'post');
-        if ( ! $this->is_error() ) {
+        $data = $this->call_api('billingAccounts/'.(int) $this->billing_account.'/update', $options, 'post');
+        if (! $this->is_error()) {
             return $this->return_success($data->response);
         }
-        return $this->return_error([], $this->get_error() );
+
+        return $this->return_error([], $this->get_error());
     }
 }
