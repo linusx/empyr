@@ -6,7 +6,6 @@ Contributions are accepted via Pull Requests on [Github](https://github.com/linu
 
 # Things you could do
 If you want to contribute but do not know where to start, this list provides some starting points.
-* Billing Accounts (https://www.mogl.com/api/docs/v2/BillingAccounts/accounts)
 * Cards (https://www.mogl.com/api/docs/v2/Cards/get)
 * Devices (https://www.mogl.com/api/docs/v2/Devices/get)
 * Fundraisers (https://www.mogl.com/api/docs/v2/Fundraisers/get)

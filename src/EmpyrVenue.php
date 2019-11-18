@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection DuplicatedCode */
 
 namespace Linusx\Empyr;
 
@@ -8,24 +8,19 @@ use GuzzleHttp\Exception\ServerException;
 use Illuminate\Support\Facades\File;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
-class EmpyrVenue extends Empyr
+class EmpyrVenue extends EmpyrController
 {
-    private $venue_id;
-
     /**
      * Empyr Venue Constructor.
      *
-     * @param int $venue_id Venue ID
-     * @param string $email
+     * @param array $data
      *
      * @throws GuzzleException
-     * @throws Exceptions\EmpyrEmptyEmailException
+     * @throws EmpyrMissingRequiredFields
      */
-    public function __construct($venue_id = 0, $email = '')
+    public function __construct($data = [])
     {
-        parent::__construct(false, $email);
-
-        $this->venue_id = $venue_id;
+        parent::__construct($data);
     }
 
     /**
@@ -40,15 +35,15 @@ class EmpyrVenue extends Empyr
      */
     public function get($venue_id = 0)
     {
-        if (empty($venue_id) && empty($this->venue_id)) {
+        if (empty($venue_id) && empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
         if (! empty($venue_id)) {
-            $this->venue_id = $venue_id;
+            $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/'.$this->venue_id);
+        $data = $this->call_api('venues/'.$this->venue);
 
         return $data->response->business ?? false;
     }
@@ -138,15 +133,15 @@ class EmpyrVenue extends Empyr
      */
     public function summary($venue_id = 0, $options = [])
     {
-        if (empty($venue_id) && empty($this->venue_id)) {
+        if (empty($venue_id) && empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
         if (! empty($venue_id)) {
-            $this->venue_id = $venue_id;
+            $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/'.$this->venue_id.'/summary', $options);
+        $data = $this->call_api('venues/'.$this->venue.'/summary', $options);
 
         return $data->response->results ?? false;
     }
@@ -170,15 +165,15 @@ class EmpyrVenue extends Empyr
      */
     public function userVenueTotals($venue_id = 0, $options = [])
     {
-        if (empty($venue_id) && empty($this->venue_id)) {
+        if (empty($venue_id) && empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
         if (! empty($venue_id)) {
-            $this->venue_id = $venue_id;
+            $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/'.$this->venue_id.'/userVenueTotals', $options);
+        $data = $this->call_api('venues/'.$this->venue.'/userVenueTotals', $options);
 
         return $data->response->results ?? false;
     }
@@ -225,6 +220,7 @@ class EmpyrVenue extends Empyr
             if (empty($value)) {
                 return true;
             }
+            return $value;
         });
 
         if (
@@ -256,7 +252,7 @@ class EmpyrVenue extends Empyr
     public function addPhoto($file_path, $options = [])
     {
         // Make sure we have a venue id.
-        if (empty($this->venue_id)) {
+        if (empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
@@ -268,7 +264,7 @@ class EmpyrVenue extends Empyr
             throw new EmpyrMissingRequiredFields('Type has to be LOGO, AMBIANCE, or FOOD');
         }
 
-        $url = $this->generateURL('venues/images/'.$this->venue_id.'/addPhoto', $options);
+        $url = $this->generateURL('venues/images/'.$this->venue.'/addPhoto', $options);
 
         $this->log('POST request: '.$url);
 
@@ -295,7 +291,7 @@ class EmpyrVenue extends Empyr
             return false;
         }
 
-        $data_response = \json_decode($response->getBody());
+        $data_response = json_decode($response->getBody());
 
         if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
             return false;
@@ -313,21 +309,19 @@ class EmpyrVenue extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws EmpyrMissingRequiredFields
-     * @throws Exceptions\EmpyrEmptyEmailException
-     * @throws Exceptions\EmpyrUserNotFoundException
      * @throws GuzzleException
      */
     public function bookmark($venue_id = 0, $options = [])
     {
-        if (empty($venue_id) && empty($this->venue_id)) {
+        if (empty($venue_id) && empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
         if (! empty($venue_id)) {
-            $this->venue_id = $venue_id;
+            $this->venue = $venue_id;
         }
 
-        $data = $this->call_user_api('venues/'.$this->venue_id.'/bookmark', $options, 'post');
+        $data = $this->call_user_api('venues/'.$this->venue.'/bookmark', $options, 'post');
 
         return $data->response->item ?? false;
     }
@@ -341,21 +335,19 @@ class EmpyrVenue extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws EmpyrMissingRequiredFields
-     * @throws Exceptions\EmpyrEmptyEmailException
-     * @throws Exceptions\EmpyrUserNotFoundException
      * @throws GuzzleException
      */
     public function removeBookmark($venue_id = 0, $options = [])
     {
-        if (empty($venue_id) && empty($this->venue_id)) {
+        if (empty($venue_id) && empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
         if (! empty($venue_id)) {
-            $this->venue_id = $venue_id;
+            $this->venue = $venue_id;
         }
 
-        $data = $this->call_user_api('venues/'.$this->venue_id.'/removeBookmark', $options, 'post');
+        $data = $this->call_user_api('venues/'.$this->venue.'/removeBookmark', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -371,21 +363,19 @@ class EmpyrVenue extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws EmpyrMissingRequiredFields
-     * @throws Exceptions\EmpyrEmptyEmailException
-     * @throws Exceptions\EmpyrUserNotFoundException
      * @throws GuzzleException
      */
     public function removePhoto($venue_id = 0, $options = [])
     {
-        if (empty($venue_id) && empty($this->venue_id)) {
+        if (empty($venue_id) && empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
         if (! empty($venue_id)) {
-            $this->venue_id = $venue_id;
+            $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/images/'.$this->venue_id.'/removePhoto', $options, 'post');
+        $data = $this->call_api('venues/images/'.$this->venue.'/removePhoto', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -395,17 +385,14 @@ class EmpyrVenue extends Empyr
      *
      * https://www.mogl.com/api/docs/v2/Venues/update
      *
-     * @param int $venue_id
      * @param array $options
      * @return bool|mixed
      * @throws EmpyrMissingRequiredFields
-     * @throws Exceptions\EmpyrEmptyEmailException
-     * @throws Exceptions\EmpyrUserNotFoundException
      * @throws GuzzleException
      */
     public function update($options = [])
     {
-        if (empty($this->venue_id)) {
+        if (empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
         }
 
@@ -439,9 +426,10 @@ class EmpyrVenue extends Empyr
             if (empty($value)) {
                 return true;
             }
+            return $value;
         });
 
-        $data = $this->call_api('venues/'.$this->venue_id.'/update', $params, 'post');
+        $data = $this->call_api('venues/'.$this->venue.'/update', $params, 'post');
 
         return $data->response->venue;
     }

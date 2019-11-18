@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection DuplicatedCode */
 
 namespace Linusx\Empyr;
 
@@ -6,24 +6,20 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Support\Facades\File;
-use Linusx\Empyr\Exceptions\EmpyrEmptyBusinesses;
-use Linusx\Empyr\Exceptions\EmpyrEmptyEmailException;
-use Linusx\Empyr\Exceptions\EmpyrEmptyRewardAmount;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
-use Linusx\Empyr\Exceptions\EmpyrUserNotFoundException;
 
-class EmpyrUser extends Empyr
+class EmpyrUser extends EmpyrController
 {
     /**
      * Create new Empyr user.
      *
      * @param array $data Data to set field with.
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws EmpyrEmptyEmailException
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
      */
-    public function __construct($data)
+    public function __construct($data = [])
     {
-        parent::__construct(false, $data);
+        parent::__construct($data);
     }
 
     /**
@@ -34,14 +30,14 @@ class EmpyrUser extends Empyr
      * @param $email
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
+     * @throws EmpyrMissingRequiredFields
      */
     public function lookup($email = '')
     {
         if (empty($email) && ! empty($this->email)) {
             $email = $this->email;
         } elseif (empty($email) && empty($this->email)) {
-            throw new EmpyrEmptyEmailException('No email given.');
+            throw new EmpyrMissingRequiredFields('Missing email address');
         }
 
         $data = $this->call_api('users/lookup', ['email' => $email]);
@@ -75,8 +71,7 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function alerts($options = [])
     {
@@ -94,9 +89,8 @@ class EmpyrUser extends Empyr
      *
      * @param array $options
      * @return bool|mixed
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
      * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
      */
     public function donations($options = [])
     {
@@ -112,15 +106,14 @@ class EmpyrUser extends Empyr
      *
      * @return bool
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function forgotPassword()
     {
 
         // Make sure we have an email address.
         if (empty($this->email)) {
-            throw new EmpyrEmptyEmailException('Missing user email address.');
+            throw new EmpyrMissingRequiredFields('Missing user email address');
         }
 
         $data = $this->call_user_api('users/forgotPassword', ['email' => $this->email], 'post');
@@ -137,8 +130,7 @@ class EmpyrUser extends Empyr
      *
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function listOAuth()
     {
@@ -156,8 +148,7 @@ class EmpyrUser extends Empyr
      *
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function notificationSettings()
     {
@@ -176,8 +167,7 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function payments($options = [])
     {
@@ -196,8 +186,7 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function rewardList($options = [])
     {
@@ -220,7 +209,6 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
      */
     public function search($query = '', $options = [])
     {
@@ -240,11 +228,10 @@ class EmpyrUser extends Empyr
      * @todo Still needs work.
      *
      * @return bool|mixed
-     * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
      */
     public function signupWithCard()
     {
+        return false;
     }
 
     /**
@@ -257,13 +244,12 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function friendsList($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('User not found.');
         }
 
         $data = $this->call_user_api('users/friends/'.$this->user->id.'/', $options);
@@ -279,13 +265,12 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function fundraiserHistory($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('User not found.');
         }
 
         $data = $this->call_user_api('users/'.$this->user->id.'/fundraiserHistory', $options);
@@ -301,13 +286,12 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
+     * @throws EmpyrMissingRequiredFields
      */
     public function leaderboard($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('User not found.');
         }
 
         $data = $this->call_api('users/friends/'.$this->user->id.'/leaderboard', $options);
@@ -325,18 +309,16 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
+     * @throws EmpyrMissingRequiredFields
      */
     public function recommendations($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('User not found.');
         }
 
         if (empty($options['businesses'])) {
-            throw new EmpyrEmptyBusinesses('No businesses provided.');
+            throw new EmpyrMissingRequiredFields('No business given.');
         }
 
         $data = $this->call_api('users/'.$this->user->id.'/recommendations', $options);
@@ -352,14 +334,12 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
+     * @throws EmpyrMissingRequiredFields
      */
     public function summary($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_api('users/'.$this->user->id.'/summary', $options);
@@ -373,23 +353,21 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/transactions
      *
      * Options:
-     * offset	Start offset.
-     * numResults	Number of results to retrieve (max 100).
-     * startDate	Retrieve results after this date YYYY/MM/DD.
-     * endDate	Retrieve results before this date YYYY/MM/DD.
-     * business	Restrict response to just this business.
+     * offset    Start offset.
+     * numResults    Number of results to retrieve (max 100).
+     * startDate    Retrieve results after this date YYYY/MM/DD.
+     * endDate    Retrieve results before this date YYYY/MM/DD.
+     * business    Restrict response to just this business.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
+     * @throws EmpyrMissingRequiredFields
      */
     public function transactions($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_api('users/'.$this->user->id.'/transactions', $options);
@@ -403,22 +381,20 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/venueHistory
      *
      * Options:
-     * curCashbackOnly	Include only venues where there has been cashback this month.
-     * jackpotsOnly	Whether to only return the history where the user won the jackpot.
-     * offset	The offset into the results list.
-     * numResults	Number of results to return per page.
+     * curCashbackOnly    Include only venues where there has been cashback this month.
+     * jackpotsOnly    Whether to only return the history where the user won the jackpot.
+     * offset    The offset into the results list.
+     * numResults    Number of results to return per page.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
+     * @throws EmpyrMissingRequiredFields
      */
     public function venueHistory($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_api('users/'.$this->user->id.'/venueHistory', $options);
@@ -440,15 +416,12 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function addReward($options = [])
     {
         if (empty($options['amount'])) {
-            throw new EmpyrEmptyRewardAmount('No amount given to reward user.');
+            throw new EmpyrMissingRequiredFields('No amount given.');
         }
 
         $data = $this->call_user_api('users/admin/addReward', $options, 'post');
@@ -462,15 +435,12 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/alertsDismiss
      *
      * Options:
-     * numAlerts	Number of alerts to dismiss or empty to dismiss all.
+     * numAlerts    Number of alerts to dismiss or empty to dismiss all.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function alertsDismiss($options = [])
     {
@@ -485,24 +455,21 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/approve
      *
      * Options:
-     * user	The user id of the user to approve friendship of.
+     * user    The user id of the user to approve friendship of.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function friendApprove($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         if (empty($options['user'])) {
-            throw new EmpyrUserNotFoundException('No friend ID given.');
+            throw new EmpyrMissingRequiredFields('No friend given.');
         }
 
         $user = $options['user'];
@@ -519,24 +486,21 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/deny
      *
      * Options:
-     * user	The user id of the user to deny friendship of.
+     * user    The user id of the user to deny friendship of.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function friendDeny($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         if (empty($options['user'])) {
-            throw new EmpyrUserNotFoundException('No friend ID given.');
+            throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
         $user = $options['user'];
@@ -554,25 +518,22 @@ class EmpyrUser extends Empyr
      *
      * Options:
      * donationValue  required The amount of the donation.
-     * transaction	  The transaction to lookup a donation for.
-     * jackpot	      The business user total of a jackpot to donate against.
+     * transaction      The transaction to lookup a donation for.
+     * jackpot          The business user total of a jackpot to donate against.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function donate($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         if (empty($options['user'])) {
-            throw new EmpyrUserNotFoundException('No friend ID given.');
+            throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
         $data = $this->call_user_api('users/donate', $options, 'post');
@@ -586,27 +547,25 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/invite
      *
      * Options:
-     * invitees	required A csv of emails, phone numbers, and facebook ids (prefixed fb) to invite.
-     * message	A message to customize the invite. Note that this will only be applicable to emails.
-     *
-     * @todo Get the CSV file working properly.
+     * invitees    required A csv of emails, phone numbers, and facebook ids (prefixed fb) to invite.
+     * message    A message to customize the invite. Note that this will only be applicable to emails.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
+     *
+     * @todo Get the CSV file working properly.
+     *
      */
     public function invite($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         if (empty($options['invitees'])) {
-            throw new EmpyrUserNotFoundException('No friend ID given.');
+            throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
         $data = $this->call_user_api('users/invite', $options, 'post');
@@ -620,26 +579,24 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/link
      *
      * Options:
-     * offer	required The offer to activate/link to the user.
-     *
-     * @todo Test this. Find an offer to link.
+     * offer    required The offer to activate/link to the user.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
+     *
+     * @todo Test this. Find an offer to link.
+     *
      */
     public function offerLink($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         if (empty($options['offer'])) {
-            throw new EmpyrUserNotFoundException('No offer given.');
+            throw new EmpyrMissingRequiredFields('No offer given.');
         }
 
         $data = $this->call_user_api('users/offers/link', $options, 'post');
@@ -656,15 +613,12 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function offerLinksList($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_user_api('users/offers/linksList', $options, 'post');
@@ -678,21 +632,18 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/oauthLink
      *
      * Options:
-     * provider	required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
-     * ss	required The secret token for the provider authenticating this user.
+     * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
+     * ss    required The secret token for the provider authenticating this user.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function oauthLink($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_user_api('users/oauthLink', $options, 'post');
@@ -706,20 +657,17 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/oauthUnlink
      *
      * Options:
-     * provider	required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
+     * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function oauthUnlink($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_user_api('users/oauthUnlink', $options, 'post');
@@ -733,24 +681,21 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/request
      *
      * Options:
-     * provider	required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
+     * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function friendRequest($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         if (empty($options['user'])) {
-            throw new EmpyrUserNotFoundException('No friend ID given.');
+            throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
         $user = $options['user'];
@@ -767,20 +712,17 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/unlink
      *
      * Options:
-     * offer	required The offer to unlink from the user.
+     * offer    required The offer to unlink from the user.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function offerUnlink($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_user_api('users/offers/unlink', $options, 'post');
@@ -807,10 +749,6 @@ class EmpyrUser extends Empyr
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
      * @throws EmpyrMissingRequiredFields
      */
     public function add($options = [])
@@ -830,6 +768,7 @@ class EmpyrUser extends Empyr
             if (empty($value)) {
                 return true;
             }
+            return $value;
         });
 
         if (
@@ -853,20 +792,17 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/update
      *
      * Options:
-     * offer	required The offer to unlink from the user.
+     * offer    required The offer to unlink from the user.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function update($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $defaults = [];
@@ -901,6 +837,7 @@ class EmpyrUser extends Empyr
             if (empty($value)) {
                 return true;
             }
+            return $value;
         });
 
         $data = $this->call_user_api('users/update', $params, 'post');
@@ -917,13 +854,13 @@ class EmpyrUser extends Empyr
      *
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
+     * @throws EmpyrMissingRequiredFields
      */
     public function updatePhoto($file_path)
     {
         // Make sure we have an email address.
         if (empty($this->email)) {
-            throw new EmpyrEmptyEmailException('Missing user email address.');
+            throw new EmpyrMissingRequiredFields('Missing user email address');
         }
 
         $options['user_token'] = $this->email;
@@ -955,7 +892,7 @@ class EmpyrUser extends Empyr
             return false;
         }
 
-        $data_response = \json_decode($response->getBody());
+        $data_response = json_decode($response->getBody());
 
         if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
             return false;
@@ -970,22 +907,19 @@ class EmpyrUser extends Empyr
      * https://www.mogl.com/api/docs/v2/Users/updateSecure
      *
      * Options:
-     * password	    required The user's current password
-     * newPassword	The user's new password
-     * email	    The user's new email
+     * password        required The user's current password
+     * newPassword    The user's new password
+     * email        The user's new email
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrEmptyEmailException
-     * @throws EmpyrUserNotFoundException
-     * @throws EmpyrEmptyBusinesses
-     * @throws EmpyrEmptyRewardAmount
+     * @throws EmpyrMissingRequiredFields
      */
     public function updatePassword($options = [])
     {
         if (empty($this->user)) {
-            throw new EmpyrUserNotFoundException('User not found.');
+            throw new EmpyrMissingRequiredFields('No user found.');
         }
 
         $data = $this->call_user_api('users/secure', $options, 'post');

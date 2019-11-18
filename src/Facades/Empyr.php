@@ -2,6 +2,7 @@
 
 namespace Linusx\Empyr\Facades;
 
+use Exception;
 use Illuminate\Support\Facades\Facade;
 
 class Empyr extends Facade
@@ -9,9 +10,9 @@ class Empyr extends Facade
     /**
      * Get the registered name of the component.
      *
-     * @throws \Exception
-     *
      * @return string
+     *
+     * @throws Exception
      */
     protected static function getFacadeAccessor()
     {

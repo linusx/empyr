@@ -60,23 +60,5 @@ class EmpyrServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/empyr.php' => config_path('empyr.php'),
         ], 'empyr');
-
-        // Publishing the views.
-        /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/linusx'),
-        ], 'empyr.views');*/
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/linusx'),
-        ], 'empyr.views');*/
-
-        // Publishing the translation files.
-        /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/linusx'),
-        ], 'empyr.views');*/
-
-        // Registering package commands.
-        // $this->commands([]);
     }
 }

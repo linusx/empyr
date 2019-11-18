@@ -9,7 +9,7 @@
         }
     ],
     "homepage": "https://github.com/linusx/empyr",
-    "keywords": ["Laravel", "empyr"],
+    "keywords": ["Laravel", "Empyr", "Mogl"],
     "require": {
         "illuminate/support": "~5",
         "ext-json": "^1.5"
