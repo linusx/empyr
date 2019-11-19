@@ -22,31 +22,17 @@ php artisan vendor:publish --provider="Linusx\Empyr\EmpyrServiceProvider"
 ```
 
 ## Usage
+[Examples](examples.md)
 
 ## Todo
-* Billing Accounts (https://www.mogl.com/api/docs/v2/BillingAccounts/accounts)
-* Cards (https://www.mogl.com/api/docs/v2/Cards/get)
-* Devices (https://www.mogl.com/api/docs/v2/Devices/get)
-* Fundraisers (https://www.mogl.com/api/docs/v2/Fundraisers/get)
-* Invoices (https://www.mogl.com/api/docs/v2/Invoices/invoice)
-* Metros (https://www.mogl.com/api/docs/v2/Metros/get)
-* Offers (https://www.mogl.com/api/docs/v2/Offers/add)
-* Payments (https://www.mogl.com/api/docs/v2/Payments/get)
-* Stats Lookup (https://www.mogl.com/api/docs/v2/Reports/statsLookup)
-* Transaction Report (https://www.mogl.com/api/docs/v2/Reports/txReportLookup)
-* Subscriptions (https://www.mogl.com/api/docs/v2/Subscriptions/get)
-* Utilities
-
+* Unit Tests
+* Test devices
 
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
 
 ## Testing
-
-``` bash
-$ composer test
-```
 
 ## Contributing
 
