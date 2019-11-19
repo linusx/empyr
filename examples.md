@@ -24,7 +24,7 @@
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->payments();`
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->rewardList();`
 * `$data = Empyr::user()->search('', ['numResults' => 10, 'offset' => 20 ] );`
-`signupWithCard * Not working`
+* `signupWithCard * Not working`
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->friendsList();`
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->fundraiserHistory();`
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->leaderboard();`
