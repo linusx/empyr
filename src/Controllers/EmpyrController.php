@@ -2,7 +2,7 @@
 
 /** @noinspection ALL */
 
-namespace Linusx\Empyr;
+namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -382,6 +382,12 @@ class EmpyrController
 
         if (! empty($error->meta) && ! empty($error->meta->error)) {
             $message = $error->meta->error;
+        }
+
+        if (! empty($error->meta) && ! empty($error->meta->errorDetails)) {
+            foreach($error->meta->errorDetails as $err) {
+                $message .= "(" . $err . ") ";
+            }
         }
 
         $this->log('Empyr Error: '.$code.' - '.$message);

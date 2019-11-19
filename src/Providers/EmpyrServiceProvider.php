@@ -1,6 +1,6 @@
 <?php
 
-namespace Linusx\Empyr;
+namespace Linusx\Empyr\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -31,7 +31,7 @@ class EmpyrServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/empyr.php', 'empyr');
+        $this->mergeConfigFrom(__DIR__.'/../../config/empyr.php', 'empyr');
 
         // Register the service the package provides.
         $this->app->singleton('Empyr', function ($app) {
@@ -58,7 +58,7 @@ class EmpyrServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/empyr.php' => config_path('empyr.php'),
+            __DIR__.'/../../config/empyr.php' => config_path('empyr.php'),
         ], 'empyr');
     }
 }

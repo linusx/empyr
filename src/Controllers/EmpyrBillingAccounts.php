@@ -1,6 +1,6 @@
 <?php
 
-namespace Linusx\Empyr;
+namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;

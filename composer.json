@@ -33,10 +33,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "linusx\\empyr\\empyrServiceProvider"
+                "Linusx\\Empyr\\Providers\\EmpyrServiceProvider"
             ],
             "aliases": {
-                "Empyr": "linusx\\empyr\\Facades\\empyr"
+                "Empyr": "Linusx\\Empyr\\Facades\\Empyr"
             }
         }
     }

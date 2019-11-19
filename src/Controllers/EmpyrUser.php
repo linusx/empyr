@@ -2,7 +2,7 @@
 
 /** @noinspection DuplicatedCode */
 
-namespace Linusx\Empyr;
+namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
