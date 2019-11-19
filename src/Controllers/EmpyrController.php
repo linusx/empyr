@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
@@ -160,7 +161,8 @@ class EmpyrController
         $this->getAccessToken();
     }
 
-    protected function setData($data) {
+    protected function setData($data)
+    {
         $this->data = $data;
         return $this;
     }
@@ -350,7 +352,8 @@ class EmpyrController
     /**
      * Print class data
      */
-    public function print() {
+    public function print() : void
+    {
         dd($this->data);
     }
 
@@ -360,7 +363,8 @@ class EmpyrController
      * @param bool $ret
      * @return $this|array
      */
-    public function array($ret = false) {
+    public function array($ret = false)  : array
+    {
         if (true === $ret) {
             return (array) $this->data;
         }
@@ -375,7 +379,8 @@ class EmpyrController
      * @param bool $ret
      * @return $this|array
      */
-    public function collection() {
+    public function collection() : Collection
+    {
         return collect($this->data);
     }
 
@@ -384,7 +389,8 @@ class EmpyrController
      *
      * @return object
      */
-    public function return() {
+    public function return() : object
+    {
         return (object) $this->data;
     }
 

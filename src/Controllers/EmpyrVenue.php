@@ -47,7 +47,7 @@ class EmpyrVenue extends EmpyrController
 
         $data = $this->callAPI('venues/'.$this->venue);
 
-        return $this->setData( $data->response->business );
+        return $this->setData($data->response->business);
     }
 
     /**
