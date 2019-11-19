@@ -21,7 +21,7 @@ class EmpyrSubscription extends EmpyrController
     }
 
     /**
-     * Retrieves a subscription
+     * Retrieves a subscription.
      *
      * https://www.mogl.com/api/docs/v2/Subscriptions/get
      *
@@ -35,18 +35,17 @@ class EmpyrSubscription extends EmpyrController
      */
     public function get($options = [])
     {
-
-        if (empty($options['subscription']) && empty( $this->subscription)) {
+        if (empty($options['subscription']) && empty($this->subscription)) {
             throw new EmpyrMissingRequiredFields('No subscription id given.');
         }
 
-        if (empty( $options['subscription'])) {
+        if (empty($options['subscription'])) {
             $options['subscription'] = $this->subscription;
         }
 
         $subscription_id = $options['subscription'];
 
-        $data = $this->call_api('subscriptions/' . $subscription_id);
+        $data = $this->call_api('subscriptions/'.$subscription_id);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);

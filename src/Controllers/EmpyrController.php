@@ -385,8 +385,8 @@ class EmpyrController
         }
 
         if (! empty($error->meta) && ! empty($error->meta->errorDetails)) {
-            foreach($error->meta->errorDetails as $err) {
-                $message .= "(" . $err . ") ";
+            foreach ($error->meta->errorDetails as $err) {
+                $message .= '('.$err.') ';
             }
         }
 

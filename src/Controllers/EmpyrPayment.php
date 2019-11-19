@@ -34,18 +34,18 @@ class EmpyrPayment extends EmpyrController
      */
     public function get($options = [])
     {
-        if (empty($options['payable']) && empty( $this->payable)) {
+        if (empty($options['payable']) && empty($this->payable)) {
             throw new EmpyrMissingRequiredFields('No payable id given.');
         }
 
-        if (empty( $options['payable'])) {
+        if (empty($options['payable'])) {
             $options['payable'] = $this->payable;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['payable']);
 
-        $data = $this->call_api('payments/' . $options['payable']);
+        $data = $this->call_api('payments/'.$options['payable']);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
