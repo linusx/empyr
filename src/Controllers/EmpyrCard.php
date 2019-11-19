@@ -41,8 +41,7 @@ class EmpyrCard extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['card']);
 
-        $data = $this->call_user_api('cards/' . $options['card']);
-
+        $data = $this->call_user_api('cards/'.$options['card']);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -120,7 +119,7 @@ class EmpyrCard extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['card']);
 
-        $data = $this->call_user_api('cards/' . $options['card'] . '/delete', [], 'post');
+        $data = $this->call_user_api('cards/'.$options['card'].'/delete', [], 'post');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response->result);
@@ -182,7 +181,7 @@ class EmpyrCard extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['card']);
 
-        $data = $this->call_user_api('cards/' . $options['card'] . '/setPrimary', $options, 'post');
+        $data = $this->call_user_api('cards/'.$options['card'].'/setPrimary', $options, 'post');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);

@@ -110,11 +110,11 @@ class EmpyrOffer extends EmpyrController
      */
     public function update($options = [])
     {
-        if (empty($options['offer']) && empty( $this->offer)) {
+        if (empty($options['offer']) && empty($this->offer)) {
             throw new EmpyrMissingRequiredFields('No offer id given.');
         }
 
-        if (empty( $options['offer'])) {
+        if (empty($options['offer'])) {
             $options['offer'] = $this->offer;
         }
 
@@ -127,7 +127,7 @@ class EmpyrOffer extends EmpyrController
             'feeValue',
         ]);
 
-        $data = $this->call_api('offers/' . $offer_id . '/update', $options, 'post');
+        $data = $this->call_api('offers/'.$offer_id.'/update', $options, 'post');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);

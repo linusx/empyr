@@ -34,18 +34,18 @@ class EmpyrFundraiser extends EmpyrController
      */
     public function get($options = [])
     {
-        if (empty($options['fundraiser']) && empty( $this->fundraiser)) {
+        if (empty($options['fundraiser']) && empty($this->fundraiser)) {
             throw new EmpyrMissingRequiredFields('No fundraiser id given.');
         }
 
-        if (empty( $options['fundraiser'])) {
+        if (empty($options['fundraiser'])) {
             $options['fundraiser'] = $this->fundraiser;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_api('fundraisers/' . $options['fundraiser']);
+        $data = $this->call_api('fundraisers/'.$options['fundraiser']);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -55,7 +55,7 @@ class EmpyrFundraiser extends EmpyrController
     }
 
     /**
-     * Searches for fundraisers
+     * Searches for fundraisers.
      *
      * https://www.mogl.com/api/docs/v2/Fundraisers/search
      *
@@ -104,18 +104,18 @@ class EmpyrFundraiser extends EmpyrController
      */
     public function donations($options = [])
     {
-        if (empty($options['fundraiser']) && empty( $this->fundraiser)) {
+        if (empty($options['fundraiser']) && empty($this->fundraiser)) {
             throw new EmpyrMissingRequiredFields('No fundraiser id given.');
         }
 
-        if (empty( $options['fundraiser'])) {
+        if (empty($options['fundraiser'])) {
             $options['fundraiser'] = $this->fundraiser;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser', 'offset', 'numResults']);
 
-        $data = $this->call_api('fundraisers/' . $options['fundraiser'] . '/donations', $options);
+        $data = $this->call_api('fundraisers/'.$options['fundraiser'].'/donations', $options);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -139,18 +139,18 @@ class EmpyrFundraiser extends EmpyrController
      */
     public function summary($options = [])
     {
-        if (empty($options['fundraiser']) && empty( $this->fundraiser)) {
+        if (empty($options['fundraiser']) && empty($this->fundraiser)) {
             throw new EmpyrMissingRequiredFields('No fundraiser id given.');
         }
 
-        if (empty( $options['fundraiser'])) {
+        if (empty($options['fundraiser'])) {
             $options['fundraiser'] = $this->fundraiser;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_api('fundraisers/' . $options['fundraiser'] . '/summary', $options);
+        $data = $this->call_api('fundraisers/'.$options['fundraiser'].'/summary', $options);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -174,18 +174,18 @@ class EmpyrFundraiser extends EmpyrController
      */
     public function userFundraiserTotals($options = [])
     {
-        if (empty($options['fundraiser']) && empty( $this->fundraiser)) {
+        if (empty($options['fundraiser']) && empty($this->fundraiser)) {
             throw new EmpyrMissingRequiredFields('No fundraiser id given.');
         }
 
-        if (empty( $options['fundraiser'])) {
+        if (empty($options['fundraiser'])) {
             $options['fundraiser'] = $this->fundraiser;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_api('fundraisers/' . $options['fundraiser'] . '/userFundraiserTotals', $options);
+        $data = $this->call_api('fundraisers/'.$options['fundraiser'].'/userFundraiserTotals', $options);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -209,18 +209,18 @@ class EmpyrFundraiser extends EmpyrController
      */
     public function join($options = [])
     {
-        if (empty($options['fundraiser']) && empty( $this->fundraiser)) {
+        if (empty($options['fundraiser']) && empty($this->fundraiser)) {
             throw new EmpyrMissingRequiredFields('No fundraiser id given.');
         }
 
-        if (empty( $options['fundraiser'])) {
+        if (empty($options['fundraiser'])) {
             $options['fundraiser'] = $this->fundraiser;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_user_api('fundraisers/' . $options['fundraiser'] . '/join', $options, 'post');
+        $data = $this->call_user_api('fundraisers/'.$options['fundraiser'].'/join', $options, 'post');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -244,18 +244,18 @@ class EmpyrFundraiser extends EmpyrController
      */
     public function leave($options = [])
     {
-        if (empty($options['fundraiser']) && empty( $this->fundraiser)) {
+        if (empty($options['fundraiser']) && empty($this->fundraiser)) {
             throw new EmpyrMissingRequiredFields('No fundraiser id given.');
         }
 
-        if (empty( $options['fundraiser'])) {
+        if (empty($options['fundraiser'])) {
             $options['fundraiser'] = $this->fundraiser;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_user_api('fundraisers/' . $options['fundraiser'] . '/leave', $options, 'post');
+        $data = $this->call_user_api('fundraisers/'.$options['fundraiser'].'/leave', $options, 'post');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);

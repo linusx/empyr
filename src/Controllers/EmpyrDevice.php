@@ -41,8 +41,7 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['device']);
 
-        $data = $this->call_user_api('devices/' . $options['device']);
-
+        $data = $this->call_user_api('devices/'.$options['device']);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
