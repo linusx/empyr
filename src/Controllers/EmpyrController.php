@@ -350,7 +350,7 @@ class EmpyrController
     }
 
     /**
-     * Print class data
+     * Print class data.
      */
     public function print() : void
     {
