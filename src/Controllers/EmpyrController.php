@@ -164,6 +164,7 @@ class EmpyrController
     protected function setData($data)
     {
         $this->data = $data;
+
         return $this;
     }
 
@@ -370,6 +371,7 @@ class EmpyrController
         }
 
         $this->data = (array) $this->data;
+
         return $this;
     }
 
