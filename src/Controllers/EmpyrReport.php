@@ -40,7 +40,6 @@ class EmpyrReport extends EmpyrController
      */
     public function statsReport($options = [])
     {
-
         if (empty($options['business'])) {
             throw new EmpyrMissingRequiredFields('Missing required fields.');
         }
@@ -95,7 +94,6 @@ class EmpyrReport extends EmpyrController
      */
     public function txReport($options = [])
     {
-
         if (empty($options['business'])) {
             throw new EmpyrMissingRequiredFields('Missing required fields.');
         }

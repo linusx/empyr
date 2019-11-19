@@ -23,7 +23,6 @@ class EmpyrInvoice extends EmpyrController
         if (! isset($this->partner) || false === $this->partner) {
             throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
         }
-
     }
 
     /**
@@ -41,18 +40,18 @@ class EmpyrInvoice extends EmpyrController
      */
     public function get($options = [])
     {
-        if (empty($options['invoice']) && empty( $this->invoice)) {
+        if (empty($options['invoice']) && empty($this->invoice)) {
             throw new EmpyrMissingRequiredFields('No invoice id given.');
         }
 
-        if (empty( $options['invoice'])) {
+        if (empty($options['invoice'])) {
             $options['invoice'] = $this->invoice;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/' . $options['invoice']);
+        $data = $this->call_api('invoices/'.$options['invoice']);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -110,18 +109,18 @@ class EmpyrInvoice extends EmpyrController
      */
     public function adjustments($options = [])
     {
-        if (empty($options['invoice']) && empty( $this->invoice)) {
+        if (empty($options['invoice']) && empty($this->invoice)) {
             throw new EmpyrMissingRequiredFields('No invoice id given.');
         }
 
-        if (empty( $options['invoice'])) {
+        if (empty($options['invoice'])) {
             $options['invoice'] = $this->invoice;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/' . $options['invoice'] . '/adjustments', $options);
+        $data = $this->call_api('invoices/'.$options['invoice'].'/adjustments', $options);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -145,18 +144,18 @@ class EmpyrInvoice extends EmpyrController
      */
     public function invoiceTransactions($options = [])
     {
-        if (empty($options['invoice']) && empty( $this->invoice)) {
+        if (empty($options['invoice']) && empty($this->invoice)) {
             throw new EmpyrMissingRequiredFields('No invoice id given.');
         }
 
-        if (empty( $options['invoice'])) {
+        if (empty($options['invoice'])) {
             $options['invoice'] = $this->invoice;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/' . $options['invoice'] . '/invoiceTransactions', $options);
+        $data = $this->call_api('invoices/'.$options['invoice'].'/invoiceTransactions', $options);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -180,18 +179,18 @@ class EmpyrInvoice extends EmpyrController
      */
     public function transactions($options = [])
     {
-        if (empty($options['invoice']) && empty( $this->invoice)) {
+        if (empty($options['invoice']) && empty($this->invoice)) {
             throw new EmpyrMissingRequiredFields('No invoice id given.');
         }
 
-        if (empty( $options['invoice'])) {
+        if (empty($options['invoice'])) {
             $options['invoice'] = $this->invoice;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/' . $options['invoice'] . '/transactions', $options);
+        $data = $this->call_api('invoices/'.$options['invoice'].'/transactions', $options);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -201,7 +200,7 @@ class EmpyrInvoice extends EmpyrController
     }
 
     /**
-     * Attempts collection of the invoice
+     * Attempts collection of the invoice.
      *
      * https://www.mogl.com/api/docs/v2/Invoices/collect
      *
@@ -215,18 +214,18 @@ class EmpyrInvoice extends EmpyrController
      */
     public function leave($options = [])
     {
-        if (empty($options['invoice']) && empty( $this->invoice)) {
+        if (empty($options['invoice']) && empty($this->invoice)) {
             throw new EmpyrMissingRequiredFields('No invoice id given.');
         }
 
-        if (empty( $options['invoice'])) {
+        if (empty($options['invoice'])) {
             $options['invoice'] = $this->invoice;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_user_api('invoices/' . $options['invoice'] . '/collect', $options, 'post');
+        $data = $this->call_user_api('invoices/'.$options['invoice'].'/collect', $options, 'post');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);

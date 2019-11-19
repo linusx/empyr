@@ -20,7 +20,7 @@ class EmpyrMetro extends EmpyrController
     }
 
     /**
-     * Returns details for the given metro
+     * Returns details for the given metro.
      *
      * https://www.mogl.com/api/docs/v2/Metros/get
      *
@@ -34,18 +34,18 @@ class EmpyrMetro extends EmpyrController
      */
     public function get($options = [])
     {
-        if (empty($options['metro']) && empty( $this->metro)) {
+        if (empty($options['metro']) && empty($this->metro)) {
             throw new EmpyrMissingRequiredFields('No metro id given.');
         }
 
-        if (empty( $options['metro'])) {
+        if (empty($options['metro'])) {
             $options['metro'] = $this->metro;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['metro']);
 
-        $data = $this->call_api('metros/' . $options['metro']);
+        $data = $this->call_api('metros/'.$options['metro']);
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -92,18 +92,18 @@ class EmpyrMetro extends EmpyrController
      */
     public function summary($options = [])
     {
-        if (empty($options['metro']) && empty( $this->metro)) {
+        if (empty($options['metro']) && empty($this->metro)) {
             throw new EmpyrMissingRequiredFields('No metro id given.');
         }
 
-        if (empty( $options['metro'])) {
+        if (empty($options['metro'])) {
             $options['metro'] = $this->metro;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->call_api('metros/' . $options['metro'] . '/summary');
+        $data = $this->call_api('metros/'.$options['metro'].'/summary');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response);
@@ -129,18 +129,18 @@ class EmpyrMetro extends EmpyrController
      */
     public function topBusinesses($options = [])
     {
-        if (empty($options['metro']) && empty( $this->metro)) {
+        if (empty($options['metro']) && empty($this->metro)) {
             throw new EmpyrMissingRequiredFields('No metro id given.');
         }
 
-        if (empty( $options['metro'])) {
+        if (empty($options['metro'])) {
             $options['metro'] = $this->metro;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->call_api('metros/' . $options['metro'] . '/topBusinesses');
+        $data = $this->call_api('metros/'.$options['metro'].'/topBusinesses');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response->results);
@@ -166,18 +166,18 @@ class EmpyrMetro extends EmpyrController
      */
     public function topUsers($options = [])
     {
-        if (empty($options['metro']) && empty( $this->metro)) {
+        if (empty($options['metro']) && empty($this->metro)) {
             throw new EmpyrMissingRequiredFields('No metro id given.');
         }
 
-        if (empty( $options['metro'])) {
+        if (empty($options['metro'])) {
             $options['metro'] = $this->metro;
         }
 
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->call_api('metros/' . $options['metro'] . '/topUsers');
+        $data = $this->call_api('metros/'.$options['metro'].'/topUsers');
 
         if (! $this->is_error()) {
             return $this->return_success($data->response->results);
@@ -185,5 +185,4 @@ class EmpyrMetro extends EmpyrController
 
         return $this->return_error([], $this->get_error());
     }
-
 }
