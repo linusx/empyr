@@ -37,13 +37,13 @@ class EmpyrUtility extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['level']);
 
-        $data = $this->call_api('utilities/categories/');
+        $data = $this->callAPI('utilities/categories/');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -57,13 +57,13 @@ class EmpyrUtility extends EmpyrController
      */
     public function extendedCategories($options = [])
     {
-        $data = $this->call_api('utilities/extendedCategories/');
+        $data = $this->callAPI('utilities/extendedCategories/');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -77,13 +77,13 @@ class EmpyrUtility extends EmpyrController
      */
     public function features($options = [])
     {
-        $data = $this->call_api('utilities/features/');
+        $data = $this->callAPI('utilities/features/');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -97,13 +97,13 @@ class EmpyrUtility extends EmpyrController
      */
     public function info($options = [])
     {
-        $data = $this->call_api('utilities/info/');
+        $data = $this->callAPI('utilities/info/');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -125,13 +125,13 @@ class EmpyrUtility extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required information.');
         }
 
-        $data = $this->call_api('utilities/locationSuggestions/', $options);
+        $data = $this->callAPI('utilities/locationSuggestions/', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -153,13 +153,13 @@ class EmpyrUtility extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required information.');
         }
 
-        $data = $this->call_api('utilities/searchSuggestions/', $options);
+        $data = $this->callAPI('utilities/searchSuggestions/', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -181,12 +181,12 @@ class EmpyrUtility extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required information.');
         }
 
-        $data = $this->call_api('utilities/searchSuggestionsMap/', $options);
+        $data = $this->callAPI('utilities/searchSuggestionsMap/', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 }

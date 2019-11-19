@@ -38,7 +38,7 @@ class EmpyrInvoice extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($options = [])
+    public function invoice($options = [])
     {
         if (empty($options['invoice']) && empty($this->invoice)) {
             throw new EmpyrMissingRequiredFields('No invoice id given.');
@@ -51,13 +51,13 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/'.$options['invoice']);
+        $data = $this->callAPI('invoices/'.$options['invoice']);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -85,13 +85,13 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['startDate', 'endDate', 'business', 'account', 'state', 'offset', 'numResults']);
 
-        $data = $this->call_api('invoices/', $options);
+        $data = $this->callAPI('invoices/', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -120,13 +120,13 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/'.$options['invoice'].'/adjustments', $options);
+        $data = $this->callAPI('invoices/'.$options['invoice'].'/adjustments', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -155,13 +155,13 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/'.$options['invoice'].'/invoiceTransactions', $options);
+        $data = $this->callAPI('invoices/'.$options['invoice'].'/invoiceTransactions', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -190,13 +190,13 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_api('invoices/'.$options['invoice'].'/transactions', $options);
+        $data = $this->callAPI('invoices/'.$options['invoice'].'/transactions', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -225,12 +225,12 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->call_user_api('invoices/'.$options['invoice'].'/collect', $options, 'post');
+        $data = $this->callUserAPI('invoices/'.$options['invoice'].'/collect', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 }

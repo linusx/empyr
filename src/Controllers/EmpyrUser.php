@@ -42,7 +42,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing email address');
         }
 
-        $data = $this->call_api('users/lookup', ['email' => $email]);
+        $data = $this->callAPI('users/lookup', ['email' => $email]);
 
         return $data->response->user ?? false;
     }
@@ -56,9 +56,9 @@ class EmpyrUser extends EmpyrController
      * @return bool|mixed
      * @throws GuzzleException
      */
-    public function get($id)
+    public function user($id)
     {
-        $data = $this->call_api('users/'.$id);
+        $data = $this->callAPI('users/'.$id);
 
         return $data->response->user ?? false;
     }
@@ -77,7 +77,7 @@ class EmpyrUser extends EmpyrController
      */
     public function alerts($options = [])
     {
-        $alerts = $this->call_user_api('users/alerts', $options);
+        $alerts = $this->callUserAPI('users/alerts', $options);
 
         return $alerts->response->results ?? false;
     }
@@ -96,7 +96,7 @@ class EmpyrUser extends EmpyrController
      */
     public function donations($options = [])
     {
-        $data = $this->call_user_api('users/donate/donateList', $options);
+        $data = $this->callUserAPI('users/donate/donateList', $options);
 
         return $data->response->donation ?? false;
     }
@@ -118,7 +118,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing user email address');
         }
 
-        $data = $this->call_user_api('users/forgotPassword', ['email' => $this->email], 'post');
+        $data = $this->callUserAPI('users/forgotPassword', ['email' => $this->email], 'post');
 
         return (bool) $data->response->result;
     }
@@ -136,7 +136,7 @@ class EmpyrUser extends EmpyrController
      */
     public function listOAuth()
     {
-        $data = $this->call_user_api('users/listOAuth');
+        $data = $this->callUserAPI('users/listOAuth');
 
         return $data->response ?? false;
     }
@@ -154,7 +154,7 @@ class EmpyrUser extends EmpyrController
      */
     public function notificationSettings()
     {
-        $data = $this->call_user_api('users/notificationSettings');
+        $data = $this->callUserAPI('users/notificationSettings');
 
         return $data->response->results ?? false;
     }
@@ -173,7 +173,7 @@ class EmpyrUser extends EmpyrController
      */
     public function payments($options = [])
     {
-        $data = $this->call_user_api('users/payments', $options);
+        $data = $this->callUserAPI('users/payments', $options);
 
         return $data->response->payables ?? false;
     }
@@ -192,7 +192,7 @@ class EmpyrUser extends EmpyrController
      */
     public function rewardList($options = [])
     {
-        $data = $this->call_user_api('users/admin/rewardList', $options);
+        $data = $this->callUserAPI('users/admin/rewardList', $options);
 
         return $data->response->results ?? false;
     }
@@ -215,7 +215,7 @@ class EmpyrUser extends EmpyrController
     public function search($query = '', $options = [])
     {
         $options['query'] = $query;
-        $data = $this->call_api('users/search', $options);
+        $data = $this->callAPI('users/search', $options);
 
         return $data->response->results ?? false;
     }
@@ -254,7 +254,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('User not found.');
         }
 
-        $data = $this->call_user_api('users/friends/'.$this->user->id.'/', $options);
+        $data = $this->callUserAPI('users/friends/'.$this->user->id.'/', $options);
 
         return $data->response->results ?? false;
     }
@@ -275,7 +275,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('User not found.');
         }
 
-        $data = $this->call_user_api('users/'.$this->user->id.'/fundraiserHistory', $options);
+        $data = $this->callUserAPI('users/'.$this->user->id.'/fundraiserHistory', $options);
 
         return $data->response->results ?? false;
     }
@@ -296,7 +296,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('User not found.');
         }
 
-        $data = $this->call_api('users/friends/'.$this->user->id.'/leaderboard', $options);
+        $data = $this->callAPI('users/friends/'.$this->user->id.'/leaderboard', $options);
 
         return $data->response->results ?? false;
     }
@@ -323,7 +323,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No business given.');
         }
 
-        $data = $this->call_api('users/'.$this->user->id.'/recommendations', $options);
+        $data = $this->callAPI('users/'.$this->user->id.'/recommendations', $options);
 
         return $data->response->results ?? false;
     }
@@ -344,7 +344,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_api('users/'.$this->user->id.'/summary', $options);
+        $data = $this->callAPI('users/'.$this->user->id.'/summary', $options);
 
         return $data->response->userSummary ?? false;
     }
@@ -372,7 +372,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_api('users/'.$this->user->id.'/transactions', $options);
+        $data = $this->callAPI('users/'.$this->user->id.'/transactions', $options);
 
         return $data->response->transactions ?? false;
     }
@@ -399,7 +399,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_api('users/'.$this->user->id.'/venueHistory', $options);
+        $data = $this->callAPI('users/'.$this->user->id.'/venueHistory', $options);
 
         return $data->response->results ?? false;
     }
@@ -426,7 +426,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No amount given.');
         }
 
-        $data = $this->call_user_api('users/admin/addReward', $options, 'post');
+        $data = $this->callUserAPI('users/admin/addReward', $options, 'post');
 
         return $data->response->reward ?? false;
     }
@@ -446,7 +446,7 @@ class EmpyrUser extends EmpyrController
      */
     public function alertsDismiss($options = [])
     {
-        $data = $this->call_user_api('users/alertsDismiss', $options, 'post');
+        $data = $this->callUserAPI('users/alertsDismiss', $options, 'post');
 
         return $data->response->user ?? false;
     }
@@ -477,7 +477,7 @@ class EmpyrUser extends EmpyrController
         $user = $options['user'];
         unset($options['user']);
 
-        $data = $this->call_user_api('users/friends/'.$user.'/approve', $options, 'post');
+        $data = $this->callUserAPI('users/friends/'.$user.'/approve', $options, 'post');
 
         return (bool) $data->response->friend;
     }
@@ -508,7 +508,7 @@ class EmpyrUser extends EmpyrController
         $user = $options['user'];
         unset($options['user']);
 
-        $data = $this->call_user_api('users/friends/'.$user.'/deny', $options, 'post');
+        $data = $this->callUserAPI('users/friends/'.$user.'/deny', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -538,7 +538,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
-        $data = $this->call_user_api('users/donate', $options, 'post');
+        $data = $this->callUserAPI('users/donate', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -569,7 +569,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
-        $data = $this->call_user_api('users/invite', $options, 'post');
+        $data = $this->callUserAPI('users/invite', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -599,7 +599,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No offer given.');
         }
 
-        $data = $this->call_user_api('users/offers/link', $options, 'post');
+        $data = $this->callUserAPI('users/offers/link', $options, 'post');
 
         return $data->response->link;
     }
@@ -621,7 +621,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_user_api('users/offers/linksList', $options, 'post');
+        $data = $this->callUserAPI('users/offers/linksList', $options, 'post');
 
         return $data->response->links;
     }
@@ -646,7 +646,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_user_api('users/oauthLink', $options, 'post');
+        $data = $this->callUserAPI('users/oauthLink', $options, 'post');
 
         return $data->response->results;
     }
@@ -670,7 +670,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_user_api('users/oauthUnlink', $options, 'post');
+        $data = $this->callUserAPI('users/oauthUnlink', $options, 'post');
 
         return $data->response->results;
     }
@@ -701,7 +701,7 @@ class EmpyrUser extends EmpyrController
         $user = $options['user'];
         unset($options['user']);
 
-        $data = $this->call_user_api('users/friends/'.$user.'/request', $options, 'post');
+        $data = $this->callUserAPI('users/friends/'.$user.'/request', $options, 'post');
 
         return $data->response->friend;
     }
@@ -725,7 +725,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_user_api('users/offers/unlink', $options, 'post');
+        $data = $this->callUserAPI('users/offers/unlink', $options, 'post');
 
         return $data->response;
     }
@@ -782,7 +782,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required fields');
         }
 
-        $data = $this->call_api('users', $params, 'post');
+        $data = $this->callAPI('users', $params, 'post');
 
         return $data->response->user ?? $data->response;
     }
@@ -842,7 +842,7 @@ class EmpyrUser extends EmpyrController
             return $value;
         });
 
-        $data = $this->call_user_api('users/update', $params, 'post');
+        $data = $this->callUserAPI('users/update', $params, 'post');
 
         return $data->response->user;
     }
@@ -924,7 +924,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->call_user_api('users/secure', $options, 'post');
+        $data = $this->callUserAPI('users/secure', $options, 'post');
 
         return $data->response->user;
     }

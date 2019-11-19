@@ -83,13 +83,13 @@ class EmpyrOffer extends EmpyrController
             'dynamic',
         ]);
 
-        $data = $this->call_api('offers/add', $options, 'post');
+        $data = $this->callAPI('offers/add', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -127,12 +127,12 @@ class EmpyrOffer extends EmpyrController
             'feeValue',
         ]);
 
-        $data = $this->call_api('offers/'.$offer_id.'/update', $options, 'post');
+        $data = $this->callAPI('offers/'.$offer_id.'/update', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 }

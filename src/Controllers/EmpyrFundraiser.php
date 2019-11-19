@@ -32,7 +32,7 @@ class EmpyrFundraiser extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($options = [])
+    public function fundraiser($options = [])
     {
         if (empty($options['fundraiser']) && empty($this->fundraiser)) {
             throw new EmpyrMissingRequiredFields('No fundraiser id given.');
@@ -45,13 +45,13 @@ class EmpyrFundraiser extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_api('fundraisers/'.$options['fundraiser']);
+        $data = $this->callAPI('fundraisers/'.$options['fundraiser']);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -78,13 +78,13 @@ class EmpyrFundraiser extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['query', 'offset', 'numResults']);
 
-        $data = $this->call_api('fundraisers/search', $options, 'post');
+        $data = $this->callAPI('fundraisers/search', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -115,13 +115,13 @@ class EmpyrFundraiser extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser', 'offset', 'numResults']);
 
-        $data = $this->call_api('fundraisers/'.$options['fundraiser'].'/donations', $options);
+        $data = $this->callAPI('fundraisers/'.$options['fundraiser'].'/donations', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -150,13 +150,13 @@ class EmpyrFundraiser extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_api('fundraisers/'.$options['fundraiser'].'/summary', $options);
+        $data = $this->callAPI('fundraisers/'.$options['fundraiser'].'/summary', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -185,13 +185,13 @@ class EmpyrFundraiser extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_api('fundraisers/'.$options['fundraiser'].'/userFundraiserTotals', $options);
+        $data = $this->callAPI('fundraisers/'.$options['fundraiser'].'/userFundraiserTotals', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -220,13 +220,13 @@ class EmpyrFundraiser extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_user_api('fundraisers/'.$options['fundraiser'].'/join', $options, 'post');
+        $data = $this->callUserAPI('fundraisers/'.$options['fundraiser'].'/join', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -255,12 +255,12 @@ class EmpyrFundraiser extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['fundraiser']);
 
-        $data = $this->call_user_api('fundraisers/'.$options['fundraiser'].'/leave', $options, 'post');
+        $data = $this->callUserAPI('fundraisers/'.$options['fundraiser'].'/leave', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 }

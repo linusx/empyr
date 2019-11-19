@@ -32,7 +32,7 @@ class EmpyrMetro extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($options = [])
+    public function metro($options = [])
     {
         if (empty($options['metro']) && empty($this->metro)) {
             throw new EmpyrMissingRequiredFields('No metro id given.');
@@ -45,13 +45,13 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro']);
 
-        $data = $this->call_api('metros/'.$options['metro']);
+        $data = $this->callAPI('metros/'.$options['metro']);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -66,13 +66,13 @@ class EmpyrMetro extends EmpyrController
      */
     public function list($options = [])
     {
-        $data = $this->call_api('metros/', $options);
+        $data = $this->callAPI('metros/', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response->results);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response->results);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -103,13 +103,13 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->call_api('metros/'.$options['metro'].'/summary');
+        $data = $this->callAPI('metros/'.$options['metro'].'/summary');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -140,13 +140,13 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->call_api('metros/'.$options['metro'].'/topBusinesses');
+        $data = $this->callAPI('metros/'.$options['metro'].'/topBusinesses');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response->results);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response->results);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -177,12 +177,12 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->call_api('metros/'.$options['metro'].'/topUsers');
+        $data = $this->callAPI('metros/'.$options['metro'].'/topUsers');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response->results);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response->results);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 }
