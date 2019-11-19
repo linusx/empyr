@@ -32,7 +32,7 @@ class EmpyrDevice extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($options = [])
+    public function device($options = [])
     {
         if (empty($options['device'])) {
             throw new EmpyrMissingRequiredFields('No device id given.');
@@ -41,13 +41,13 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['device']);
 
-        $data = $this->call_user_api('devices/'.$options['device']);
+        $data = $this->callUserAPI('devices/'.$options['device']);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -62,13 +62,13 @@ class EmpyrDevice extends EmpyrController
      */
     public function list($options = [])
     {
-        $data = $this->call_user_api('devices/list', $options);
+        $data = $this->callUserAPI('devices/list', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -94,13 +94,13 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['deviceToken', 'deviceType']);
 
-        $data = $this->call_user_api('devices/add', $options, 'post');
+        $data = $this->callUserAPI('devices/add', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -126,12 +126,12 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['deviceToken', 'deviceType']);
 
-        $data = $this->call_user_api('devices/remove', $options, 'post');
+        $data = $this->callUserAPI('devices/remove', $options, 'post');
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response->result);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response->result);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 }

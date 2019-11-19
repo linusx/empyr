@@ -30,19 +30,19 @@ class EmpyrBillingAccounts extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrNotPartnerCredentials
      */
-    public function get($id)
+    public function billingAccount($id)
     {
         if (! isset($this->partner) || false === $this->partner) {
             throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
         }
 
-        $data = $this->call_api('billingAccounts/'.$id);
+        $data = $this->callAPI('billingAccounts/'.$id);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -67,13 +67,13 @@ class EmpyrBillingAccounts extends EmpyrController
             throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
         }
 
-        $data = $this->call_api('billingAccounts/search', $options);
+        $data = $this->callAPI('billingAccounts/search', $options);
 
-        if (! $this->is_error()) {
-            return $this->return_success($data->response->results);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response->results);
         }
 
-        return $this->return_error('', $this->get_error());
+        return $this->returnError('', $this->getError());
     }
 
     /**
@@ -105,12 +105,12 @@ class EmpyrBillingAccounts extends EmpyrController
             unset($options['billing_account']);
         }
 
-        $data = $this->call_api('billingAccounts/'.(int) $this->billing_account.'/links', $options);
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        $data = $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/links', $options);
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -184,15 +184,15 @@ class EmpyrBillingAccounts extends EmpyrController
         }
 
         if (! empty($found)) {
-            return $this->return_error($found, 'Name, Email Address, and Payment Method  already exists.');
+            return $this->returnError($found, 'Name, Email Address, and Payment Method  already exists.');
         }
 
-        $data = $this->call_api('billingAccounts/', $options, 'post');
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        $data = $this->callAPI('billingAccounts/', $options, 'post');
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error('', 'Error adding new Billing Account');
+        return $this->returnError('', 'Error adding new Billing Account');
     }
 
     /**
@@ -223,12 +223,12 @@ class EmpyrBillingAccounts extends EmpyrController
         // Filter options to only allow the business.
         $options = $this->allowedKeys($options, ['business']);
 
-        $data = $this->call_api('billingAccounts/'.(int) $this->billing_account.'/link', $options, 'post');
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        $data = $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/link', $options, 'post');
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 
     /**
@@ -280,11 +280,11 @@ class EmpyrBillingAccounts extends EmpyrController
             'echeck.routingNumber',
         ]);
 
-        $data = $this->call_api('billingAccounts/'.(int) $this->billing_account.'/update', $options, 'post');
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
+        $data = $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/update', $options, 'post');
+        if (! $this->isError()) {
+            return $this->returnSuccess($data->response);
         }
 
-        return $this->return_error([], $this->get_error());
+        return $this->returnError([], $this->getError());
     }
 }
