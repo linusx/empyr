@@ -2,6 +2,9 @@
 
 All notable changes to `empyr` will be documented in this file.
 
+## Version 0.3.1
+- Fixing examples file
+
 ## Version 0.3.0
 - Added Card methods
 - Added Device methods
