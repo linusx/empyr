@@ -197,6 +197,7 @@ class EmpyrUser extends EmpyrController
     public function search($query = '', $options = [])
     {
         $options['query'] = $query;
+
         return $this->callAPI('users/search', $options);
     }
 

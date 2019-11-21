@@ -169,7 +169,7 @@ class EmpyrBillingAccounts extends EmpyrController
         if (! empty($found)) {
             return $this->setData([
                 'found' => $found,
-                'error' => 'Name, Email Address, and Payment Method already exists.'
+                'error' => 'Name, Email Address, and Payment Method already exists.',
             ]);
         }
 
