@@ -51,13 +51,7 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->callAPI('invoices/'.$options['invoice']);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('invoices/'.$options['invoice']);
     }
 
     /**
@@ -85,13 +79,7 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['startDate', 'endDate', 'business', 'account', 'state', 'offset', 'numResults']);
 
-        $data = $this->callAPI('invoices/', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('invoices/', $options);
     }
 
     /**
@@ -120,13 +108,7 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->callAPI('invoices/'.$options['invoice'].'/adjustments', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('invoices/'.$options['invoice'].'/adjustments', $options);
     }
 
     /**
@@ -155,13 +137,7 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->callAPI('invoices/'.$options['invoice'].'/invoiceTransactions', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('invoices/'.$options['invoice'].'/invoiceTransactions', $options);
     }
 
     /**
@@ -190,13 +166,7 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->callAPI('invoices/'.$options['invoice'].'/transactions', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('invoices/'.$options['invoice'].'/transactions', $options);
     }
 
     /**
@@ -225,12 +195,6 @@ class EmpyrInvoice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['invoice']);
 
-        $data = $this->callUserAPI('invoices/'.$options['invoice'].'/collect', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('invoices/'.$options['invoice'].'/collect', $options, 'post');
     }
 }

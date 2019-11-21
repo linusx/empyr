@@ -45,13 +45,7 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro']);
 
-        $data = $this->callAPI('metros/'.$options['metro']);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('metros/'.$options['metro']);
     }
 
     /**
@@ -66,13 +60,7 @@ class EmpyrMetro extends EmpyrController
      */
     public function list($options = [])
     {
-        $data = $this->callAPI('metros/', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response->results);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('metros/', $options);
     }
 
     /**
@@ -103,13 +91,7 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->callAPI('metros/'.$options['metro'].'/summary');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('metros/'.$options['metro'].'/summary');
     }
 
     /**
@@ -140,13 +122,7 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->callAPI('metros/'.$options['metro'].'/topBusinesses');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response->results);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('metros/'.$options['metro'].'/topBusinesses');
     }
 
     /**
@@ -177,12 +153,6 @@ class EmpyrMetro extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['metro', 'offset', 'numResults']);
 
-        $data = $this->callAPI('metros/'.$options['metro'].'/topUsers');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response->results);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('metros/'.$options['metro'].'/topUsers');
     }
 }

@@ -41,13 +41,7 @@ class EmpyrCard extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['card']);
 
-        $data = $this->callUserAPI('cards/'.$options['card']);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('cards/'.$options['card']);
     }
 
     /**
@@ -62,13 +56,7 @@ class EmpyrCard extends EmpyrController
      */
     public function list($options = [])
     {
-        $data = $this->callUserAPI('cards', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('cards', $options);
     }
 
     /**
@@ -88,13 +76,7 @@ class EmpyrCard extends EmpyrController
      */
     public function add($options = [])
     {
-        $data = $this->callUserAPI('cards', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('cards', $options, 'post');
     }
 
     /**
@@ -119,13 +101,7 @@ class EmpyrCard extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['card']);
 
-        $data = $this->callUserAPI('cards/'.$options['card'].'/delete', [], 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response->result);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('cards/'.$options['card'].'/delete', [], 'post');
     }
 
     /**
@@ -150,13 +126,7 @@ class EmpyrCard extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['cardNumber']);
 
-        $data = $this->callUserAPI('cards/deleteByNumber', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('cards/deleteByNumber', $options, 'post');
     }
 
     /**
@@ -181,12 +151,6 @@ class EmpyrCard extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['card']);
 
-        $data = $this->callUserAPI('cards/'.$options['card'].'/setPrimary', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('cards/'.$options['card'].'/setPrimary', $options, 'post');
     }
 }

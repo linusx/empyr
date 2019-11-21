@@ -45,13 +45,7 @@ class EmpyrSubscription extends EmpyrController
 
         $subscription_id = $options['subscription'];
 
-        $data = $this->callAPI('subscriptions/'.$subscription_id);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('subscriptions/'.$subscription_id);
     }
 
     /**
@@ -85,12 +79,6 @@ class EmpyrSubscription extends EmpyrController
             'plan',
         ]);
 
-        $data = $this->callAPI('subscriptions/add', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('subscriptions/add', $options);
     }
 }

@@ -61,13 +61,7 @@ class EmpyrReport extends EmpyrController
 
         $params = collect($defaults)->merge($options);
 
-        $data = $this->callAPI('reportstats/statsReport/', $params->all());
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('reportstats/statsReport/', $params->all());
     }
 
     /**
@@ -118,12 +112,6 @@ class EmpyrReport extends EmpyrController
 
         $params = collect($defaults)->merge($options);
 
-        $data = $this->callAPI('reportstats/txReport/', $params->all());
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('reportstats/txReport/', $params->all());
     }
 }

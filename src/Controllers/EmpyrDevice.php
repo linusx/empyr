@@ -41,13 +41,7 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['device']);
 
-        $data = $this->callUserAPI('devices/'.$options['device']);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('devices/'.$options['device']);
     }
 
     /**
@@ -62,13 +56,7 @@ class EmpyrDevice extends EmpyrController
      */
     public function list($options = [])
     {
-        $data = $this->callUserAPI('devices/list', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('devices/list', $options);
     }
 
     /**
@@ -94,13 +82,7 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['deviceToken', 'deviceType']);
 
-        $data = $this->callUserAPI('devices/add', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('devices/add', $options, 'post');
     }
 
     /**
@@ -126,12 +108,6 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['deviceToken', 'deviceType']);
 
-        $data = $this->callUserAPI('devices/remove', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response->result);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callUserAPI('devices/remove', $options, 'post');
     }
 }

@@ -30,7 +30,7 @@ class EmpyrUser extends EmpyrController
      * https://www.mogl.com/api/docs/v2/Users/lookup
      *
      * @param $email
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -42,9 +42,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing email address');
         }
 
-        $data = $this->callAPI('users/lookup', ['email' => $email]);
-
-        return $data->response->user ?? false;
+        return $this->callAPI('users/lookup', ['email' => $email]);
     }
 
     /**
@@ -53,14 +51,12 @@ class EmpyrUser extends EmpyrController
      * https://www.mogl.com/api/docs/v2/Users/get
      *
      * @param int $id User ID to get
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      */
     public function user($id)
     {
-        $data = $this->callAPI('users/'.$id);
-
-        return $data->response->user ?? false;
+        return $this->callAPI('users/'.$id);
     }
 
     /**
@@ -71,15 +67,13 @@ class EmpyrUser extends EmpyrController
      * Needs acting user token.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
     public function alerts($options = [])
     {
-        $alerts = $this->callUserAPI('users/alerts', $options);
-
-        return $alerts->response->results ?? false;
+        return $this->callUserAPI('users/alerts', $options);
     }
 
     /**
@@ -90,15 +84,13 @@ class EmpyrUser extends EmpyrController
      * Needs acting user token.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
     public function donations($options = [])
     {
-        $data = $this->callUserAPI('users/donate/donateList', $options);
-
-        return $data->response->donation ?? false;
+        return $this->callUserAPI('users/donate/donateList', $options);
     }
 
     /**
@@ -106,9 +98,9 @@ class EmpyrUser extends EmpyrController
      *
      * https://www.mogl.com/api/docs/v2/Users/forgotPassword
      *
-     * @return bool
-     * @throws GuzzleException
+     * @return EmpyrUser
      * @throws EmpyrMissingRequiredFields
+     * @throws GuzzleException
      */
     public function forgotPassword()
     {
@@ -118,9 +110,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing user email address');
         }
 
-        $data = $this->callUserAPI('users/forgotPassword', ['email' => $this->email], 'post');
-
-        return (bool) $data->response->result;
+        return $this->callUserAPI('users/forgotPassword', ['email' => $this->email], 'post');
     }
 
     /**
@@ -130,15 +120,13 @@ class EmpyrUser extends EmpyrController
      *
      * Needs acting user token.
      *
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
     public function listOAuth()
     {
-        $data = $this->callUserAPI('users/listOAuth');
-
-        return $data->response ?? false;
+        return $this->callUserAPI('users/listOAuth');
     }
 
     /**
@@ -148,15 +136,13 @@ class EmpyrUser extends EmpyrController
      *
      * Needs acting user token.
      *
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
     public function notificationSettings()
     {
-        $data = $this->callUserAPI('users/notificationSettings');
-
-        return $data->response->results ?? false;
+        return $this->callUserAPI('users/notificationSettings');
     }
 
     /**
@@ -167,15 +153,13 @@ class EmpyrUser extends EmpyrController
      * Needs acting user token.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
     public function payments($options = [])
     {
-        $data = $this->callUserAPI('users/payments', $options);
-
-        return $data->response->payables ?? false;
+        return $this->callUserAPI('users/payments', $options);
     }
 
     /**
@@ -186,15 +170,13 @@ class EmpyrUser extends EmpyrController
      * Needs acting user token.
      *
      * @param array $options
-     * @return bool|mixed
-     * @throws GuzzleException
+     * @return EmpyrUser
      * @throws EmpyrMissingRequiredFields
+     * @throws GuzzleException
      */
     public function rewardList($options = [])
     {
-        $data = $this->callUserAPI('users/admin/rewardList', $options);
-
-        return $data->response->results ?? false;
+        return $this->callUserAPI('users/admin/rewardList', $options);
     }
 
     /**
@@ -209,15 +191,13 @@ class EmpyrUser extends EmpyrController
      *
      * @param string $query
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      */
     public function search($query = '', $options = [])
     {
         $options['query'] = $query;
-        $data = $this->callAPI('users/search', $options);
-
-        return $data->response->results ?? false;
+        return $this->callAPI('users/search', $options);
     }
 
     /**
@@ -229,7 +209,7 @@ class EmpyrUser extends EmpyrController
      *
      * @todo Still needs work.
      *
-     * @return bool|mixed
+     * @return EmpyrUser
      */
     public function signupWithCard()
     {
@@ -244,7 +224,7 @@ class EmpyrUser extends EmpyrController
      * Needs acting user token.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -254,9 +234,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('User not found.');
         }
 
-        $data = $this->callUserAPI('users/friends/'.$this->user->id.'/', $options);
-
-        return $data->response->results ?? false;
+        return $this->callUserAPI('users/friends/'.$this->user->id.'/', $options);
     }
 
     /**
@@ -265,7 +243,7 @@ class EmpyrUser extends EmpyrController
      * https://www.mogl.com/api/docs/v2/Users/fundraiserHistory
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -275,9 +253,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('User not found.');
         }
 
-        $data = $this->callUserAPI('users/'.$this->user->id.'/fundraiserHistory', $options);
-
-        return $data->response->results ?? false;
+        return $this->callUserAPI('users/'.$this->user->id.'/fundraiserHistory', $options);
     }
 
     /**
@@ -286,7 +262,7 @@ class EmpyrUser extends EmpyrController
      * https://www.mogl.com/api/docs/v2/Users/leaderboard
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -296,9 +272,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('User not found.');
         }
 
-        $data = $this->callAPI('users/friends/'.$this->user->id.'/leaderboard', $options);
-
-        return $data->response->results ?? false;
+        return $this->callAPI('users/friends/'.$this->user->id.'/leaderboard', $options);
     }
 
     /**
@@ -309,7 +283,7 @@ class EmpyrUser extends EmpyrController
      * https://www.mogl.com/api/docs/v2/Users/recommendations
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -323,9 +297,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No business given.');
         }
 
-        $data = $this->callAPI('users/'.$this->user->id.'/recommendations', $options);
-
-        return $data->response->results ?? false;
+        return $this->callAPI('users/'.$this->user->id.'/recommendations', $options);
     }
 
     /**
@@ -334,7 +306,7 @@ class EmpyrUser extends EmpyrController
      * https://www.mogl.com/api/docs/v2/Users/summary
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -344,9 +316,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callAPI('users/'.$this->user->id.'/summary', $options);
-
-        return $data->response->userSummary ?? false;
+        return $this->callAPI('users/'.$this->user->id.'/summary', $options);
     }
 
     /**
@@ -362,7 +332,7 @@ class EmpyrUser extends EmpyrController
      * business    Restrict response to just this business.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -372,9 +342,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callAPI('users/'.$this->user->id.'/transactions', $options);
-
-        return $data->response->transactions ?? false;
+        return $this->callAPI('users/'.$this->user->id.'/transactions', $options);
     }
 
     /**
@@ -389,7 +357,7 @@ class EmpyrUser extends EmpyrController
      * numResults    Number of results to return per page.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -399,9 +367,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callAPI('users/'.$this->user->id.'/venueHistory', $options);
-
-        return $data->response->results ?? false;
+        return $this->callAPI('users/'.$this->user->id.'/venueHistory', $options);
     }
 
     /**
@@ -416,7 +382,7 @@ class EmpyrUser extends EmpyrController
      * numResults    Number of results to return per page.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -426,9 +392,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No amount given.');
         }
 
-        $data = $this->callUserAPI('users/admin/addReward', $options, 'post');
-
-        return $data->response->reward ?? false;
+        return $this->callUserAPI('users/admin/addReward', $options, 'post');
     }
 
     /**
@@ -440,15 +404,13 @@ class EmpyrUser extends EmpyrController
      * numAlerts    Number of alerts to dismiss or empty to dismiss all.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
     public function alertsDismiss($options = [])
     {
-        $data = $this->callUserAPI('users/alertsDismiss', $options, 'post');
-
-        return $data->response->user ?? false;
+        return $this->callUserAPI('users/alertsDismiss', $options, 'post');
     }
 
     /**
@@ -460,7 +422,7 @@ class EmpyrUser extends EmpyrController
      * user    The user id of the user to approve friendship of.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -477,9 +439,7 @@ class EmpyrUser extends EmpyrController
         $user = $options['user'];
         unset($options['user']);
 
-        $data = $this->callUserAPI('users/friends/'.$user.'/approve', $options, 'post');
-
-        return (bool) $data->response->friend;
+        return $this->callUserAPI('users/friends/'.$user.'/approve', $options, 'post');
     }
 
     /**
@@ -491,7 +451,7 @@ class EmpyrUser extends EmpyrController
      * user    The user id of the user to deny friendship of.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -508,9 +468,7 @@ class EmpyrUser extends EmpyrController
         $user = $options['user'];
         unset($options['user']);
 
-        $data = $this->callUserAPI('users/friends/'.$user.'/deny', $options, 'post');
-
-        return (bool) $data->response->result;
+        return $this->callUserAPI('users/friends/'.$user.'/deny', $options, 'post');
     }
 
     /**
@@ -524,7 +482,7 @@ class EmpyrUser extends EmpyrController
      * jackpot          The business user total of a jackpot to donate against.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -538,9 +496,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
-        $data = $this->callUserAPI('users/donate', $options, 'post');
-
-        return (bool) $data->response->result;
+        return $this->callUserAPI('users/donate', $options, 'post');
     }
 
     /**
@@ -553,7 +509,7 @@ class EmpyrUser extends EmpyrController
      * message    A message to customize the invite. Note that this will only be applicable to emails.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      *
@@ -569,9 +525,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No friend ID given.');
         }
 
-        $data = $this->callUserAPI('users/invite', $options, 'post');
-
-        return (bool) $data->response->result;
+        return $this->callUserAPI('users/invite', $options, 'post');
     }
 
     /**
@@ -583,7 +537,7 @@ class EmpyrUser extends EmpyrController
      * offer    required The offer to activate/link to the user.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      *
@@ -599,9 +553,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No offer given.');
         }
 
-        $data = $this->callUserAPI('users/offers/link', $options, 'post');
-
-        return $data->response->link;
+        return $this->callUserAPI('users/offers/link', $options, 'post');
     }
 
     /**
@@ -611,7 +563,7 @@ class EmpyrUser extends EmpyrController
      *
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -621,9 +573,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callUserAPI('users/offers/linksList', $options, 'post');
-
-        return $data->response->links;
+        return $this->callUserAPI('users/offers/linksList', $options, 'post');
     }
 
     /**
@@ -636,7 +586,7 @@ class EmpyrUser extends EmpyrController
      * ss    required The secret token for the provider authenticating this user.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -646,9 +596,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callUserAPI('users/oauthLink', $options, 'post');
-
-        return $data->response->results;
+        return $this->callUserAPI('users/oauthLink', $options, 'post');
     }
 
     /**
@@ -660,7 +608,7 @@ class EmpyrUser extends EmpyrController
      * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -670,9 +618,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callUserAPI('users/oauthUnlink', $options, 'post');
-
-        return $data->response->results;
+        return $this->callUserAPI('users/oauthUnlink', $options, 'post');
     }
 
     /**
@@ -684,7 +630,7 @@ class EmpyrUser extends EmpyrController
      * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -701,9 +647,7 @@ class EmpyrUser extends EmpyrController
         $user = $options['user'];
         unset($options['user']);
 
-        $data = $this->callUserAPI('users/friends/'.$user.'/request', $options, 'post');
-
-        return $data->response->friend;
+        return $this->callUserAPI('users/friends/'.$user.'/request', $options, 'post');
     }
 
     /**
@@ -715,7 +659,7 @@ class EmpyrUser extends EmpyrController
      * offer    required The offer to unlink from the user.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -725,9 +669,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callUserAPI('users/offers/unlink', $options, 'post');
-
-        return $data->response;
+        return $this->callUserAPI('users/offers/unlink', $options, 'post');
     }
 
     /**
@@ -747,7 +689,7 @@ class EmpyrUser extends EmpyrController
      * ss    The secret token from the social provider that accesses the account.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -782,9 +724,7 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required fields');
         }
 
-        $data = $this->callAPI('users', $params, 'post');
-
-        return $data->response->user ?? $data->response;
+        return $this->callAPI('users', $params, 'post');
     }
 
     /**
@@ -796,7 +736,7 @@ class EmpyrUser extends EmpyrController
      * offer    required The offer to unlink from the user.
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -842,9 +782,7 @@ class EmpyrUser extends EmpyrController
             return $value;
         });
 
-        $data = $this->callUserAPI('users/update', $params, 'post');
-
-        return $data->response->user;
+        return $this->callUserAPI('users/update', $params, 'post');
     }
 
     /**
@@ -854,7 +792,7 @@ class EmpyrUser extends EmpyrController
      *
      * @param string $file_path File path to send.
      *
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -900,7 +838,7 @@ class EmpyrUser extends EmpyrController
             return false;
         }
 
-        return $data_response->response->user;
+        return $this->setData($data_response->response->user);
     }
 
     /**
@@ -914,7 +852,7 @@ class EmpyrUser extends EmpyrController
      * email        The user's new email
      *
      * @param array $options
-     * @return bool|mixed
+     * @return EmpyrUser
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
@@ -924,8 +862,6 @@ class EmpyrUser extends EmpyrController
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        $data = $this->callUserAPI('users/secure', $options, 'post');
-
-        return $data->response->user;
+        return $this->callUserAPI('users/secure', $options, 'post');
     }
 }

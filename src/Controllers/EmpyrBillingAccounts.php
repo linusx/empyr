@@ -36,13 +36,7 @@ class EmpyrBillingAccounts extends EmpyrController
             throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
         }
 
-        $data = $this->callAPI('billingAccounts/'.$id);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('billingAccounts/'.$id);
     }
 
     /**
@@ -67,13 +61,7 @@ class EmpyrBillingAccounts extends EmpyrController
             throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
         }
 
-        $data = $this->callAPI('billingAccounts/search', $options);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response->results);
-        }
-
-        return $this->returnError('', $this->getError());
+        return $this->callAPI('billingAccounts/search', $options);
     }
 
     /**
@@ -105,12 +93,7 @@ class EmpyrBillingAccounts extends EmpyrController
             unset($options['billing_account']);
         }
 
-        $data = $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/links', $options);
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/links', $options);
     }
 
     /**
@@ -184,15 +167,13 @@ class EmpyrBillingAccounts extends EmpyrController
         }
 
         if (! empty($found)) {
-            return $this->returnError($found, 'Name, Email Address, and Payment Method  already exists.');
+            return $this->setData([
+                'found' => $found,
+                'error' => 'Name, Email Address, and Payment Method already exists.'
+            ]);
         }
 
-        $data = $this->callAPI('billingAccounts/', $options, 'post');
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError('', 'Error adding new Billing Account');
+        return $this->callAPI('billingAccounts/', $options, 'post');
     }
 
     /**
@@ -223,12 +204,7 @@ class EmpyrBillingAccounts extends EmpyrController
         // Filter options to only allow the business.
         $options = $this->allowedKeys($options, ['business']);
 
-        $data = $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/link', $options, 'post');
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/link', $options, 'post');
     }
 
     /**
@@ -280,11 +256,6 @@ class EmpyrBillingAccounts extends EmpyrController
             'echeck.routingNumber',
         ]);
 
-        $data = $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/update', $options, 'post');
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('billingAccounts/'.(int) $this->billing_account.'/update', $options, 'post');
     }
 }

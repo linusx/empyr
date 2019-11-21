@@ -13,6 +13,17 @@
 [Subscriptions](#subscriptions) |
 [Utilities](#utilities) |
 
+#### Return Responses
+Return responses have a few methods to get the data.
+
+`$data = Empyr::user()->lookup( 'email@domain.com' );`
+
+The response for this would be an instance of `EmpyrUser`
+Methods on this would be:
+* `get` Returns a Laravel collection.
+* `array` Returns an array of data.
+
+
 ### Users
 * `$data = Empyr::user()->lookup( 'email@domain.com' );`
 * `$data = Empyr::user()->user( 12345 );`

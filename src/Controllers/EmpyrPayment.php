@@ -45,13 +45,7 @@ class EmpyrPayment extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['payable']);
 
-        $data = $this->callAPI('payments/'.$options['payable']);
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('payments/'.$options['payable']);
     }
 
     /**
@@ -86,13 +80,7 @@ class EmpyrPayment extends EmpyrController
             'details',
         ]);
 
-        $data = $this->callAPI('payments/', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('payments/', $options, 'post');
     }
 
     /**
@@ -133,12 +121,6 @@ class EmpyrPayment extends EmpyrController
             'details',
         ]);
 
-        $data = $this->callAPI('payments/direct', $options, 'post');
-
-        if (! $this->isError()) {
-            return $this->returnSuccess($data->response);
-        }
-
-        return $this->returnError([], $this->getError());
+        return $this->callAPI('payments/direct', $options, 'post');
     }
 }
