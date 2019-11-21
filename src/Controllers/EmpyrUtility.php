@@ -37,13 +37,7 @@ class EmpyrUtility extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['level']);
 
-        $data = $this->call_api('utilities/categories/');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('utilities/categories/', $options);
     }
 
     /**
@@ -57,13 +51,7 @@ class EmpyrUtility extends EmpyrController
      */
     public function extendedCategories($options = [])
     {
-        $data = $this->call_api('utilities/extendedCategories/');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('utilities/extendedCategories/');
     }
 
     /**
@@ -77,13 +65,7 @@ class EmpyrUtility extends EmpyrController
      */
     public function features($options = [])
     {
-        $data = $this->call_api('utilities/features/');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('utilities/features/');
     }
 
     /**
@@ -97,13 +79,7 @@ class EmpyrUtility extends EmpyrController
      */
     public function info($options = [])
     {
-        $data = $this->call_api('utilities/info/');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('utilities/info/');
     }
 
     /**
@@ -125,13 +101,7 @@ class EmpyrUtility extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required information.');
         }
 
-        $data = $this->call_api('utilities/locationSuggestions/', $options);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('utilities/locationSuggestions/', $options);
     }
 
     /**
@@ -153,13 +123,7 @@ class EmpyrUtility extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required information.');
         }
 
-        $data = $this->call_api('utilities/searchSuggestions/', $options);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('utilities/searchSuggestions/', $options);
     }
 
     /**
@@ -181,12 +145,6 @@ class EmpyrUtility extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required information.');
         }
 
-        $data = $this->call_api('utilities/searchSuggestionsMap/', $options);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('utilities/searchSuggestionsMap/', $options);
     }
 }

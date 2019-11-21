@@ -35,7 +35,7 @@ class EmpyrVenue extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($venue_id = 0)
+    public function venue($venue_id = 0)
     {
         if (empty($venue_id) && empty($this->venue)) {
             throw new EmpyrMissingRequiredFields('Missing venue id');
@@ -45,9 +45,7 @@ class EmpyrVenue extends EmpyrController
             $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/'.$this->venue);
-
-        return $data->response->business ?? false;
+        return $this->callAPI('venues/'.$this->venue);
     }
 
     /**
@@ -86,9 +84,7 @@ class EmpyrVenue extends EmpyrController
      */
     public function search($options = [])
     {
-        $data = $this->call_api('venues/search', $options, 'post');
-
-        return $data->response->results ?? false;
+        return $this->callAPI('venues/search', $options, 'post');
     }
 
     /**
@@ -102,9 +98,7 @@ class EmpyrVenue extends EmpyrController
      */
     public function searchByPhone($phone_number)
     {
-        $data = $this->call_api('venues/search/phone', ['phoneNumber' => $phone_number], 'post');
-
-        return $data->response->results ?? false;
+        return $this->callAPI('venues/search/phone', ['phoneNumber' => $phone_number], 'post');
     }
 
     /**
@@ -117,9 +111,7 @@ class EmpyrVenue extends EmpyrController
      */
     public function segmented()
     {
-        $data = $this->call_api('venues/segmented', [], 'post');
-
-        return $data->response->results ?? false;
+        return $this->callAPI('venues/segmented', [], 'post');
     }
 
     /**
@@ -143,9 +135,7 @@ class EmpyrVenue extends EmpyrController
             $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/'.$this->venue.'/summary', $options);
-
-        return $data->response->results ?? false;
+        return $this->callAPI('venues/'.$this->venue.'/summary', $options);
     }
 
     /**
@@ -175,9 +165,7 @@ class EmpyrVenue extends EmpyrController
             $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/'.$this->venue.'/userVenueTotals', $options);
-
-        return $data->response->results ?? false;
+        return $this->callAPI('venues/'.$this->venue.'/userVenueTotals', $options);
     }
 
     /**
@@ -236,9 +224,7 @@ class EmpyrVenue extends EmpyrController
             throw new EmpyrMissingRequiredFields('Missing required fields');
         }
 
-        $data = $this->call_api('venues/add', $params, 'post');
-
-        return $data->response->venue ?? $data->response;
+        return $this->callAPI('venues/add', $params, 'post');
     }
 
     /**
@@ -300,7 +286,7 @@ class EmpyrVenue extends EmpyrController
             return false;
         }
 
-        return $data_response->response->venue;
+        return $this->setData($data_response->response->venue);
     }
 
     /**
@@ -324,9 +310,7 @@ class EmpyrVenue extends EmpyrController
             $this->venue = $venue_id;
         }
 
-        $data = $this->call_user_api('venues/'.$this->venue.'/bookmark', $options, 'post');
-
-        return $data->response->item ?? false;
+        return $this->callUserAPI('venues/'.$this->venue.'/bookmark', $options, 'post');
     }
 
     /**
@@ -350,7 +334,7 @@ class EmpyrVenue extends EmpyrController
             $this->venue = $venue_id;
         }
 
-        $data = $this->call_user_api('venues/'.$this->venue.'/removeBookmark', $options, 'post');
+        $data = $this->callUserAPI('venues/'.$this->venue.'/removeBookmark', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -378,7 +362,7 @@ class EmpyrVenue extends EmpyrController
             $this->venue = $venue_id;
         }
 
-        $data = $this->call_api('venues/images/'.$this->venue.'/removePhoto', $options, 'post');
+        $data = $this->callAPI('venues/images/'.$this->venue.'/removePhoto', $options, 'post');
 
         return (bool) $data->response->result;
     }
@@ -433,8 +417,6 @@ class EmpyrVenue extends EmpyrController
             return $value;
         });
 
-        $data = $this->call_api('venues/'.$this->venue.'/update', $params, 'post');
-
-        return $data->response->venue;
+        return $this->callAPI('venues/'.$this->venue.'/update', $params, 'post');
     }
 }

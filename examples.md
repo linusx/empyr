@@ -13,9 +13,20 @@
 [Subscriptions](#subscriptions) |
 [Utilities](#utilities) |
 
+#### Return Responses
+Return responses have a few methods to get the data.
+
+`$data = Empyr::user()->lookup( 'email@domain.com' );`
+
+The response for this would be an instance of `EmpyrUser`
+Methods on this would be:
+* `get` Returns a Laravel collection.
+* `array` Returns an array of data.
+
+
 ### Users
 * `$data = Empyr::user()->lookup( 'email@domain.com' );`
-* `$data = Empyr::user()->get( 12345 );`
+* `$data = Empyr::user()->user( 12345 );`
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->alerts();`
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->donations();`
 * `$data = Empyr::user( ['email' => 'email@domain.com'] )->forgotPassword();`
@@ -50,7 +61,7 @@
 * `$data = Empyr::user()->add(['firstName' => 'Bill', 'lastName' => 'Van Pelt', 'email' => 'email@domain.com', 'address.postalCode' => '12345'])`
 
 ### Venues
-* `$data = Empyr::venue(['venue' => 12345])->get();`
+* `$data = Empyr::venue(['venue' => 12345])->venue();`
 * `$data = Empyr::venue()->search(['query' => '']);`
 * `$data = Empyr::venue()->searchByPhone('123-456-7890');`
 * `$data = Empyr::venue()->segmented();`
@@ -80,7 +91,7 @@
 ]);`
 
 ### Billing Accounts
-* `$data = EmpyrPartner::billingAccount()->get(12345);`
+* `$data = EmpyrPartner::billingAccount()->billingAccount(12345);`
 * `$data = EmpyrPartner::billingAccount()->search(['query' => 'A Name', 'numResults' => 100]);`
 * `$data = EmpyrPartner::billingAccount(['billing_account' => 12345])->links();`
 * `$data = EmpyrPartner::billingAccount()->add([
@@ -93,7 +104,7 @@
 * `$data = EmpyrPartner::billingAccount(['billing_account' => 12345])->update(['account.name' => 'Test Van Pelt']);`
 
 ### Cards
-* `$data = Empyr::card( ['email' => 'name@domain.com'] )->get(['card' => 12345]);`
+* `$data = Empyr::card( ['email' => 'name@domain.com'] )->card(['card' => 12345]);`
 * `$data = Empyr::card( ['email' => 'name@domain.com'] )->list();`
 * `$data = Empyr::card( ['email' => 'name@domain.com'] )->add([
 'cardNumber' => '1111111111111111',
@@ -107,7 +118,7 @@
 ### Devices
 
 ### Fundraisers
-* `$data = Empyr::fundraiser(['fundraiser' => 123])->get();`
+* `$data = Empyr::fundraiser(['fundraiser' => 123])->fundraiser();`
 * `$data = Empyr::fundraiser()->search(['query' => 'Denver']);`
 * `$data = Empyr::fundraiser(['fundraiser' => 123])->donations();`
 * `$data = Empyr::fundraiser(['fundraiser' => 123])->summary();`
@@ -116,7 +127,7 @@
 * `$data = Empyr::fundraiser(['fundraiser' => 123, 'email' => 'linusx@gmail.com'])->leave();`
 
 ### Invoices
-* `$data = EmpyrPartner::invoice(['invoice' => 12345])->get();`
+* `$data = EmpyrPartner::invoice(['invoice' => 12345])->invoice();`
 * `$data = EmpyrPartner::invoice()->lookup(['startDate' => '2019/10/1', 'state' => 'POSTED']);`
 * `$data = EmpyrPartner::invoice(['invoice' => 12345])->adjustments();`
 * `$data = EmpyrPartner::invoice(['invoice' => 12345])->invoiceTransactions();`
@@ -124,7 +135,7 @@
 * `$data = EmpyrPartner::invoice(['invoice' => 12345])->collect();`
 
 ### Metros
-* `$data = Empyr::metro(['metro' => 1])->get();`
+* `$data = Empyr::metro(['metro' => 1])->metro();`
 * `$data = Empyr::metro()->list();`
 * `$data = Empyr::metro(['metro' => 1])->summary();`
 * `$data = Empyr::metro(['metro' => 1])->topBusinesses();`
@@ -139,7 +150,7 @@
 * `$data = Empyr::report()->txReport(['business' => 12345]);`
 
 ### Subscriptions
-* `$data = EmpyrPartner::subscription(['subscription' => 12345])->get();`
+* `$data = EmpyrPartner::subscription(['subscription' => 12345])->subscription();`
 * `$data = EmpyrPartner::subscription()->add(['business' => 12345, 'plan' => 123]);`
 
 ### Utilities

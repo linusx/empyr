@@ -32,7 +32,7 @@ class EmpyrPayment extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($options = [])
+    public function payment($options = [])
     {
         if (empty($options['payable']) && empty($this->payable)) {
             throw new EmpyrMissingRequiredFields('No payable id given.');
@@ -45,13 +45,7 @@ class EmpyrPayment extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['payable']);
 
-        $data = $this->call_api('payments/'.$options['payable']);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('payments/'.$options['payable']);
     }
 
     /**
@@ -86,13 +80,7 @@ class EmpyrPayment extends EmpyrController
             'details',
         ]);
 
-        $data = $this->call_api('payments/', $options, 'post');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('payments/', $options, 'post');
     }
 
     /**
@@ -133,12 +121,6 @@ class EmpyrPayment extends EmpyrController
             'details',
         ]);
 
-        $data = $this->call_api('payments/direct', $options, 'post');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('payments/direct', $options, 'post');
     }
 }

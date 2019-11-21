@@ -33,7 +33,7 @@ class EmpyrSubscription extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($options = [])
+    public function subscription($options = [])
     {
         if (empty($options['subscription']) && empty($this->subscription)) {
             throw new EmpyrMissingRequiredFields('No subscription id given.');
@@ -45,13 +45,7 @@ class EmpyrSubscription extends EmpyrController
 
         $subscription_id = $options['subscription'];
 
-        $data = $this->call_api('subscriptions/'.$subscription_id);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('subscriptions/'.$subscription_id);
     }
 
     /**
@@ -85,12 +79,6 @@ class EmpyrSubscription extends EmpyrController
             'plan',
         ]);
 
-        $data = $this->call_api('subscriptions/add', $options);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callAPI('subscriptions/add', $options);
     }
 }

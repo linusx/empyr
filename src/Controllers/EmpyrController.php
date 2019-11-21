@@ -8,81 +8,88 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Facades\Empyr;
-use stdClass;
 
 class EmpyrController
 {
+    /**
+     * Returned data.
+     *
+     * @var mixed
+     */
+    private $data;
+
     /**
      * Email address to use for User Auth calls.
      *
      * @var string
      */
-    protected $email;
+    private $email;
 
     /**
      * @var array
      */
-    protected $user;
+    private $user;
 
     /**
      * Error message.
      *
      * @var string|bool
      */
-    protected $error = false;
+    private $error = false;
 
     /**
      * Empyr API URL.
      *
      * @var string
      */
-    protected $base_url;
+    private $base_url;
 
     /**
      * Empyr client id.
      *
      * @var string
      */
-    protected $partner_client_id;
+    private $partner_client_id;
 
     /**
      * Empyr partner client secret.
      *
      * @var string
      */
-    protected $partner_client_secret;
+    private $partner_client_secret;
 
     /**
      * Empyr client id.
      *
      * @var string
      */
-    protected $client_id;
+    private $client_id;
 
     /**
      * Empyr client secret.
      *
      * @var string
      */
-    protected $client_secret;
+    private $client_secret;
 
     /**
      * Guzzle Client.
      *
      * @var Client
      */
-    protected $client;
+    private $client;
 
     /**
      * Guzzle client options.
      *
      * @var array
      */
-    protected $guzzle_options = [];
+    private $guzzle_options = [];
 
     /**
      * Key for the session token.
@@ -91,7 +98,11 @@ class EmpyrController
      */
     private $token_session_key = 'empyr_token';
 
-    private $data = [];
+    /**
+     * Options used in the class.
+     * @var array
+     */
+    private $class_options = [];
 
     /**
      * Empyr constructor.
@@ -120,7 +131,7 @@ class EmpyrController
             throw new EmpyrMissingRequiredFields('Empyr: Missing configuration variables.');
         }
 
-        $this->data = $data;
+        $this->class_options = $data;
 
         // Set class variables from instantiation.
         if (! empty($data)) {
@@ -132,7 +143,7 @@ class EmpyrController
         $this->token_session_key = $this->partner ? $this->token_session_key.'_partner' : $this->token_session_key;
 
         if (! empty($this->email)) {
-            $this->user = Empyr::user()->lookup($this->email);
+            $this->user = Empyr::user()->lookup($this->email)->array();
         }
 
         $this->guzzle_options = [
@@ -150,18 +161,30 @@ class EmpyrController
     }
 
     /**
-     * Magic methods for getting variables.
+     * Set returned data.
      *
-     * @param $name
-     * @return mixed
+     * @param $data
+     * @return $this
      */
-    public function __get($name)
+    protected function setData($data)
     {
-        if (! isset($this->{$name})) {
-            return false;
+        $data = (object) $data;
+
+        /*
+         * If this is a response from a call
+         * then add the needed error field.
+         */
+        if (! empty($data->response)) {
+            $data->response->error = false;
         }
 
-        return $this->{$name};
+        if ($this->isError()) {
+            $data->error = true;
+        }
+
+        $this->data = $data->response ?? $data;
+
+        return $this;
     }
 
     /**
@@ -232,7 +255,6 @@ class EmpyrController
 
         session()->put($this->token_session_key.'_expires', $expire_date);
         session()->put($this->token_session_key, $token_arr);
-
         session()->save();
 
         return $token_arr;
@@ -249,7 +271,7 @@ class EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    protected function call_user_api($url, $options = [], $method = 'get', $file = false)
+    protected function callUserAPI($url, $options = [], $method = 'get', $file = false)
     {
 
         // Make sure we have an email address.
@@ -272,21 +294,24 @@ class EmpyrController
         } catch (ClientException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
 
-            return $this->handleEmpyrError($error);
+            $this->handleEmpyrError($error);
         } catch (ServerException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
 
-            return $this->handleEmpyrError($error);
+            $this->handleEmpyrError($error);
         }
 
-        $data_response = json_decode($response->getBody());
         if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
-            $this->set_error('Bad request. No error given.');
-
-            return false;
+            $this->setError('Bad request. No error given.');
         }
 
-        return $data_response;
+        if ($this->isError()) {
+            $data = ['error' => $this->getError()];
+        } else {
+            $data = json_decode($response->getBody());
+        }
+
+        return $this->setData($data);
     }
 
     /**
@@ -299,7 +324,7 @@ class EmpyrController
      * @return bool|mixed
      * @throws GuzzleException
      */
-    protected function call_api($url, $options = [], $method = 'get')
+    protected function callAPI($url, $options = [], $method = 'get')
     {
         $url = $this->generateURL($url, $options);
 
@@ -314,21 +339,70 @@ class EmpyrController
         } catch (ClientException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
 
-            return $this->handleEmpyrError($error);
+            $this->handleEmpyrError($error);
         } catch (ServerException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents());
 
-            return $this->handleEmpyrError($error);
+            $this->handleEmpyrError($error);
         }
 
-        $data_response = json_decode($response->getBody());
         if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
-            $this->set_error('Bad request. No error given.');
-
-            return false;
+            $this->setError('Bad request. No error given.');
         }
 
-        return $data_response;
+        if ($this->isError()) {
+            $data = ['error' => $this->getError()];
+        } else {
+            $data = json_decode($response->getBody());
+        }
+
+        return $this->setData($data);
+    }
+
+    /**
+     * Print class data.
+     */
+    public function debug() : void
+    {
+        dd($this->data);
+    }
+
+    /**
+     * Make the data an array.
+     *
+     * @param bool $ret
+     * @return $this|array
+     */
+    public function array($ret = false)  : array
+    {
+        if (true === $ret) {
+            return (array) $this->data;
+        }
+
+        $this->data = (array) $this->data;
+
+        return $this->data;
+    }
+
+    /**
+     * Make the data a collection.
+     *
+     * @param bool $ret
+     * @return Collection
+     */
+    public function collection() : Collection
+    {
+        return collect($this->data);
+    }
+
+    /**
+     * Return the data.
+     *
+     * @return Collection
+     */
+    public function get() : Collection
+    {
+        return $this->collection();
     }
 
     /**
@@ -336,7 +410,7 @@ class EmpyrController
      *
      * @param bool|string $msg
      */
-    protected function set_error($msg): void
+    protected function setError($msg): void
     {
         $this->error = $msg;
     }
@@ -346,7 +420,7 @@ class EmpyrController
      *
      * @return bool
      */
-    protected function is_error(): bool
+    protected function isError(): bool
     {
         return false !== $this->error;
     }
@@ -356,9 +430,9 @@ class EmpyrController
      *
      * @return bool|string
      */
-    protected function get_error()
+    protected function getError()
     {
-        if (false === $this->is_error()) {
+        if (false === $this->isError()) {
             return '';
         }
 
@@ -392,7 +466,7 @@ class EmpyrController
 
         $this->log('Empyr Error: '.$code.' - '.$message);
 
-        $this->set_error($message);
+        $this->setError($message);
 
         return false;
     }
@@ -439,42 +513,6 @@ class EmpyrController
         $url = $this->base_url.'/'.$url.'?'.http_build_query($params->all());
 
         return $url;
-    }
-
-    /**
-     * Return success data.
-     *
-     * @param mixed $data
-     * @param string $msg
-     *
-     * @return object
-     */
-    public function return_success($data, $msg = '')
-    {
-        $ret = new stdClass();
-        $ret->status = true;
-        $ret->message = $msg;
-        $ret->data = (object) $data;
-
-        return $ret;
-    }
-
-    /**
-     * Return success data.
-     *
-     * @param mixed $data
-     * @param string $msg
-     *
-     * @return object
-     */
-    public function return_error($data, $msg = 'Error')
-    {
-        $ret = new stdClass();
-        $ret->status = false;
-        $ret->message = $msg;
-        $ret->data = (object) $data;
-
-        return $ret;
     }
 
     /**

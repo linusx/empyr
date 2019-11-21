@@ -6,6 +6,7 @@ Contributions are accepted via Pull Requests on [Github](https://github.com/linu
 
 # Things you could do
 If you want to contribute but do not know where to start, this list provides some starting points.
+* Caching for calls
 * Tests
 
 ## Pull Requests

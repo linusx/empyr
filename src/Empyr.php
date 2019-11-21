@@ -19,7 +19,7 @@ class Empyr
      */
     public function __construct($data = [])
     {
-        $this->data = $data;
+        $this->class_options = $data;
     }
 
     /**
@@ -32,8 +32,8 @@ class Empyr
      */
     public function utility($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrUtility($data);
@@ -49,8 +49,8 @@ class Empyr
      */
     public function subscription($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrSubscription($data);
@@ -66,8 +66,8 @@ class Empyr
      */
     public function report($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrReport($data);
@@ -83,8 +83,8 @@ class Empyr
      */
     public function offer($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrOffer($data);
@@ -100,8 +100,8 @@ class Empyr
      */
     public function fundraiser($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrFundraiser($data);
@@ -117,8 +117,8 @@ class Empyr
      */
     public function metro($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrMetro($data);
@@ -135,8 +135,8 @@ class Empyr
      */
     public function invoice($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrInvoice($data);
@@ -152,8 +152,8 @@ class Empyr
      */
     public function device($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrDevice($data);
@@ -169,8 +169,8 @@ class Empyr
      */
     public function billingAccount($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrBillingAccounts($data);
@@ -186,8 +186,8 @@ class Empyr
      */
     public function card($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrCard($data);
@@ -203,8 +203,8 @@ class Empyr
      */
     public function venue($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrVenue($data);
@@ -220,8 +220,8 @@ class Empyr
      */
     public function user($data = [])
     {
-        if (isset($this->data) && is_array($this->data)) {
-            $data = array_merge($this->data, $data);
+        if (isset($this->class_options) && is_array($this->class_options)) {
+            $data = array_merge($this->class_options, $data);
         }
 
         return new Controllers\EmpyrUser($data);

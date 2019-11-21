@@ -32,7 +32,7 @@ class EmpyrDevice extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function get($options = [])
+    public function device($options = [])
     {
         if (empty($options['device'])) {
             throw new EmpyrMissingRequiredFields('No device id given.');
@@ -41,13 +41,7 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['device']);
 
-        $data = $this->call_user_api('devices/'.$options['device']);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callUserAPI('devices/'.$options['device']);
     }
 
     /**
@@ -62,13 +56,7 @@ class EmpyrDevice extends EmpyrController
      */
     public function list($options = [])
     {
-        $data = $this->call_user_api('devices/list', $options);
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callUserAPI('devices/list', $options);
     }
 
     /**
@@ -94,13 +82,7 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['deviceToken', 'deviceType']);
 
-        $data = $this->call_user_api('devices/add', $options, 'post');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callUserAPI('devices/add', $options, 'post');
     }
 
     /**
@@ -126,12 +108,6 @@ class EmpyrDevice extends EmpyrController
         // Filter options.
         $options = $this->allowedKeys($options, ['deviceToken', 'deviceType']);
 
-        $data = $this->call_user_api('devices/remove', $options, 'post');
-
-        if (! $this->is_error()) {
-            return $this->return_success($data->response->result);
-        }
-
-        return $this->return_error([], $this->get_error());
+        return $this->callUserAPI('devices/remove', $options, 'post');
     }
 }
