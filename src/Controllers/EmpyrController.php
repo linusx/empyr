@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Facades\Empyr;
-use stdClass;
 
 class EmpyrController
 {
@@ -171,15 +170,15 @@ class EmpyrController
     {
         $data = (object) $data;
 
-        /**
+        /*
          * If this is a response from a call
          * then add the needed error field.
          */
-        if ( ! empty( $data->response ) ) {
+        if (! empty($data->response)) {
             $data->response->error = false;
         }
 
-        if ( $this->isError() ) {
+        if ($this->isError()) {
             $data->error = true;
         }
 
@@ -306,8 +305,8 @@ class EmpyrController
             $this->setError('Bad request. No error given.');
         }
 
-        if ( $this->isError() ) {
-            $data = ['error' => $this->getError() ];
+        if ($this->isError()) {
+            $data = ['error' => $this->getError()];
         } else {
             $data = json_decode($response->getBody());
         }
@@ -351,8 +350,8 @@ class EmpyrController
             $this->setError('Bad request. No error given.');
         }
 
-        if ( $this->isError() ) {
-            $data = ['error' => $this->getError() ];
+        if ($this->isError()) {
+            $data = ['error' => $this->getError()];
         } else {
             $data = json_decode($response->getBody());
         }
