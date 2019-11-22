@@ -1,10 +1,16 @@
 <?php
-
+/**
+ * Offer Controller
+ */
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrOffer
+ * @package Linusx\Empyr\Controllers
+ */
 class EmpyrOffer extends EmpyrController
 {
     /**
@@ -22,30 +28,31 @@ class EmpyrOffer extends EmpyrController
     /**
      * Add a new business offer.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Offers/add
      *
-     * Options:
-     * business	required The business to add the offer to.
-     * campaign	The campaign associated with this offer which determines distribution. If not provided the default campaign will be used.
-     * startDate	The date that the offer is active/should be available.
-     * endDate	When the offer should terminate. Should be empty if it's unknown in the future.
-     * requiresActivation	Whether this offer must be linked to the user in order for it to be redeemed.
-     * minPurchaseAmount	The minimum amount of spend for this offer to be redeemed.
-     * scheduleType	The type of the schedule [EXCLUDE, REWARD].
-     * hasSchedule	Whether or not this offer enforces a schedule (must be set in addition to scheduleType).
-     * maxUserRedemptionsPerInterval	Specifies the maximum number of times an individual can redeem the offer within the user rewnewal interval.
-     * maximumQualifiedUserSpendPerInterval	Specfies the maximum amount of qualified user spend that can be redeemed per offer interval.
-     * userRedemptionRenewalInterval	Specifies the interval increment.
-     * userRedemptionRenewalIntervalType	Specifies the interval type [DAY, WEEK, MONTH], DAY is day of year while week and month are calendar based.
-     * budget	When specified sets a threshold at which the offer will no longer match. Once the budget is consumed the offer is no longer available.
-     * rewardMax	Specifies the maximum amount of reward that can be given per redemption.
-     * rewardValue	Specifies the redemption value amount.
-     * rewardType	Specifies the kind of reward [PERCENT, FIXED].
-     * feeMax	The maximum referral/marketing fee that can be collected per redemption of the offer.
-     * marketingFeeType	Specifies the kind of marketing fee [PERCENT, FIXED].
-     * feeValue	Specifies the marketing fee value that is to be charged upon redemption of the offer.
-     * maxRedeemDate	Specifies the date at which transacitons will NO LONGER HONOR redemption.
-     * dynamic	Specifies that the offer is dynamic and the reward value could change after offer creation. Default is false.
+     * @options
+     * * business	**required** The business to add the offer to.
+     * * campaign	The campaign associated with this offer which determines distribution. If not provided the default campaign will be used.
+     * * startDate	The date that the offer is active/should be available.
+     * * endDate	When the offer should terminate. Should be empty if it's unknown in the future.
+     * * requiresActivation	Whether this offer must be linked to the user in order for it to be redeemed.
+     * * minPurchaseAmount	The minimum amount of spend for this offer to be redeemed.
+     * * scheduleType	The type of the schedule [EXCLUDE, REWARD].
+     * * hasSchedule	Whether or not this offer enforces a schedule (must be set in addition to scheduleType).
+     * * maxUserRedemptionsPerInterval	Specifies the maximum number of times an individual can redeem the offer within the user rewnewal interval.
+     * * maximumQualifiedUserSpendPerInterval	Specfies the maximum amount of qualified user spend that can be redeemed per offer interval.
+     * * userRedemptionRenewalInterval	Specifies the interval increment.
+     * * userRedemptionRenewalIntervalType	Specifies the interval type [DAY, WEEK, MONTH], DAY is day of year while week and month are calendar based.
+     * * budget	When specified sets a threshold at which the offer will no longer match. Once the budget is consumed the offer is no longer available.
+     * * rewardMax	Specifies the maximum amount of reward that can be given per redemption.
+     * * rewardValue	Specifies the redemption value amount.
+     * * rewardType	Specifies the kind of reward [PERCENT, FIXED].
+     * * feeMax	The maximum referral/marketing fee that can be collected per redemption of the offer.
+     * * marketingFeeType	Specifies the kind of marketing fee [PERCENT, FIXED].
+     * * feeValue	Specifies the marketing fee value that is to be charged upon redemption of the offer.
+     * * maxRedeemDate	Specifies the date at which transacitons will NO LONGER HONOR redemption.
+     * * dynamic	Specifies that the offer is dynamic and the reward value could change after offer creation. Default is false.
      *
      * @param array $options
      * @return bool|mixed
@@ -89,13 +96,14 @@ class EmpyrOffer extends EmpyrController
     /**
      * Add a new business offer.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Offers/add
      *
-     * Options:
-     * offer required The offer ID
-     * endDate	The expiration date for the business.
-     * rewardValue	The new reward value for the offer (offer must have been created as dynamic).
-     * feeValue	The new fee value for the offer (offer must have been created as dynamic).
+     * @options
+     * * offer **required** The offer ID
+     * * endDate	The expiration date for the business.
+     * * rewardValue	The new reward value for the offer (offer must have been created as dynamic).
+     * * feeValue	The new fee value for the offer (offer must have been created as dynamic).
      *
      * @param array $options
      * @return bool|mixed

@@ -1,10 +1,16 @@
 <?php
-
+/**
+ * Empyr Utility
+ */
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrUtility
+ * @package Linusx\Empyr\Controllers
+ */
 class EmpyrUtility extends EmpyrController
 {
     /**
@@ -22,10 +28,11 @@ class EmpyrUtility extends EmpyrController
     /**
      * Returns a list of MOGL categories.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Utilities/categories
      *
-     * Options:
-     * level	The level of category [MO_TC, MO]
+     * @options
+     * * level	The level of category [MO_TC, MO]
      *
      * @param array $options
      * @return bool|mixed
@@ -43,6 +50,7 @@ class EmpyrUtility extends EmpyrController
     /**
      * Returns a list of MOGL categories.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Utilities/extendedCategories
      *
      * @param array $options
@@ -57,6 +65,7 @@ class EmpyrUtility extends EmpyrController
     /**
      * Returns a list of MOGL features.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Utilities/features
      *
      * @param array $options
@@ -71,6 +80,7 @@ class EmpyrUtility extends EmpyrController
     /**
      * Returns information about the current application.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Utilities/info
      *
      * @param array $options
@@ -85,10 +95,11 @@ class EmpyrUtility extends EmpyrController
     /**
      * Returns a list of suggested locations.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Utilities/locationSuggestions
      *
-     * Options:
-     * query    required A search term to lookup some candidate locations.
+     * @options
+     * * query    **required** A search term to lookup some candidate locations.
      *
      * @param array $options
      * @return bool|mixed
@@ -107,10 +118,11 @@ class EmpyrUtility extends EmpyrController
     /**
      * Returns a list of suggested searches.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Utilities/searchSuggestions
      *
-     * Options:
-     * query    required A search term to lookup some candidate locations.
+     * @options
+     * * query    **required** A search term to lookup some candidate locations.
      *
      * @param array $options
      * @return bool|mixed
@@ -129,10 +141,11 @@ class EmpyrUtility extends EmpyrController
     /**
      * Returns a map (business id, business name) of suggested searches.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Utilities/searchSuggestionsMap
      *
-     * Options:
-     * query    required A search term to lookup some candidate locations.
+     * @options
+     * * query    **required** A search term to lookup some candidate locations.
      *
      * @param array $options
      * @return bool|mixed

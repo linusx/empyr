@@ -1,7 +1,8 @@
 <?php
-
-/** @noinspection ALL */
-
+/**
+ * Main Empyr Controller
+ * @package Linusx\Empyr\Controllers
+ */
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Client;
@@ -14,6 +15,10 @@ use Illuminate\Support\Str;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Facades\Empyr;
 
+/**
+ * Class EmpyrController
+ * @package Linusx\Empyr\Controllers
+ */
 class EmpyrController
 {
     /**
@@ -21,19 +26,19 @@ class EmpyrController
      *
      * @var mixed
      */
-    private $data;
+    protected $data;
 
     /**
      * Email address to use for User Auth calls.
      *
      * @var string
      */
-    private $email;
+    protected $email;
 
     /**
      * @var array
      */
-    private $user;
+    protected $user;
 
     /**
      * Error message.
@@ -82,7 +87,7 @@ class EmpyrController
      *
      * @var Client
      */
-    private $client;
+    protected $client;
 
     /**
      * Guzzle client options.
@@ -346,7 +351,7 @@ class EmpyrController
             $this->handleEmpyrError($error);
         }
 
-        if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
+        if (! empty($response->meta) && 200 !== (int) $response->meta->code) {
             $this->setError('Bad request. No error given.');
         }
 

@@ -1,10 +1,16 @@
 <?php
-
+/**
+ * Payment Controller
+ */
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrPayment
+ * @package Linusx\Empyr\Controllers
+ */
 class EmpyrPayment extends EmpyrController
 {
     /**
@@ -22,10 +28,11 @@ class EmpyrPayment extends EmpyrController
     /**
      * Retrieves a payment.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Payments/get
      *
-     * Options:
-     * payable	required The payable id.
+     * @options
+     * * payable	**required** The payable id.
      *
      * @param array $options
      * @return bool|mixed
@@ -51,12 +58,13 @@ class EmpyrPayment extends EmpyrController
     /**
      * Creates a payable on the given card as a refund.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Payments/add
      *
-     * Options:
-     * billingDetail	required The card to process the payment to.
-     * amount	required The amount of the independent refund.
-     * details	required Any notes to associate with the payment.
+     * @options
+     * * billingDetail	**required** The card to process the payment to.
+     * * amount	**required** The amount of the independent refund.
+     * * details	**required** Any notes to associate with the payment.
      *
      * @param array $options
      * @return bool|mixed
@@ -86,14 +94,15 @@ class EmpyrPayment extends EmpyrController
     /**
      * Creates a payable on given a PAN and expiration date.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Payments/addDirect
      *
-     * Options:
-     * card.cardNumber	required The card PAN to process the payment to.
-     * card.expirationMonth	required The card to process the payment to.
-     * card.expirationYear	required The card to process the payment to.
-     * amount	required The amount of the independent refund.
-     * details	required Any notes to associate with the payment.
+     * @options
+     * * card.cardNumber	**required** The card PAN to process the payment to.
+     * * card.expirationMonth	**required** The card to process the payment to.
+     * * card.expirationYear	**required** The card to process the payment to.
+     * * amount	**required** The amount of the independent refund.
+     * * details	**required** Any notes to associate with the payment.
      *
      * @param array $options
      * @return bool|mixed

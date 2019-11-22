@@ -1,10 +1,17 @@
 <?php
-
+/**
+ * Metro Controller
+ * @package Linusx\Empyr\Controllers
+ */
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrMetro
+ * @package Linusx\Empyr\Controllers
+ */
 class EmpyrMetro extends EmpyrController
 {
     /**
@@ -22,10 +29,11 @@ class EmpyrMetro extends EmpyrController
     /**
      * Returns details for the given metro.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Metros/get
      *
-     * Options:
-     * metro	required The metro id.
+     * @options
+     * * metro	**required** The metro id.
      *
      * @param array $options
      * @return bool|mixed
@@ -51,6 +59,7 @@ class EmpyrMetro extends EmpyrController
     /**
      * Lists all the metros that are currently active.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Metros/list
      *
      * @param array $options
@@ -66,12 +75,13 @@ class EmpyrMetro extends EmpyrController
     /**
      * Retrieves summary information about the metro for the given number of months.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Metros/summary
      *
-     * Options:
-     * metro	required The metro id.
-     * offset	The offset to pull months from (e.g. 0 is the current which is the default).
-     * numResults	The number of months of summary to pull.
+     * @options
+     * * metro	**required** The metro id.
+     * * offset	The offset to pull months from (e.g. 0 is the current which is the default).
+     * * numResults	The number of months of summary to pull.
      *
      * @param array $options
      * @return bool|mixed
@@ -97,12 +107,13 @@ class EmpyrMetro extends EmpyrController
     /**
      * Retrieves business summary information for the top businesses in the metro.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Metros/topBusinesses
      *
-     * Options:
-     * metro	required The metro id.
-     * offset	The offset to pull months from (e.g. 0 is the current which is the default).
-     * numResults	The number of months of summary to pull.
+     * @options
+     * * metro	**required** The metro id.
+     * * offset	The offset to pull months from (e.g. 0 is the current which is the default).
+     * * numResults	The number of months of summary to pull.
      *
      * @param array $options
      * @return bool|mixed
@@ -128,12 +139,13 @@ class EmpyrMetro extends EmpyrController
     /**
      * Retrieves user summary information for the top users in the metro.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Metros/topUsers
      *
-     * Options:
-     * metro	required The metro id.
-     * offset	The offset to pull months from (e.g. 0 is the current which is the default).
-     * numResults	The number of months of summary to pull.
+     * @options
+     * * metro	**required** The metro id.
+     * * offset	The offset to pull months from (e.g. 0 is the current which is the default).
+     * * numResults	The number of months of summary to pull.
      *
      * @param array $options
      * @return bool|mixed

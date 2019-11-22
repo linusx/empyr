@@ -1,10 +1,16 @@
 <?php
-
+/**
+ * Empyr Partner Facade
+ */
 namespace Linusx\Empyr\Facades;
 
 use Exception;
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class EmpyrPartner
+ * @package Linusx\Empyr\Facades
+ */
 class EmpyrPartner extends Facade
 {
     /**

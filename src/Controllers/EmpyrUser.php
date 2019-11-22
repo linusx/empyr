@@ -1,7 +1,7 @@
 <?php
-
-/** @noinspection DuplicatedCode */
-
+/**
+ * User Controller
+ */
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\ClientException;
@@ -10,6 +10,10 @@ use GuzzleHttp\Exception\ServerException;
 use Illuminate\Support\Facades\File;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrUser
+ * @package Linusx\Empyr\Controllers
+ */
 class EmpyrUser extends EmpyrController
 {
     /**
@@ -27,6 +31,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Lookup user by email.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/lookup
      *
      * @param $email
@@ -48,6 +53,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Lookup user by ID.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/get
      *
      * @param int $id User ID to get
@@ -62,6 +68,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Get alerts for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/alerts
      *
      * Needs acting user token.
@@ -79,6 +86,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Get donation list for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/donateList
      *
      * Needs acting user token.
@@ -96,6 +104,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Get donation list for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/forgotPassword
      *
      * @return EmpyrUser
@@ -116,6 +125,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Get donation list for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/listOAuth
      *
      * Needs acting user token.
@@ -132,6 +142,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves the notification settings for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/notificationSettings
      *
      * Needs acting user token.
@@ -148,6 +159,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves a list of payments for the given user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/payments
      *
      * Needs acting user token.
@@ -165,6 +177,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Returns a list of cash rewards.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/rewardList
      *
      * Needs acting user token.
@@ -182,6 +195,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Will search for users based on their first and last name.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/search
      *
      * It seems that search doesn't actually work properly.
@@ -206,6 +220,7 @@ class EmpyrUser extends EmpyrController
      * Note that if the user already exists then the
      * card will be added to the account.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/signupWithCard
      *
      * @todo Still needs work.
@@ -220,6 +235,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves a list of friends for the user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/friends
      *
      * Needs acting user token.
@@ -241,6 +257,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Returns a list of fundraiser user totals.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/fundraiserHistory
      *
      * @param array $options
@@ -260,6 +277,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves a leaderboard for the given user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/leaderboard
      *
      * @param array $options
@@ -281,6 +299,7 @@ class EmpyrUser extends EmpyrController
      * if businesses are provided it will check if one of the
      * provided businesses is in the recommendations list.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/recommendations
      *
      * @param array $options
@@ -304,6 +323,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves the most recent summary of information and data about a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/summary
      *
      * @param array $options
@@ -323,14 +343,15 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves a list of transactions for the given user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/transactions
      *
-     * Options:
-     * offset    Start offset.
-     * numResults    Number of results to retrieve (max 100).
-     * startDate    Retrieve results after this date YYYY/MM/DD.
-     * endDate    Retrieve results before this date YYYY/MM/DD.
-     * business    Restrict response to just this business.
+     * ### Options:
+     * * offset    Start offset.
+     * * numResults    Number of results to retrieve (max 100).
+     * * startDate    Retrieve results after this date YYYY/MM/DD.
+     * * endDate    Retrieve results before this date YYYY/MM/DD.
+     * * business    Restrict response to just this business.
      *
      * @param array $options
      * @return EmpyrUser
@@ -349,13 +370,14 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves the most recent summary of information and data about a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/venueHistory
      *
-     * Options:
-     * curCashbackOnly    Include only venues where there has been cashback this month.
-     * jackpotsOnly    Whether to only return the history where the user won the jackpot.
-     * offset    The offset into the results list.
-     * numResults    Number of results to return per page.
+     * @options
+     * * curCashbackOnly    Include only venues where there has been cashback this month.
+     * * jackpotsOnly    Whether to only return the history where the user won the jackpot.
+     * * offset    The offset into the results list.
+     * * numResults    Number of results to return per page.
      *
      * @param array $options
      * @return EmpyrUser
@@ -374,13 +396,14 @@ class EmpyrUser extends EmpyrController
     /**
      * Retrieves the most recent summary of information and data about a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/addReward
      *
-     * Options:
-     * curCashbackOnly    Include only venues where there has been cashback this month.
-     * jackpotsOnly    Whether to only return the history where the user won the jackpot.
-     * offset    The offset into the results list.
-     * numResults    Number of results to return per page.
+     * @options
+     * * curCashbackOnly    Include only venues where there has been cashback this month.
+     * * jackpotsOnly    Whether to only return the history where the user won the jackpot.
+     * * offset    The offset into the results list.
+     * * numResults    Number of results to return per page.
      *
      * @param array $options
      * @return EmpyrUser
@@ -399,10 +422,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Decrements the number of alerts for the logged in user by the specified amount.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/alertsDismiss
      *
-     * Options:
-     * numAlerts    Number of alerts to dismiss or empty to dismiss all.
+     * @options
+     * * numAlerts    Number of alerts to dismiss or empty to dismiss all.
      *
      * @param array $options
      * @return EmpyrUser
@@ -417,10 +441,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Approve a friendship request.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/approve
      *
-     * Options:
-     * user    The user id of the user to approve friendship of.
+     * @options
+     * * user    The user id of the user to approve friendship of.
      *
      * @param array $options
      * @return EmpyrUser
@@ -446,10 +471,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Deny/Unfriend a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/deny
      *
-     * Options:
-     * user    The user id of the user to deny friendship of.
+     * @options
+     * * user    The user id of the user to deny friendship of.
      *
      * @param array $options
      * @return EmpyrUser
@@ -475,10 +501,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Performs a donation on behalf of the acting user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/donate
      *
-     * Options:
-     * donationValue  required The amount of the donation.
+     * @options
+     * * donationValue  **required** The amount of the donation.
      * transaction      The transaction to lookup a donation for.
      * jackpot          The business user total of a jackpot to donate against.
      *
@@ -503,11 +530,12 @@ class EmpyrUser extends EmpyrController
     /**
      * Will invite users on behalf of the current user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/invite
      *
-     * Options:
-     * invitees    required A csv of emails, phone numbers, and facebook ids (prefixed fb) to invite.
-     * message    A message to customize the invite. Note that this will only be applicable to emails.
+     * @options
+     * * invitees    **required** A csv of emails, phone numbers, and facebook ids (prefixed fb) to invite.
+     * * message    A message to customize the invite. Note that this will only be applicable to emails.
      *
      * @param array $options
      * @return EmpyrUser
@@ -532,10 +560,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Link a business and a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/link
      *
-     * Options:
-     * offer    required The offer to activate/link to the user.
+     * @options
+     * * offer    **required** The offer to activate/link to the user.
      *
      * @param array $options
      * @return EmpyrUser
@@ -560,6 +589,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Get a list of links for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/linksList
      *
      *
@@ -580,11 +610,12 @@ class EmpyrUser extends EmpyrController
     /**
      * Links/stores OAuth credentials for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/oauthLink
      *
-     * Options:
-     * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
-     * ss    required The secret token for the provider authenticating this user.
+     * @options
+     * * provider    **required** The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
+     * * ss    **required** The secret token for the provider authenticating this user.
      *
      * @param array $options
      * @return EmpyrUser
@@ -603,10 +634,11 @@ class EmpyrUser extends EmpyrController
     /**
      * UnLinks OAuth credentials for a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/oauthUnlink
      *
-     * Options:
-     * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
+     * @options
+     * * provider    **required** The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
      *
      * @param array $options
      * @return EmpyrUser
@@ -625,10 +657,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Request a friendship with the provided user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/request
      *
-     * Options:
-     * provider    required The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
+     * @options
+     * * provider    **required** The provider that we are storing credentials for [TWITTER, FACEBOOK, GOOGLE].
      *
      * @param array $options
      * @return EmpyrUser
@@ -654,10 +687,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Unlink a previously linked offer.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/unlink
      *
-     * Options:
-     * offer    required The offer to unlink from the user.
+     * @options
+     * * offer    **required** The offer to unlink from the user.
      *
      * @param array $options
      * @return EmpyrUser
@@ -676,18 +710,19 @@ class EmpyrUser extends EmpyrController
     /**
      * Signs up a user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/add
      *
-     * Options:
-     * firstName    required The user's first name.
-     * lastName    required The user's last name.
-     * address.postalCode    required The user's postal code.
-     * password    required A password for the user.
-     * email    required The email address for the user.
-     * userWhoInvited    The referral code the user should be signed up under.
-     * donatePercent    The default amount to donate per transaction.
-     * provider    A social provider to link with the account.
-     * ss    The secret token from the social provider that accesses the account.
+     * @options
+     * * firstName    **required** The user's first name.
+     * * lastName    **required** The user's last name.
+     * * address.postalCode    **required** The user's postal code.
+     * * password    **required** A password for the user.
+     * * email    **required** The email address for the user.
+     * * userWhoInvited    The referral code the user should be signed up under.
+     * * donatePercent    The default amount to donate per transaction.
+     * * provider    A social provider to link with the account.
+     * * ss    The secret token from the social provider that accesses the account.
      *
      * @param array $options
      * @return EmpyrUser
@@ -731,10 +766,11 @@ class EmpyrUser extends EmpyrController
     /**
      * Updates a user with the provided settings.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/update
      *
-     * Options:
-     * offer    required The offer to unlink from the user.
+     * @options
+     * * offer    **required** The offer to unlink from the user.
      *
      * @param array $options
      * @return EmpyrUser
@@ -789,6 +825,7 @@ class EmpyrUser extends EmpyrController
     /**
      * Update profile picture.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/updatePhoto
      *
      * @param string $file_path File path to send.
@@ -845,12 +882,13 @@ class EmpyrUser extends EmpyrController
     /**
      * Updates a user's secure settings requiring a password.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Users/updateSecure
      *
-     * Options:
-     * password        required The user's current password
-     * newPassword    The user's new password
-     * email        The user's new email
+     * @options
+     * * password        **required** The user's current password
+     * * newPassword    The user's new password
+     * * email        The user's new email
      *
      * @param array $options
      * @return EmpyrUser

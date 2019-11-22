@@ -1,11 +1,17 @@
 <?php
-
+/**
+ * invoice Controller
+ */
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
 
+/**
+ * Class EmpyrInvoice
+ * @package Linusx\Empyr\Controllers
+ */
 class EmpyrInvoice extends EmpyrController
 {
     /**
@@ -28,10 +34,11 @@ class EmpyrInvoice extends EmpyrController
     /**
      * Allows lookup up of an invoice by id.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Invoices/invoice
      *
-     * Options:
-     * invoice	required The invoice id.
+     * @options
+     * * invoice	**required** The invoice id.
      *
      * @param array $options
      * @return bool|mixed
@@ -57,16 +64,17 @@ class EmpyrInvoice extends EmpyrController
     /**
      * Allows lookup up of invoices given criteria.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Invoices/lookup
      *
-     * Options:
-     * startDate	Include only invoices after this start date
-     * endDate	Include only invoices before this end date
-     * business	Include only invoices for the given business
-     * account	Include only invoices for the given account
-     * state	Include only invoices in the given state [PENDING, POSTED, COMPLETED, FAILED, PAST_DUE]
-     * offset	The offset into the results
-     * numResults	The number of results to retrieve (default 100)
+     * @options
+     * * startDate	Include only invoices after this start date
+     * * endDate	Include only invoices before this end date
+     * * business	Include only invoices for the given business
+     * * account	Include only invoices for the given account
+     * * state	Include only invoices in the given state [PENDING, POSTED, COMPLETED, FAILED, PAST_DUE]
+     * * offset	The offset into the results
+     * * numResults	The number of results to retrieve (default 100)
      *
      * @param array $options
      * @return bool|mixed
@@ -85,10 +93,11 @@ class EmpyrInvoice extends EmpyrController
     /**
      * Get all adjustments given the invoice.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Invoices/adjustments
      *
-     * Options:
-     * invoice required The invoice id.
+     * @options
+     * * invoice **required** The invoice id.
      *
      * @param array $options
      * @return bool|mixed
@@ -114,10 +123,11 @@ class EmpyrInvoice extends EmpyrController
     /**
      * Get all transactions run on a given an invoice.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Invoices/invoiceTransactions
      *
-     * Options:
-     * invoice required The invoice id.
+     * @options
+     * * invoice **required** The invoice id.
      *
      * @param array $options
      * @return bool|mixed
@@ -143,10 +153,11 @@ class EmpyrInvoice extends EmpyrController
     /**
      * Get all the transactions that were run to bill this invoice.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Invoices/transactions
      *
-     * Options:
-     * invoice required The invoice id.
+     * @options
+     * * invoice **required** The invoice id.
      *
      * @param array $options
      * @return bool|mixed
@@ -172,10 +183,11 @@ class EmpyrInvoice extends EmpyrController
     /**
      * Attempts collection of the invoice.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Invoices/collect
      *
-     * Options:
-     * invoice required The invoice id.
+     * @options
+     * * invoice **required** The invoice id.
      *
      * @param array $options
      * @return bool|mixed
