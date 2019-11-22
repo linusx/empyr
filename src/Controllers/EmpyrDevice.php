@@ -1,10 +1,16 @@
 <?php
+/**
+ * Device Controller.
+ */
 
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrDevice.
+ */
 class EmpyrDevice extends EmpyrController
 {
     /**
@@ -22,10 +28,11 @@ class EmpyrDevice extends EmpyrController
     /**
      * Returns a device given it's mogl id.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Devices/get
      *
-     * Options:
-     * device	required The device id.
+     * @options
+     * * device	**required** The device id.
      *
      * @param array $options
      * @return bool|mixed
@@ -45,8 +52,9 @@ class EmpyrDevice extends EmpyrController
     }
 
     /**
-     * Lists the user's active devices.
+     * Lists the users active devices.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Devices/list
      *
      * @param array $options
@@ -62,11 +70,12 @@ class EmpyrDevice extends EmpyrController
     /**
      * Registers/associates the device with the user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Devices/add
      *
-     * Options:
-     * deviceToken	required The device token for receiving push notifications.
-     * deviceType	required The type of the device [IOS,ANDROID].
+     * @options
+     * * deviceToken	**required** The device token for receiving push notifications.
+     * * deviceType	**required** The type of the device [IOS,ANDROID].
      *
      * @param array $options
      * @return bool|mixed
@@ -88,11 +97,12 @@ class EmpyrDevice extends EmpyrController
     /**
      * Removes the device with the specified token from the user.
      *
-     * hhttps://www.mogl.com/api/docs/v2/Devices/remove
+     * @mogl
+     * https://www.mogl.com/api/docs/v2/Devices/remove
      *
-     * Options:
-     * deviceToken	required The device token for receiving push notifications.
-     * deviceType	required The type of the device [IOS,ANDROID].
+     * @options
+     * * deviceToken	**required** The device token for receiving push notifications.
+     * * deviceType	**required** The type of the device [IOS,ANDROID].
      *
      * @param array $options
      * @return bool|mixed

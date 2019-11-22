@@ -1,10 +1,16 @@
 <?php
+/**
+ * Handle Empyr Facades.
+ */
 
 namespace Linusx\Empyr;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class Empyr.
+ */
 class Empyr
 {
     /**

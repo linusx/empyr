@@ -1,9 +1,15 @@
 <?php
+/**
+ * Register Empyr.
+ */
 
 namespace Linusx\Empyr\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class EmpyrServiceProvider.
+ */
 class EmpyrServiceProvider extends ServiceProvider
 {
     /**

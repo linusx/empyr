@@ -1,9 +1,15 @@
 <?php
+/**
+ * Missing Partner Credentials Exception.
+ */
 
 namespace Linusx\Empyr\Exceptions;
 
 use Exception;
 
+/**
+ * Class EmpyrNotPartnerCredentials.
+ */
 class EmpyrNotPartnerCredentials extends Exception
 {
     //

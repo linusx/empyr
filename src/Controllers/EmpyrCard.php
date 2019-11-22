@@ -1,10 +1,16 @@
 <?php
+/**
+ * Empyr Card Methods.
+ */
 
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrCard.
+ */
 class EmpyrCard extends EmpyrController
 {
     /**
@@ -22,10 +28,11 @@ class EmpyrCard extends EmpyrController
     /**
      * Returns details about a specific card resource.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Cards/get
      *
-     * Options:
-     * card	required The card id.
+     * @options
+     * * card	**required** The card id.
      *
      * @param array $options
      * @return bool|mixed
@@ -45,8 +52,9 @@ class EmpyrCard extends EmpyrController
     }
 
     /**
-     * Lists the active user's cards cards.
+     * Lists the active users cards cards.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Cards/list
      *
      * @param array $options
@@ -62,12 +70,13 @@ class EmpyrCard extends EmpyrController
     /**
      * Add a card to the user account.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Cards/add
      *
-     * Options:
-     * cardNumber	required The card number without spaces or hyphens.
-     * expirationMonth	required A valid expiration month (1 to 12).
-     * expirationYear	required A valid expiration year.
+     * @options
+     * * cardNumber	**required** The card number without spaces or hyphens.
+     * * expirationMonth	**required** A valid expiration month (1 to 12).
+     * * expirationYear	**required** A valid expiration year.
      *
      * @param array $options
      * @return bool|mixed
@@ -82,10 +91,11 @@ class EmpyrCard extends EmpyrController
     /**
      * Removes the specified card from the user account.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Cards/delete
      *
-     * Options:
-     * card	required The card id.
+     * @options
+     * * card	**required** The card id.
      *
      * @param array $options
      * @return bool|mixed
@@ -107,10 +117,11 @@ class EmpyrCard extends EmpyrController
     /**
      * Removes the specified card from the user account by card pan.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Cards/deleteByNumber
      *
-     * Options:
-     * cardNumber	required The card.
+     * @options
+     * * cardNumber	**required** The card.
      *
      * @param array $options
      * @return bool|mixed
@@ -132,10 +143,11 @@ class EmpyrCard extends EmpyrController
     /**
      * Sets the specified card to the user's primary payment card.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Cards/setPrimary
      *
-     * Options:
-     * card	required The id of the card.
+     * @options
+     * * card	**required** The id of the card.
      *
      * @param array $options
      * @return bool|mixed
