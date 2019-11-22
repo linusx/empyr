@@ -1,7 +1,8 @@
 <?php
 /**
- * Billing Account Controller
+ * Billing Account Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
@@ -9,9 +10,8 @@ use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
 
 /**
- * Class EmpyrBillingAccounts
+ * Class EmpyrBillingAccounts.
  * @author Bill Van Pelt (linusx@gmail.com)
- * @package Linusx\Empyr\Controllers
  */
 class EmpyrBillingAccounts extends EmpyrController
 {

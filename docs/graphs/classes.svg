@@ -25,228 +25,228 @@
 <text text-anchor="middle" x="503.37" y="-994.2" font-family="Times,serif" font-size="11.00" fill="gray">Empyr</text>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster_\Linusx\Empyr\Controllers</title>
-<path fill="none" stroke="gray" d="M433.36,-423C433.36,-423 573.38,-423 573.38,-423 579.38,-423 585.38,-429 585.38,-435 585.38,-435 585.38,-968 585.38,-968 585.38,-974 579.38,-980 573.38,-980 573.38,-980 433.36,-980 433.36,-980 427.36,-980 421.36,-974 421.36,-968 421.36,-968 421.36,-435 421.36,-435 421.36,-429 427.36,-423 433.36,-423"/>
-<text text-anchor="middle" x="503.37" y="-967.2" font-family="Times,serif" font-size="11.00" fill="gray">Controllers</text>
+<title>cluster_\Linusx\Empyr\Providers</title>
+<path fill="none" stroke="gray" d="M433.36,-909C433.36,-909 573.38,-909 573.38,-909 579.38,-909 585.38,-915 585.38,-921 585.38,-921 585.38,-968 585.38,-968 585.38,-974 579.38,-980 573.38,-980 573.38,-980 433.36,-980 433.36,-980 427.36,-980 421.36,-974 421.36,-968 421.36,-968 421.36,-921 421.36,-921 421.36,-915 427.36,-909 433.36,-909"/>
+<text text-anchor="middle" x="503.37" y="-967.2" font-family="Times,serif" font-size="11.00" fill="gray">Providers</text>
 </g>
 <g id="clust5" class="cluster">
-<title>cluster_\Linusx\Empyr\Facades</title>
-<path fill="none" stroke="gray" d="M459.77,-290C459.77,-290 546.98,-290 546.98,-290 552.98,-290 558.98,-296 558.98,-302 558.98,-302 558.98,-403 558.98,-403 558.98,-409 552.98,-415 546.98,-415 546.98,-415 459.77,-415 459.77,-415 453.77,-415 447.77,-409 447.77,-403 447.77,-403 447.77,-302 447.77,-302 447.77,-296 453.77,-290 459.77,-290"/>
-<text text-anchor="middle" x="503.37" y="-402.2" font-family="Times,serif" font-size="11.00" fill="gray">Facades</text>
+<title>cluster_\Linusx\Empyr\Exceptions</title>
+<path fill="none" stroke="gray" d="M413.56,-776C413.56,-776 593.19,-776 593.19,-776 599.19,-776 605.19,-782 605.19,-788 605.19,-788 605.19,-889 605.19,-889 605.19,-895 599.19,-901 593.19,-901 593.19,-901 413.56,-901 413.56,-901 407.56,-901 401.56,-895 401.56,-889 401.56,-889 401.56,-788 401.56,-788 401.56,-782 407.56,-776 413.56,-776"/>
+<text text-anchor="middle" x="503.37" y="-888.2" font-family="Times,serif" font-size="11.00" fill="gray">Exceptions</text>
 </g>
 <g id="clust6" class="cluster">
-<title>cluster_\Linusx\Empyr\Exceptions</title>
-<path fill="none" stroke="gray" d="M413.56,-157C413.56,-157 593.19,-157 593.19,-157 599.19,-157 605.19,-163 605.19,-169 605.19,-169 605.19,-270 605.19,-270 605.19,-276 599.19,-282 593.19,-282 593.19,-282 413.56,-282 413.56,-282 407.56,-282 401.56,-276 401.56,-270 401.56,-270 401.56,-169 401.56,-169 401.56,-163 407.56,-157 413.56,-157"/>
-<text text-anchor="middle" x="503.37" y="-269.2" font-family="Times,serif" font-size="11.00" fill="gray">Exceptions</text>
+<title>cluster_\Linusx\Empyr\Facades</title>
+<path fill="none" stroke="gray" d="M459.77,-643C459.77,-643 546.98,-643 546.98,-643 552.98,-643 558.98,-649 558.98,-655 558.98,-655 558.98,-756 558.98,-756 558.98,-762 552.98,-768 546.98,-768 546.98,-768 459.77,-768 459.77,-768 453.77,-768 447.77,-762 447.77,-756 447.77,-756 447.77,-655 447.77,-655 447.77,-649 453.77,-643 459.77,-643"/>
+<text text-anchor="middle" x="503.37" y="-755.2" font-family="Times,serif" font-size="11.00" fill="gray">Facades</text>
 </g>
 <g id="clust7" class="cluster">
-<title>cluster_\Linusx\Empyr\Providers</title>
-<path fill="none" stroke="gray" d="M433.36,-78C433.36,-78 573.38,-78 573.38,-78 579.38,-78 585.38,-84 585.38,-90 585.38,-90 585.38,-137 585.38,-137 585.38,-143 579.38,-149 573.38,-149 573.38,-149 433.36,-149 433.36,-149 427.36,-149 421.36,-143 421.36,-137 421.36,-137 421.36,-90 421.36,-90 421.36,-84 427.36,-78 433.36,-78"/>
-<text text-anchor="middle" x="503.37" y="-136.2" font-family="Times,serif" font-size="11.00" fill="gray">Providers</text>
+<title>cluster_\Linusx\Empyr\Controllers</title>
+<path fill="none" stroke="gray" d="M433.36,-78C433.36,-78 573.38,-78 573.38,-78 579.38,-78 585.38,-84 585.38,-90 585.38,-90 585.38,-623 585.38,-623 585.38,-629 579.38,-635 573.38,-635 573.38,-635 433.36,-635 433.36,-635 427.36,-635 421.36,-629 421.36,-623 421.36,-623 421.36,-90 421.36,-90 421.36,-84 427.36,-78 433.36,-78"/>
+<text text-anchor="middle" x="503.37" y="-622.2" font-family="Times,serif" font-size="11.00" fill="gray">Controllers</text>
 </g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrOffer -->
+<!-- \\Linusx\\Empyr\\Providers\\EmpyrServiceProvider -->
 <g id="node1" class="node">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrOffer</title>
-<polygon fill="none" stroke="black" points="544.38,-953 462.36,-953 462.36,-917 544.38,-917 544.38,-953"/>
-<text text-anchor="middle" x="503.37" y="-931.7" font-family="Courier,monospace" font-size="11.00">EmpyrOffer</text>
+<title>\\Linusx\\Empyr\\Providers\\EmpyrServiceProvider</title>
+<polygon fill="none" stroke="black" points="577.39,-953 429.35,-953 429.35,-917 577.39,-917 577.39,-953"/>
+<text text-anchor="middle" x="503.37" y="-931.7" font-family="Courier,monospace" font-size="11.00">EmpyrServiceProvider</text>
 </g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<!-- \\Illuminate\\Support\\ServiceProvider -->
 <g id="node17" class="node">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<ellipse fill="none" stroke="black" cx="168.78" cy="-692" rx="168.56" ry="18"/>
-<text text-anchor="middle" x="168.78" y="-687.8" font-family="Times,serif" font-size="14.00" fill="gray">\Linusx\Empyr\Controllers\EmpyrController</text>
+<title>\\Illuminate\\Support\\ServiceProvider</title>
+<ellipse fill="none" stroke="black" cx="168.78" cy="-935" rx="138.61" ry="18"/>
+<text text-anchor="middle" x="168.78" y="-930.8" font-family="Times,serif" font-size="14.00" fill="gray">\Illuminate\Support\ServiceProvider</text>
 </g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrOffer&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<!-- \\Linusx\\Empyr\\Providers\\EmpyrServiceProvider&#45;&gt;\\Illuminate\\Support\\ServiceProvider -->
 <g id="edge1" class="edge">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrOffer&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M462.31,-932.35C436.73,-929.24 403.6,-922.53 377.56,-908 291.54,-860.01 219.12,-764.88 187.23,-718.57"/>
-<polygon fill="none" stroke="black" points="190.09,-716.56 181.57,-710.25 184.3,-720.49 190.09,-716.56"/>
+<title>\\Linusx\\Empyr\\Providers\\EmpyrServiceProvider&#45;&gt;\\Illuminate\\Support\\ServiceProvider</title>
+<path fill="none" stroke="black" d="M428.97,-935C396.22,-935 356.39,-935 317.88,-935"/>
+<polygon fill="none" stroke="black" points="317.6,-931.5 307.6,-935 317.6,-938.5 317.6,-931.5"/>
 </g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrInvoice -->
+<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields -->
 <g id="node2" class="node">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrInvoice</title>
-<polygon fill="none" stroke="black" points="551.09,-899 455.66,-899 455.66,-863 551.09,-863 551.09,-899"/>
-<text text-anchor="middle" x="503.37" y="-877.7" font-family="Courier,monospace" font-size="11.00">EmpyrInvoice</text>
+<title>\\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields</title>
+<polygon fill="none" stroke="black" points="597,-874 409.75,-874 409.75,-838 597,-838 597,-874"/>
+<text text-anchor="middle" x="503.37" y="-852.7" font-family="Courier,monospace" font-size="11.00">EmpyrMissingRequiredFields</text>
 </g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrInvoice&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
-<g id="edge3" class="edge">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrInvoice&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M455.72,-875.97C431.55,-872.13 402.06,-865.46 377.56,-854 303.1,-819.16 230.79,-753.4 194.3,-717.3"/>
-<polygon fill="none" stroke="black" points="196.61,-714.67 187.07,-710.07 191.66,-719.62 196.61,-714.67"/>
+<!-- \\Exception -->
+<g id="node18" class="node">
+<title>\\Exception</title>
+<ellipse fill="none" stroke="black" cx="168.78" cy="-829" rx="48.33" ry="18"/>
+<text text-anchor="middle" x="168.78" y="-824.8" font-family="Times,serif" font-size="14.00" fill="gray">\Exception</text>
 </g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUser -->
+<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields&#45;&gt;\\Exception -->
+<g id="edge2" class="edge">
+<title>\\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields&#45;&gt;\\Exception</title>
+<path fill="none" stroke="black" d="M409.73,-848.48C350.93,-843.71 276.73,-837.68 226.53,-833.61"/>
+<polygon fill="none" stroke="black" points="226.75,-830.11 216.5,-832.79 226.19,-837.09 226.75,-830.11"/>
+</g>
+<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials -->
 <g id="node3" class="node">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrUser</title>
-<polygon fill="none" stroke="black" points="541.28,-845 465.46,-845 465.46,-809 541.28,-809 541.28,-845"/>
-<text text-anchor="middle" x="503.37" y="-823.7" font-family="Courier,monospace" font-size="11.00">EmpyrUser</text>
+<title>\\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials</title>
+<polygon fill="none" stroke="black" points="597,-820 409.75,-820 409.75,-784 597,-784 597,-820"/>
+<text text-anchor="middle" x="503.37" y="-798.7" font-family="Courier,monospace" font-size="11.00">EmpyrNotPartnerCredentials</text>
 </g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUser&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials&#45;&gt;\\Exception -->
+<g id="edge3" class="edge">
+<title>\\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials&#45;&gt;\\Exception</title>
+<path fill="none" stroke="black" d="M409.73,-809.52C350.93,-814.29 276.73,-820.32 226.53,-824.39"/>
+<polygon fill="none" stroke="black" points="226.19,-820.91 216.5,-825.21 226.75,-827.89 226.19,-820.91"/>
+</g>
+<!-- \\Linusx\\Empyr\\Facades\\EmpyrPartner -->
+<g id="node4" class="node">
+<title>\\Linusx\\Empyr\\Facades\\EmpyrPartner</title>
+<polygon fill="none" stroke="black" points="551.09,-741 455.66,-741 455.66,-705 551.09,-705 551.09,-741"/>
+<text text-anchor="middle" x="503.37" y="-719.7" font-family="Courier,monospace" font-size="11.00">EmpyrPartner</text>
+</g>
+<!-- \\Illuminate\\Support\\Facades\\Facade -->
+<g id="node19" class="node">
+<title>\\Illuminate\\Support\\Facades\\Facade</title>
+<ellipse fill="none" stroke="black" cx="168.78" cy="-696" rx="137.62" ry="18"/>
+<text text-anchor="middle" x="168.78" y="-691.8" font-family="Times,serif" font-size="14.00" fill="gray">\Illuminate\Support\Facades\Facade</text>
+</g>
+<!-- \\Linusx\\Empyr\\Facades\\EmpyrPartner&#45;&gt;\\Illuminate\\Support\\Facades\\Facade -->
 <g id="edge4" class="edge">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrUser&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M465.61,-821.7C440.36,-817.42 406.34,-810.38 377.56,-800 314.81,-777.36 247.13,-739.37 206.63,-715.01"/>
-<polygon fill="none" stroke="black" points="208.29,-711.92 197.92,-709.73 204.66,-717.91 208.29,-711.92"/>
+<title>\\Linusx\\Empyr\\Facades\\EmpyrPartner&#45;&gt;\\Illuminate\\Support\\Facades\\Facade</title>
+<path fill="none" stroke="black" d="M455.43,-719.19C414.21,-715.84 352.32,-710.82 296.68,-706.3"/>
+<polygon fill="none" stroke="black" points="296.62,-702.79 286.37,-705.46 296.05,-709.76 296.62,-702.79"/>
+</g>
+<!-- \\Linusx\\Empyr\\Facades\\Empyr -->
+<g id="node5" class="node">
+<title>\\Linusx\\Empyr\\Facades\\Empyr</title>
+<polygon fill="none" stroke="black" points="530.37,-687 476.37,-687 476.37,-651 530.37,-651 530.37,-687"/>
+<text text-anchor="middle" x="503.37" y="-665.7" font-family="Courier,monospace" font-size="11.00">Empyr</text>
+</g>
+<!-- \\Linusx\\Empyr\\Facades\\Empyr&#45;&gt;\\Illuminate\\Support\\Facades\\Facade -->
+<g id="edge5" class="edge">
+<title>\\Linusx\\Empyr\\Facades\\Empyr&#45;&gt;\\Illuminate\\Support\\Facades\\Facade</title>
+<path fill="none" stroke="black" d="M476.28,-671.12C437.6,-674.26 362.52,-680.35 296.34,-685.73"/>
+<polygon fill="none" stroke="black" points="295.91,-682.25 286.23,-686.55 296.48,-689.23 295.91,-682.25"/>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrPayment -->
-<g id="node4" class="node">
+<g id="node6" class="node">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrPayment</title>
-<polygon fill="none" stroke="black" points="551.09,-791 455.66,-791 455.66,-755 551.09,-755 551.09,-791"/>
-<text text-anchor="middle" x="503.37" y="-769.7" font-family="Courier,monospace" font-size="11.00">EmpyrPayment</text>
+<polygon fill="none" stroke="black" points="551.09,-608 455.66,-608 455.66,-572 551.09,-572 551.09,-608"/>
+<text text-anchor="middle" x="503.37" y="-586.7" font-family="Courier,monospace" font-size="11.00">EmpyrPayment</text>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<g id="node20" class="node">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
+<ellipse fill="none" stroke="black" cx="168.78" cy="-347" rx="168.56" ry="18"/>
+<text text-anchor="middle" x="168.78" y="-342.8" font-family="Times,serif" font-size="14.00" fill="gray">\Linusx\Empyr\Controllers\EmpyrController</text>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrPayment&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
 <g id="edge6" class="edge">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrPayment&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M455.74,-763.39C432.24,-758.42 403.33,-752.13 377.56,-746 332,-735.16 281.12,-721.95 241.1,-711.31"/>
-<polygon fill="none" stroke="black" points="242,-707.93 231.44,-708.74 240.2,-714.69 242,-707.93"/>
-</g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrSubscription -->
-<g id="node5" class="node">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrSubscription</title>
-<polygon fill="none" stroke="black" points="567.59,-737 439.15,-737 439.15,-701 567.59,-701 567.59,-737"/>
-<text text-anchor="middle" x="503.37" y="-715.7" font-family="Courier,monospace" font-size="11.00">EmpyrSubscription</text>
-</g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrSubscription&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
-<g id="edge7" class="edge">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrSubscription&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M439.03,-713.86C403.45,-710.97 357.5,-707.24 313.66,-703.68"/>
-<polygon fill="none" stroke="black" points="313.71,-700.17 303.46,-702.85 313.15,-707.15 313.71,-700.17"/>
-</g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrVenue -->
-<g id="node6" class="node">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrVenue</title>
-<polygon fill="none" stroke="black" points="544.38,-683 462.36,-683 462.36,-647 544.38,-647 544.38,-683"/>
-<text text-anchor="middle" x="503.37" y="-661.7" font-family="Courier,monospace" font-size="11.00">EmpyrVenue</text>
-</g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrVenue&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
-<g id="edge8" class="edge">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrVenue&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M462.25,-668.26C425.17,-671.27 367.78,-675.93 313.62,-680.32"/>
-<polygon fill="none" stroke="black" points="313.24,-676.84 303.55,-681.14 313.8,-683.82 313.24,-676.84"/>
-</g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUtility -->
-<g id="node7" class="node">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrUtility</title>
-<polygon fill="none" stroke="black" points="551.09,-629 455.66,-629 455.66,-593 551.09,-593 551.09,-629"/>
-<text text-anchor="middle" x="503.37" y="-607.7" font-family="Courier,monospace" font-size="11.00">EmpyrUtility</text>
-</g>
-<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUtility&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
-<g id="edge10" class="edge">
-<title>\\Linusx\\Empyr\\Controllers\\EmpyrUtility&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M455.74,-620.61C432.24,-625.58 403.33,-631.87 377.56,-638 332,-648.84 281.12,-662.05 241.1,-672.69"/>
-<polygon fill="none" stroke="black" points="240.2,-669.31 231.44,-675.26 242,-676.07 240.2,-669.31"/>
+<path fill="none" stroke="black" d="M455.59,-586.47C431.12,-583.04 401.37,-576.29 377.56,-563 291.54,-515.01 219.12,-419.88 187.23,-373.57"/>
+<polygon fill="none" stroke="black" points="190.09,-371.56 181.57,-365.25 184.3,-375.49 190.09,-371.56"/>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrFundraiser -->
-<g id="node8" class="node">
+<g id="node7" class="node">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrFundraiser</title>
-<polygon fill="none" stroke="black" points="560.89,-575 445.86,-575 445.86,-539 560.89,-539 560.89,-575"/>
-<text text-anchor="middle" x="503.37" y="-553.7" font-family="Courier,monospace" font-size="11.00">EmpyrFundraiser</text>
+<polygon fill="none" stroke="black" points="560.89,-554 445.86,-554 445.86,-518 560.89,-518 560.89,-554"/>
+<text text-anchor="middle" x="503.37" y="-532.7" font-family="Courier,monospace" font-size="11.00">EmpyrFundraiser</text>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrFundraiser&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
-<g id="edge11" class="edge">
+<g id="edge7" class="edge">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrFundraiser&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M445.56,-565.98C423.91,-570.25 399.25,-576.18 377.56,-584 314.81,-606.64 247.13,-644.63 206.63,-668.99"/>
-<polygon fill="none" stroke="black" points="204.66,-666.09 197.92,-674.27 208.29,-672.08 204.66,-666.09"/>
+<path fill="none" stroke="black" d="M445.65,-529.25C423.67,-525.24 398.74,-518.91 377.56,-509 303.1,-474.16 230.79,-408.4 194.3,-372.3"/>
+<polygon fill="none" stroke="black" points="196.61,-369.67 187.07,-365.07 191.66,-374.62 196.61,-369.67"/>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrBillingAccounts -->
-<g id="node9" class="node">
+<g id="node8" class="node">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrBillingAccounts</title>
-<polygon fill="none" stroke="black" points="577.39,-521 429.35,-521 429.35,-485 577.39,-485 577.39,-521"/>
-<text text-anchor="middle" x="503.37" y="-499.7" font-family="Courier,monospace" font-size="11.00">EmpyrBillingAccounts</text>
+<polygon fill="none" stroke="black" points="577.39,-500 429.35,-500 429.35,-464 577.39,-464 577.39,-500"/>
+<text text-anchor="middle" x="503.37" y="-478.7" font-family="Courier,monospace" font-size="11.00">EmpyrBillingAccounts</text>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrBillingAccounts&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
-<g id="edge14" class="edge">
+<g id="edge8" class="edge">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrBillingAccounts&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M429.29,-513.08C411.84,-517.03 393.62,-522.48 377.56,-530 303.1,-564.84 230.79,-630.6 194.3,-666.7"/>
-<polygon fill="none" stroke="black" points="191.66,-664.38 187.07,-673.93 196.61,-669.33 191.66,-664.38"/>
+<path fill="none" stroke="black" d="M429.18,-469.58C412,-465.73 393.93,-460.91 377.56,-455 314.81,-432.36 247.13,-394.37 206.63,-370.01"/>
+<polygon fill="none" stroke="black" points="208.29,-366.92 197.92,-364.73 204.66,-372.91 208.29,-366.92"/>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrSubscription -->
+<g id="node9" class="node">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrSubscription</title>
+<polygon fill="none" stroke="black" points="567.59,-446 439.15,-446 439.15,-410 567.59,-410 567.59,-446"/>
+<text text-anchor="middle" x="503.37" y="-424.7" font-family="Courier,monospace" font-size="11.00">EmpyrSubscription</text>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrSubscription&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<g id="edge9" class="edge">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrSubscription&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
+<path fill="none" stroke="black" d="M439.08,-414.84C419.34,-410.59 397.51,-405.75 377.56,-401 332,-390.16 281.12,-376.95 241.1,-366.31"/>
+<polygon fill="none" stroke="black" points="242,-362.93 231.44,-363.74 240.2,-369.69 242,-362.93"/>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrVenue -->
+<g id="node10" class="node">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrVenue</title>
+<polygon fill="none" stroke="black" points="544.38,-392 462.36,-392 462.36,-356 544.38,-356 544.38,-392"/>
+<text text-anchor="middle" x="503.37" y="-370.7" font-family="Courier,monospace" font-size="11.00">EmpyrVenue</text>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrVenue&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<g id="edge10" class="edge">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrVenue&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
+<path fill="none" stroke="black" d="M462.25,-370.74C425.17,-367.73 367.78,-363.07 313.62,-358.68"/>
+<polygon fill="none" stroke="black" points="313.8,-355.18 303.55,-357.86 313.24,-362.16 313.8,-355.18"/>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUtility -->
+<g id="node11" class="node">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrUtility</title>
+<polygon fill="none" stroke="black" points="551.09,-338 455.66,-338 455.66,-302 551.09,-302 551.09,-338"/>
+<text text-anchor="middle" x="503.37" y="-316.7" font-family="Courier,monospace" font-size="11.00">EmpyrUtility</text>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUtility&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<g id="edge11" class="edge">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrUtility&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
+<path fill="none" stroke="black" d="M455.43,-323.81C418.41,-326.82 364.72,-331.17 313.86,-335.3"/>
+<polygon fill="none" stroke="black" points="313.41,-331.83 303.73,-336.13 313.98,-338.81 313.41,-331.83"/>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrOffer -->
+<g id="node12" class="node">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrOffer</title>
+<polygon fill="none" stroke="black" points="544.38,-284 462.36,-284 462.36,-248 544.38,-248 544.38,-284"/>
+<text text-anchor="middle" x="503.37" y="-262.7" font-family="Courier,monospace" font-size="11.00">EmpyrOffer</text>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrOffer&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<g id="edge12" class="edge">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrOffer&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
+<path fill="none" stroke="black" d="M462.09,-274.27C437.59,-279.42 405.71,-286.3 377.56,-293 332,-303.84 281.12,-317.05 241.1,-327.69"/>
+<polygon fill="none" stroke="black" points="240.2,-324.31 231.44,-330.26 242,-331.07 240.2,-324.31"/>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUser -->
+<g id="node13" class="node">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrUser</title>
+<polygon fill="none" stroke="black" points="541.28,-230 465.46,-230 465.46,-194 541.28,-194 541.28,-230"/>
+<text text-anchor="middle" x="503.37" y="-208.7" font-family="Courier,monospace" font-size="11.00">EmpyrUser</text>
+</g>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrUser&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<g id="edge13" class="edge">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrUser&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
+<path fill="none" stroke="black" d="M465.61,-217.3C440.36,-221.58 406.34,-228.62 377.56,-239 314.81,-261.64 247.13,-299.63 206.63,-323.99"/>
+<polygon fill="none" stroke="black" points="204.66,-321.09 197.92,-329.27 208.29,-327.08 204.66,-321.09"/>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrReport -->
-<g id="node10" class="node">
+<g id="node14" class="node">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrReport</title>
-<polygon fill="none" stroke="black" points="547.49,-467 459.26,-467 459.26,-431 547.49,-431 547.49,-467"/>
-<text text-anchor="middle" x="503.37" y="-445.7" font-family="Courier,monospace" font-size="11.00">EmpyrReport</text>
+<polygon fill="none" stroke="black" points="547.49,-176 459.26,-176 459.26,-140 547.49,-140 547.49,-176"/>
+<text text-anchor="middle" x="503.37" y="-154.7" font-family="Courier,monospace" font-size="11.00">EmpyrReport</text>
 </g>
 <!-- \\Linusx\\Empyr\\Controllers\\EmpyrReport&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
-<g id="edge15" class="edge">
+<g id="edge14" class="edge">
 <title>\\Linusx\\Empyr\\Controllers\\EmpyrReport&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
-<path fill="none" stroke="black" d="M459.14,-452.05C434.03,-455.32 402.53,-462.07 377.56,-476 291.54,-523.99 219.12,-619.12 187.23,-665.43"/>
-<polygon fill="none" stroke="black" points="184.3,-663.51 181.57,-673.75 190.09,-667.44 184.3,-663.51"/>
+<path fill="none" stroke="black" d="M459.24,-162.48C434.47,-166.22 403.26,-172.97 377.56,-185 303.1,-219.84 230.79,-285.6 194.3,-321.7"/>
+<polygon fill="none" stroke="black" points="191.66,-319.38 187.07,-328.93 196.61,-324.33 191.66,-319.38"/>
 </g>
-<!-- \\Linusx\\Empyr\\Facades\\Empyr -->
-<g id="node11" class="node">
-<title>\\Linusx\\Empyr\\Facades\\Empyr</title>
-<polygon fill="none" stroke="black" points="530.37,-388 476.37,-388 476.37,-352 530.37,-352 530.37,-388"/>
-<text text-anchor="middle" x="503.37" y="-366.7" font-family="Courier,monospace" font-size="11.00">Empyr</text>
-</g>
-<!-- \\Illuminate\\Support\\Facades\\Facade -->
-<g id="node18" class="node">
-<title>\\Illuminate\\Support\\Facades\\Facade</title>
-<ellipse fill="none" stroke="black" cx="168.78" cy="-343" rx="137.62" ry="18"/>
-<text text-anchor="middle" x="168.78" y="-338.8" font-family="Times,serif" font-size="14.00" fill="gray">\Illuminate\Support\Facades\Facade</text>
-</g>
-<!-- \\Linusx\\Empyr\\Facades\\Empyr&#45;&gt;\\Illuminate\\Support\\Facades\\Facade -->
-<g id="edge2" class="edge">
-<title>\\Linusx\\Empyr\\Facades\\Empyr&#45;&gt;\\Illuminate\\Support\\Facades\\Facade</title>
-<path fill="none" stroke="black" d="M476.28,-367.88C437.6,-364.74 362.52,-358.65 296.34,-353.27"/>
-<polygon fill="none" stroke="black" points="296.48,-349.77 286.23,-352.45 295.91,-356.75 296.48,-349.77"/>
-</g>
-<!-- \\Linusx\\Empyr\\Facades\\EmpyrPartner -->
-<g id="node12" class="node">
-<title>\\Linusx\\Empyr\\Facades\\EmpyrPartner</title>
-<polygon fill="none" stroke="black" points="551.09,-334 455.66,-334 455.66,-298 551.09,-298 551.09,-334"/>
-<text text-anchor="middle" x="503.37" y="-312.7" font-family="Courier,monospace" font-size="11.00">EmpyrPartner</text>
-</g>
-<!-- \\Linusx\\Empyr\\Facades\\EmpyrPartner&#45;&gt;\\Illuminate\\Support\\Facades\\Facade -->
-<g id="edge5" class="edge">
-<title>\\Linusx\\Empyr\\Facades\\EmpyrPartner&#45;&gt;\\Illuminate\\Support\\Facades\\Facade</title>
-<path fill="none" stroke="black" d="M455.43,-319.81C414.21,-323.16 352.32,-328.18 296.68,-332.7"/>
-<polygon fill="none" stroke="black" points="296.05,-329.24 286.37,-333.54 296.62,-336.21 296.05,-329.24"/>
-</g>
-<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields -->
-<g id="node13" class="node">
-<title>\\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields</title>
-<polygon fill="none" stroke="black" points="597,-255 409.75,-255 409.75,-219 597,-219 597,-255"/>
-<text text-anchor="middle" x="503.37" y="-233.7" font-family="Courier,monospace" font-size="11.00">EmpyrMissingRequiredFields</text>
-</g>
-<!-- \\Exception -->
-<g id="node19" class="node">
-<title>\\Exception</title>
-<ellipse fill="none" stroke="black" cx="168.78" cy="-210" rx="48.33" ry="18"/>
-<text text-anchor="middle" x="168.78" y="-205.8" font-family="Times,serif" font-size="14.00" fill="gray">\Exception</text>
-</g>
-<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields&#45;&gt;\\Exception -->
-<g id="edge9" class="edge">
-<title>\\Linusx\\Empyr\\Exceptions\\EmpyrMissingRequiredFields&#45;&gt;\\Exception</title>
-<path fill="none" stroke="black" d="M409.73,-229.48C350.93,-224.71 276.73,-218.68 226.53,-214.61"/>
-<polygon fill="none" stroke="black" points="226.75,-211.11 216.5,-213.79 226.19,-218.09 226.75,-211.11"/>
-</g>
-<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials -->
-<g id="node14" class="node">
-<title>\\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials</title>
-<polygon fill="none" stroke="black" points="597,-201 409.75,-201 409.75,-165 597,-165 597,-201"/>
-<text text-anchor="middle" x="503.37" y="-179.7" font-family="Courier,monospace" font-size="11.00">EmpyrNotPartnerCredentials</text>
-</g>
-<!-- \\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials&#45;&gt;\\Exception -->
-<g id="edge13" class="edge">
-<title>\\Linusx\\Empyr\\Exceptions\\EmpyrNotPartnerCredentials&#45;&gt;\\Exception</title>
-<path fill="none" stroke="black" d="M409.73,-190.52C350.93,-195.29 276.73,-201.32 226.53,-205.39"/>
-<polygon fill="none" stroke="black" points="226.19,-201.91 216.5,-206.21 226.75,-208.89 226.19,-201.91"/>
-</g>
-<!-- \\Linusx\\Empyr\\Providers\\EmpyrServiceProvider -->
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrInvoice -->
 <g id="node15" class="node">
-<title>\\Linusx\\Empyr\\Providers\\EmpyrServiceProvider</title>
-<polygon fill="none" stroke="black" points="577.39,-122 429.35,-122 429.35,-86 577.39,-86 577.39,-122"/>
-<text text-anchor="middle" x="503.37" y="-100.7" font-family="Courier,monospace" font-size="11.00">EmpyrServiceProvider</text>
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrInvoice</title>
+<polygon fill="none" stroke="black" points="551.09,-122 455.66,-122 455.66,-86 551.09,-86 551.09,-122"/>
+<text text-anchor="middle" x="503.37" y="-100.7" font-family="Courier,monospace" font-size="11.00">EmpyrInvoice</text>
 </g>
-<!-- \\Illuminate\\Support\\ServiceProvider -->
-<g id="node20" class="node">
-<title>\\Illuminate\\Support\\ServiceProvider</title>
-<ellipse fill="none" stroke="black" cx="168.78" cy="-104" rx="138.61" ry="18"/>
-<text text-anchor="middle" x="168.78" y="-99.8" font-family="Times,serif" font-size="14.00" fill="gray">\Illuminate\Support\ServiceProvider</text>
-</g>
-<!-- \\Linusx\\Empyr\\Providers\\EmpyrServiceProvider&#45;&gt;\\Illuminate\\Support\\ServiceProvider -->
-<g id="edge12" class="edge">
-<title>\\Linusx\\Empyr\\Providers\\EmpyrServiceProvider&#45;&gt;\\Illuminate\\Support\\ServiceProvider</title>
-<path fill="none" stroke="black" d="M428.97,-104C396.22,-104 356.39,-104 317.88,-104"/>
-<polygon fill="none" stroke="black" points="317.6,-100.5 307.6,-104 317.6,-107.5 317.6,-100.5"/>
+<!-- \\Linusx\\Empyr\\Controllers\\EmpyrInvoice&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController -->
+<g id="edge15" class="edge">
+<title>\\Linusx\\Empyr\\Controllers\\EmpyrInvoice&#45;&gt;\\Linusx\\Empyr\\Controllers\\EmpyrController</title>
+<path fill="none" stroke="black" d="M455.59,-107.53C431.12,-110.96 401.37,-117.71 377.56,-131 291.54,-178.99 219.12,-274.12 187.23,-320.43"/>
+<polygon fill="none" stroke="black" points="184.3,-318.51 181.57,-328.75 190.09,-322.44 184.3,-318.51"/>
 </g>
 <!-- \\Linusx\\Empyr\\Empyr -->
 <g id="node16" class="node">

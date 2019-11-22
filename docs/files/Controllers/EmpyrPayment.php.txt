@@ -1,15 +1,15 @@
 <?php
 /**
- * Payment Controller
+ * Payment Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrPayment
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrPayment.
  */
 class EmpyrPayment extends EmpyrController
 {

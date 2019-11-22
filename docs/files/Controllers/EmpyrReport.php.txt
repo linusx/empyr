@@ -1,15 +1,15 @@
 <?php
 /**
- * Reports Controller
+ * Reports Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrReport
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrReport.
  */
 class EmpyrReport extends EmpyrController
 {

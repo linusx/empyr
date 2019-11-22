@@ -1,7 +1,8 @@
 <?php
 /**
- * User Controller
+ * User Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\ClientException;
@@ -11,8 +12,7 @@ use Illuminate\Support\Facades\File;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrUser
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrUser.
  */
 class EmpyrUser extends EmpyrController
 {

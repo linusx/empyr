@@ -1,6 +1,6 @@
 <?php
 /**
- * Venue Controller
+ * Venue Controller.
  */
 
 namespace Linusx\Empyr\Controllers;
@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\File;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrVenue
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrVenue.
  */
 class EmpyrVenue extends EmpyrController
 {

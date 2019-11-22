@@ -1,7 +1,8 @@
 <?php
 /**
- * invoice Controller
+ * invoice Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
@@ -9,8 +10,7 @@ use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
 
 /**
- * Class EmpyrInvoice
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrInvoice.
  */
 class EmpyrInvoice extends EmpyrController
 {
