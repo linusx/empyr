@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Payment Controller
+ */
+namespace Linusx\Empyr\Controllers;
+
+use GuzzleHttp\Exception\GuzzleException;
+use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
+
+/**
+ * Class EmpyrPayment
+ * @package Linusx\Empyr\Controllers
+ */
+class EmpyrPayment extends EmpyrController
+{
+    /**
+     * Empyr Payment Methods.
+     *
+     * @param array $data Data to set field with.
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+    }
+
+    /**
+     * Retrieves a payment.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Payments/get
+     *
+     * #### Options
+     * * payable	**required** The payable id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function payment($options = [])
+    {
+        if (empty($options['payable']) &amp;&amp; empty($this-&gt;payable)) {
+            throw new EmpyrMissingRequiredFields('No payable id given.');
+        }
+
+        if (empty($options['payable'])) {
+            $options['payable'] = $this-&gt;payable;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['payable']);
+
+        return $this-&gt;callAPI('payments/'.$options['payable']);
+    }
+
+    /**
+     * Creates a payable on the given card as a refund.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Payments/add
+     *
+     * #### Options
+     * * billingDetail	**required** The card to process the payment to.
+     * * amount	**required** The amount of the independent refund.
+     * * details	**required** Any notes to associate with the payment.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function add($options = [])
+    {
+        if (
+            empty($options['billingDetail']) ||
+            empty($options['amount']) ||
+            empty($options['details'])
+        ) {
+            throw new EmpyrMissingRequiredFields('Missing required fields.');
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, [
+            'billingDetail',
+            'amount',
+            'details',
+        ]);
+
+        return $this-&gt;callAPI('payments/', $options, 'post');
+    }
+
+    /**
+     * Creates a payable on given a PAN and expiration date.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Payments/addDirect
+     *
+     * #### Options
+     * * card.cardNumber	**required** The card PAN to process the payment to.
+     * * card.expirationMonth	**required** The card to process the payment to.
+     * * card.expirationYear	**required** The card to process the payment to.
+     * * amount	**required** The amount of the independent refund.
+     * * details	**required** Any notes to associate with the payment.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function addDirect($options = [])
+    {
+        if (
+            empty($options['card.cardNumber']) ||
+            empty($options['card.expirationMonth']) ||
+            empty($options['card.expirationYear']) ||
+            empty($options['amount']) ||
+            empty($options['details'])
+        ) {
+            throw new EmpyrMissingRequiredFields('Missing required fields.');
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, [
+            'card.cardNumber',
+            'card.expirationMonth',
+            'card.expirationYear',
+            'amount',
+            'details',
+        ]);
+
+        return $this-&gt;callAPI('payments/direct', $options, 'post');
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
