@@ -1,15 +1,15 @@
 <?php
 /**
- * Fundraiser Controller
+ * Fundraiser Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrFundraiser
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrFundraiser.
  */
 class EmpyrFundraiser extends EmpyrController
 {

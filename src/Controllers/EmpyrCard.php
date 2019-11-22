@@ -1,16 +1,15 @@
 <?php
 /**
- * Empyr Card Methods
- * @package Linusx\Empyr\Controllers
+ * Empyr Card Methods.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrCard
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrCard.
  */
 class EmpyrCard extends EmpyrController
 {

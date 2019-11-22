@@ -1,15 +1,15 @@
 <?php
 /**
- * Empyr Utility
+ * Empyr Utility.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrUtility
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrUtility.
  */
 class EmpyrUtility extends EmpyrController
 {

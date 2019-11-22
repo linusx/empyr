@@ -1,8 +1,8 @@
 <?php
 /**
- * Main Empyr Controller
- * @package Linusx\Empyr\Controllers
+ * Main Empyr Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Client;
@@ -16,8 +16,7 @@ use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Facades\Empyr;
 
 /**
- * Class EmpyrController
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrController.
  */
 class EmpyrController
 {

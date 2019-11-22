@@ -1,16 +1,15 @@
 <?php
 /**
- * Metro Controller
- * @package Linusx\Empyr\Controllers
+ * Metro Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrMetro
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrMetro.
  */
 class EmpyrMetro extends EmpyrController
 {

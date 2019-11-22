@@ -1,16 +1,15 @@
 <?php
 /**
- * Device Controller
- * @package Linusx\Empyr\Controllers
+ * Device Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrDevice
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrDevice.
  */
 class EmpyrDevice extends EmpyrController
 {
