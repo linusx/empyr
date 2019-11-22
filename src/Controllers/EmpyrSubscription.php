@@ -1,7 +1,8 @@
 <?php
 /**
- * Subscription Controller
+ * Subscription Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
@@ -9,8 +10,7 @@ use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
 
 /**
- * Class EmpyrSubscription
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrSubscription.
  */
 class EmpyrSubscription extends EmpyrController
 {

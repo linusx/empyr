@@ -1,15 +1,15 @@
 <?php
 /**
- * Offer Controller
+ * Offer Controller.
  */
+
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
 /**
- * Class EmpyrOffer
- * @package Linusx\Empyr\Controllers
+ * Class EmpyrOffer.
  */
 class EmpyrOffer extends EmpyrController
 {
