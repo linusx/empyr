@@ -32,12 +32,12 @@ class EmpyrController
      *
      * @var string
      */
-    protected $email;
+    private $email;
 
     /**
      * @var array
      */
-    protected $user;
+    private $user;
 
     /**
      * Error message.
@@ -86,7 +86,7 @@ class EmpyrController
      *
      * @var Client
      */
-    protected $client;
+    private $client;
 
     /**
      * Guzzle client options.
