@@ -7,7 +7,7 @@ namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
-use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
+use Linusx\Empyr\Exceptions\EmpyrNotPublisherCredentials;
 
 /**
  * Class EmpyrSubscription.
@@ -69,12 +69,12 @@ class EmpyrSubscription extends EmpyrController
      * @return bool|mixed
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
-     * @throws EmpyrNotPartnerCredentials
+     * @throws EmpyrNotPublisherCredentials
      */
     public function add($options = [])
     {
-        if (! isset($this->partner) || false === $this->partner) {
-            throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
+        if (! isset($this->publisher) || false === $this->publisher) {
+            throw new EmpyrNotPublisherCredentials('This call needs to be used with publisher credentials.');
         }
 
         if (empty($options['business']) || empty($options['plan'])) {

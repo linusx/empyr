@@ -54,32 +54,32 @@ class EmpyrController
     private $base_url;
 
     /**
-     * Empyr client id.
-     *
-     * @var string
-     */
-    private $partner_client_id;
-
-    /**
-     * Empyr partner client secret.
-     *
-     * @var string
-     */
-    private $partner_client_secret;
-
-    /**
-     * Empyr client id.
+     * Empyr CP client id.
      *
      * @var string
      */
     private $client_id;
 
     /**
-     * Empyr client secret.
+     * Empyr CP client secret.
      *
      * @var string
      */
     private $client_secret;
+
+    /**
+     * Empyr publisher client id.
+     *
+     * @var string
+     */
+    private $publisher_client_id;
+
+    /**
+     * Empyr publisher client secret.
+     *
+     * @var string
+     */
+    private $publisher_client_secret;
 
     /**
      * Guzzle Client.
@@ -109,6 +109,13 @@ class EmpyrController
     private $class_options = [];
 
     /**
+     * Is publisher credentials.
+     *
+     * @var bool
+     */
+    protected $publisher = false;
+
+    /**
      * Empyr constructor.
      *
      * @param array $data
@@ -120,17 +127,17 @@ class EmpyrController
     {
         // Get config options.
         $this->base_url = config('empyr.api_base_url');
-        $this->client_id = config('empyr.client_id');
-        $this->client_secret = config('empyr.client_secret');
-        $this->partner_client_id = config('empyr.partner_client_id');
-        $this->partner_client_secret = config('empyr.partner_client_secret');
+        $this->client_id = config('empyr.cp_client_id');
+        $this->client_secret = config('empyr.cp_client_secret');
+        $this->publisher_client_id = config('empyr.publisher_client_id');
+        $this->publisher_client_secret = config('empyr.publisher_client_secret');
 
         // Make sure we have the required fields.
         if (
             empty($this->client_id) ||
             empty($this->client_secret) ||
-            empty($this->partner_client_id) ||
-            empty($this->partner_client_secret)
+            empty($this->publisher_client_id) ||
+            empty($this->publisher_client_secret)
         ) {
             throw new EmpyrMissingRequiredFields('Empyr: Missing configuration variables.');
         }
@@ -144,7 +151,7 @@ class EmpyrController
             }
         }
 
-        $this->token_session_key = $this->partner ? $this->token_session_key.'_partner' : $this->token_session_key;
+        $this->token_session_key = $this->publisher ? $this->token_session_key.'_publisher' : $this->token_session_key;
 
         if (! empty($this->email)) {
             $this->user = Empyr::user()->lookup($this->email)->array();
@@ -225,8 +232,8 @@ class EmpyrController
         }
 
         $params = [
-            'client_id' => true === $this->partner ? $this->partner_client_id : $this->client_id,
-            'client_secret' => true === $this->partner ? $this->partner_client_secret : $this->client_secret,
+            'client_id' => true === $this->publisher ? $this->publisher_client_id : $this->client_id,
+            'client_secret' => true === $this->publisher ? $this->publisher_client_secret : $this->client_secret,
             'grant_type' => $grant_type,
         ];
 
@@ -508,7 +515,7 @@ class EmpyrController
         $access_token = $token_array->access_token;
 
         $path_params = [
-            'client_id' => true === $this->partner ? $this->partner_client_id : $this->client_id,
+            'client_id' => true === $this->publisher ? $this->publisher_client_id : $this->client_id,
             'access_token' => $access_token,
         ];
 

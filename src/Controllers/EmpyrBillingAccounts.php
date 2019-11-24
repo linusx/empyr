@@ -7,7 +7,6 @@ namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
-use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
 
 /**
  * Class EmpyrBillingAccounts.
@@ -36,14 +35,9 @@ class EmpyrBillingAccounts extends EmpyrController
      * @param int $id Billing Account ID to get
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrNotPartnerCredentials
      */
     public function billingAccount($id)
     {
-        if (! isset($this->partner) || false === $this->partner) {
-            throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
-        }
-
         return $this->callAPI('billingAccounts/'.$id);
     }
 
@@ -62,14 +56,9 @@ class EmpyrBillingAccounts extends EmpyrController
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrNotPartnerCredentials
      */
     public function search($options = [])
     {
-        if (! isset($this->partner) || false === $this->partner) {
-            throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
-        }
-
         return $this->callAPI('billingAccounts/search', $options);
     }
 
@@ -129,7 +118,6 @@ class EmpyrBillingAccounts extends EmpyrController
      * @return bool|mixed
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
-     * @throws EmpyrNotPartnerCredentials
      */
     public function add($options = [])
     {

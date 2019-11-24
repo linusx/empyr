@@ -1,6 +1,6 @@
 <?php
 /**
- * Empyr Partner Facade.
+ * Empyr Publisher Facade.
  */
 
 namespace Linusx\Empyr\Facades;
@@ -9,9 +9,9 @@ use Exception;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class EmpyrPartner.
+ * Class EmpyrPublisher.
  */
-class EmpyrPartner extends Facade
+class EmpyrPublisher extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -22,6 +22,6 @@ class EmpyrPartner extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return new \Linusx\Empyr\Empyr(['partner' => true]);
+        return new \Linusx\Empyr\Empyr(['publisher' => true]);
     }
 }

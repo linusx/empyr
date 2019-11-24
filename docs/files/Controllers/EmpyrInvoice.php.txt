@@ -7,7 +7,7 @@ namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
-use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
+use Linusx\Empyr\Exceptions\EmpyrNotPublisherCredentials;
 
 /**
  * Class EmpyrInvoice.
@@ -20,14 +20,14 @@ class EmpyrInvoice extends EmpyrController
      * @param array $data Data to set field with.
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
-     * @throws EmpyrNotPartnerCredentials
+     * @throws EmpyrNotPublisherCredentials
      */
     public function __construct($data = [])
     {
         parent::__construct($data);
 
-        if (! isset($this->partner) || false === $this->partner) {
-            throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
+        if (! isset($this->publisher) || false === $this->publisher) {
+            throw new EmpyrNotPublisherCredentials('This call needs to be used with publisher credentials.');
         }
     }
 

@@ -137,7 +137,7 @@ class Empyr
      * @return Controllers\EmpyrInvoice
      * @throws EmpyrMissingRequiredFields
      * @throws GuzzleException
-     * @throws Exceptions\EmpyrNotPartnerCredentials
+     * @throws Exceptions\EmpyrNotPublisherCredentials
      */
     public function invoice($data = [])
     {
