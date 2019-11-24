@@ -24,6 +24,8 @@ php artisan vendor:publish --provider="Linusx\Empyr\EmpyrServiceProvider"
 ## Usage
 [Examples](examples.md)
 
+[Documentation](http://vp2k.com/empyr/docs/)
+
 ## Todo
 * Unit Tests
 * Test devices
