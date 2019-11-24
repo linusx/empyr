@@ -1,0 +1,213 @@
+<?php
+/**
+ * invoice Controller.
+ */
+
+namespace Linusx\Empyr\Controllers;
+
+use GuzzleHttp\Exception\GuzzleException;
+use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
+use Linusx\Empyr\Exceptions\EmpyrNotPublisherCredentials;
+
+/**
+ * Class EmpyrInvoice.
+ */
+class EmpyrInvoice extends EmpyrController
+{
+    /**
+     * Empyr Invoices Methods.
+     *
+     * @param array $data Data to set field with.
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     * @throws EmpyrNotPublisherCredentials
+     */
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+
+        if (! isset($this->publisher) || false === $this->publisher) {
+            throw new EmpyrNotPublisherCredentials('This call needs to be used with publisher credentials.');
+        }
+    }
+
+    /**
+     * Allows lookup up of an invoice by id.
+     *
+     * @mogl
+     * https://www.mogl.com/api/docs/v2/Invoices/invoice
+     *
+     * @options
+     * * invoice	**required** The invoice id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function invoice($options = [])
+    {
+        if (empty($options['invoice']) && empty($this->invoice)) {
+            throw new EmpyrMissingRequiredFields('No invoice id given.');
+        }
+
+        if (empty($options['invoice'])) {
+            $options['invoice'] = $this->invoice;
+        }
+
+        // Filter options.
+        $options = $this->allowedKeys($options, ['invoice']);
+
+        return $this->callAPI('invoices/'.$options['invoice']);
+    }
+
+    /**
+     * Allows lookup up of invoices given criteria.
+     *
+     * @mogl
+     * https://www.mogl.com/api/docs/v2/Invoices/lookup
+     *
+     * @options
+     * * startDate	Include only invoices after this start date
+     * * endDate	Include only invoices before this end date
+     * * business	Include only invoices for the given business
+     * * account	Include only invoices for the given account
+     * * state	Include only invoices in the given state [PENDING, POSTED, COMPLETED, FAILED, PAST_DUE]
+     * * offset	The offset into the results
+     * * numResults	The number of results to retrieve (default 100)
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function lookup($options = [])
+    {
+
+        // Filter options.
+        $options = $this->allowedKeys($options, ['startDate', 'endDate', 'business', 'account', 'state', 'offset', 'numResults']);
+
+        return $this->callAPI('invoices/', $options);
+    }
+
+    /**
+     * Get all adjustments given the invoice.
+     *
+     * @mogl
+     * https://www.mogl.com/api/docs/v2/Invoices/adjustments
+     *
+     * @options
+     * * invoice **required** The invoice id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function adjustments($options = [])
+    {
+        if (empty($options['invoice']) && empty($this->invoice)) {
+            throw new EmpyrMissingRequiredFields('No invoice id given.');
+        }
+
+        if (empty($options['invoice'])) {
+            $options['invoice'] = $this->invoice;
+        }
+
+        // Filter options.
+        $options = $this->allowedKeys($options, ['invoice']);
+
+        return $this->callAPI('invoices/'.$options['invoice'].'/adjustments', $options);
+    }
+
+    /**
+     * Get all transactions run on a given an invoice.
+     *
+     * @mogl
+     * https://www.mogl.com/api/docs/v2/Invoices/invoiceTransactions
+     *
+     * @options
+     * * invoice **required** The invoice id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function invoiceTransactions($options = [])
+    {
+        if (empty($options['invoice']) && empty($this->invoice)) {
+            throw new EmpyrMissingRequiredFields('No invoice id given.');
+        }
+
+        if (empty($options['invoice'])) {
+            $options['invoice'] = $this->invoice;
+        }
+
+        // Filter options.
+        $options = $this->allowedKeys($options, ['invoice']);
+
+        return $this->callAPI('invoices/'.$options['invoice'].'/invoiceTransactions', $options);
+    }
+
+    /**
+     * Get all the transactions that were run to bill this invoice.
+     *
+     * @mogl
+     * https://www.mogl.com/api/docs/v2/Invoices/transactions
+     *
+     * @options
+     * * invoice **required** The invoice id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function transactions($options = [])
+    {
+        if (empty($options['invoice']) && empty($this->invoice)) {
+            throw new EmpyrMissingRequiredFields('No invoice id given.');
+        }
+
+        if (empty($options['invoice'])) {
+            $options['invoice'] = $this->invoice;
+        }
+
+        // Filter options.
+        $options = $this->allowedKeys($options, ['invoice']);
+
+        return $this->callAPI('invoices/'.$options['invoice'].'/transactions', $options);
+    }
+
+    /**
+     * Attempts collection of the invoice.
+     *
+     * @mogl
+     * https://www.mogl.com/api/docs/v2/Invoices/collect
+     *
+     * @options
+     * * invoice **required** The invoice id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function leave($options = [])
+    {
+        if (empty($options['invoice']) && empty($this->invoice)) {
+            throw new EmpyrMissingRequiredFields('No invoice id given.');
+        }
+
+        if (empty($options['invoice'])) {
+            $options['invoice'] = $this->invoice;
+        }
+
+        // Filter options.
+        $options = $this->allowedKeys($options, ['invoice']);
+
+        return $this->callUserAPI('invoices/'.$options['invoice'].'/collect', $options, 'post');
+    }
+}
+

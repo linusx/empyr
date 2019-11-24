@@ -1,11 +1,17 @@
 <?php
+/**
+ * Subscription Controller.
+ */
 
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
-use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
+use Linusx\Empyr\Exceptions\EmpyrNotPublisherCredentials;
 
+/**
+ * Class EmpyrSubscription.
+ */
 class EmpyrSubscription extends EmpyrController
 {
     /**
@@ -23,10 +29,11 @@ class EmpyrSubscription extends EmpyrController
     /**
      * Retrieves a subscription.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Subscriptions/get
      *
-     * Options:
-     * subscription	The id of the subscription to retrieve.
+     * @options
+     * * subscription	The id of the subscription to retrieve.
      *
      * @param array $options
      * @return bool|mixed
@@ -51,22 +58,23 @@ class EmpyrSubscription extends EmpyrController
     /**
      * Adds a subscription to a business.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Subscriptions/add
      *
-     * Options:
-     * business    required The business to add the subscription to.
-     * plan    required The plan template that is being used to create the subscription.
+     * @options
+     * * business    **required** The business to add the subscription to.
+     * * plan    **required** The plan template that is being used to create the subscription.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
-     * @throws EmpyrNotPartnerCredentials
+     * @throws EmpyrNotPublisherCredentials
      */
     public function add($options = [])
     {
-        if (! isset($this->partner) || false === $this->partner) {
-            throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
+        if (! isset($this->publisher) || false === $this->publisher) {
+            throw new EmpyrNotPublisherCredentials('This call needs to be used with publisher credentials.');
         }
 
         if (empty($options['business']) || empty($options['plan'])) {

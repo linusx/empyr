@@ -1,11 +1,17 @@
 <?php
+/**
+ * Billing Account Controller.
+ */
 
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
-use Linusx\Empyr\Exceptions\EmpyrNotPartnerCredentials;
 
+/**
+ * Class EmpyrBillingAccounts.
+ * @author Bill Van Pelt (linusx@gmail.com)
+ */
 class EmpyrBillingAccounts extends EmpyrController
 {
     /**
@@ -23,57 +29,50 @@ class EmpyrBillingAccounts extends EmpyrController
     /**
      * Allows lookup up of an individual account by id.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/BillingAccounts/accounts
      *
      * @param int $id Billing Account ID to get
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrNotPartnerCredentials
      */
     public function billingAccount($id)
     {
-        if (! isset($this->partner) || false === $this->partner) {
-            throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
-        }
-
         return $this->callAPI('billingAccounts/'.$id);
     }
 
     /**
      * Allows the searching or listing of accounts.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/BillingAccounts/search
      *
-     * Options:
-     * query    The query to try to lookup the name with. Mutually exclusive with business. Ignored if business supplied.
-     * business    The business to look up by. If provided we look for the account associated with this business. Mutually exclusive with query.
-     * offset    Start offset.
-     * numResults    Number of results to retrieve (max 100).
+     * @options
+     * * query    The query to try to lookup the name with. Mutually exclusive with business. Ignored if business supplied.
+     * * business    The business to look up by. If provided we look for the account associated with this business. Mutually exclusive with query.
+     * * offset    Start offset.
+     * * numResults    Number of results to retrieve (max 100).
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
-     * @throws EmpyrNotPartnerCredentials
      */
     public function search($options = [])
     {
-        if (! isset($this->partner) || false === $this->partner) {
-            throw new EmpyrNotPartnerCredentials('This call needs to be used with partner credentials.');
-        }
-
         return $this->callAPI('billingAccounts/search', $options);
     }
 
     /**
      * Shows the business links for this account.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/BillingAccounts/links
      *
-     * Options:
-     * query    The query to try to lookup the name with. Mutually exclusive with business. Ignored if business supplied.
-     * business    The business to look up by. If provided we look for the account associated with this business. Mutually exclusive with query.
-     * offset    Start offset.
-     * numResults    Number of results to retrieve (max 100).
+     * @options
+     * * query    The query to try to lookup the name with. Mutually exclusive with business. Ignored if business supplied.
+     * * business    The business to look up by. If provided we look for the account associated with this business. Mutually exclusive with query.
+     * * offset    Start offset.
+     * * numResults    Number of results to retrieve (max 100).
      *
      * @todo Call to Empyr doesn't seem to be working properly.
      *
@@ -99,26 +98,26 @@ class EmpyrBillingAccounts extends EmpyrController
     /**
      * Allows the adding of accounts.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/BillingAccounts/add
      *
-     * Options:
-     * account.name    required The name of the account.
-     * account.accountingEmail    required The email address that will receive invoices.
-     * account.paymentMethod    required The method of payment [MANUAL|BILLINGDETAIL]
-     * card.cardNumber    The card number without spaces or hyphens.
-     * card.expirationMonth    A valid expiration month (1 to 12).
-     * card.expirationYear    A valid expiration year.
-     * echeck.business    Whether the checking account is personal or business.
-     * echeck.nameOnAccount    The name on the checking account.
-     * echeck.accountType    CHECKING or SAVINGS
-     * echeck.accountNumber    The account number.
-     * echeck.routingNumber    The bank routing number.
+     * @options
+     * * account.name    **required** The name of the account.
+     * * account.accountingEmail    **required** The email address that will receive invoices.
+     * * account.paymentMethod    **required** The method of payment [MANUAL|BILLINGDETAIL]
+     * * card.cardNumber    The card number without spaces or hyphens.
+     * * card.expirationMonth    A valid expiration month (1 to 12).
+     * * card.expirationYear    A valid expiration year.
+     * * echeck.business    Whether the checking account is personal or business.
+     * * echeck.nameOnAccount    The name on the checking account.
+     * * echeck.accountType    CHECKING or SAVINGS
+     * * echeck.accountNumber    The account number.
+     * * echeck.routingNumber    The bank routing number.
      *
      * @param array $options
      * @return bool|mixed
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
-     * @throws EmpyrNotPartnerCredentials
      */
     public function add($options = [])
     {
@@ -179,6 +178,7 @@ class EmpyrBillingAccounts extends EmpyrController
     /**
      * Allows the linking of accounts with businesses.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/BillingAccounts/link
      *
      * @param array $options
@@ -210,20 +210,21 @@ class EmpyrBillingAccounts extends EmpyrController
     /**
      * Allows the updating of accounts.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/BillingAccounts/update
      *
-     * Options:
-     * account.name	The name of the account.
-     * account.accountingEmail	The email address that will receive invoices.
-     * account.paymentMethod	The method of payment [MANUAL|BILLINGDETAIL]
-     * card.cardNumber	The card number without spaces or hyphens.
-     * card.expirationMonth	A valid expiration month (1 to 12).
-     * card.expirationYear	A valid expiration year.
-     * echeck.business	Whether the checking account is personal or business.
-     * echeck.nameOnAccount	The name on the checking account.
-     * echeck.accountType	CHECKING or SAVINGS
-     * echeck.accountNumber	The account number.
-     * echeck.routingNumber	The bank routing number.
+     * @options
+     * * account.name	The name of the account.
+     * * account.accountingEmail	The email address that will receive invoices.
+     * * account.paymentMethod	The method of payment [MANUAL|BILLINGDETAIL]
+     * * card.cardNumber	The card number without spaces or hyphens.
+     * * card.expirationMonth	A valid expiration month (1 to 12).
+     * * card.expirationYear	A valid expiration year.
+     * * echeck.business	Whether the checking account is personal or business.
+     * * echeck.nameOnAccount	The name on the checking account.
+     * * echeck.accountType	CHECKING or SAVINGS
+     * * echeck.accountNumber	The account number.
+     * * echeck.routingNumber	The bank routing number.
      *
      * @param array $options
      * @return bool|mixed

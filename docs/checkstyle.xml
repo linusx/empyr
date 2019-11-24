@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<checkstyle version="1.3.0">
+  <file name="Controllers/EmpyrCard.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+  </file>
+  <file name="Controllers/EmpyrMetro.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+  </file>
+  <file name="Controllers/EmpyrOffer.php"/>
+  <file name="Facades/Empyr.php"/>
+  <file name="Controllers/EmpyrInvoice.php"/>
+  <file name="Controllers/EmpyrUser.php"/>
+  <file name="Facades/EmpyrPartner.php"/>
+  <file name="Controllers/EmpyrDevice.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+  </file>
+  <file name="Empyr.php"/>
+  <file name="Controllers/EmpyrPayment.php"/>
+  <file name="Controllers/EmpyrSubscription.php"/>
+  <file name="Controllers/EmpyrVenue.php"/>
+  <file name="Exceptions/EmpyrMissingRequiredFields.php"/>
+  <file name="Controllers/EmpyrUtility.php"/>
+  <file name="Controllers/EmpyrController.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+  </file>
+  <file name="Controllers/EmpyrFundraiser.php"/>
+  <file name="Providers/EmpyrServiceProvider.php"/>
+  <file name="Exceptions/EmpyrNotPartnerCredentials.php"/>
+  <file name="Controllers/EmpyrBillingAccounts.php"/>
+  <file name="Controllers/EmpyrReport.php"/>
+</checkstyle>

@@ -1,0 +1,282 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Fundraiser Controller
+ */
+namespace Linusx\Empyr\Controllers;
+
+use GuzzleHttp\Exception\GuzzleException;
+use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
+
+/**
+ * Class EmpyrFundraiser
+ * @package Linusx\Empyr\Controllers
+ */
+class EmpyrFundraiser extends EmpyrController
+{
+    /**
+     * Empyr Fundraisers Methods.
+     *
+     * @param array $data Data to set field with.
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+    }
+
+    /**
+     * Returns details of a fundraiser.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Fundraisers/get
+     *
+     * #### Options
+     * * fundraiser	**required** The fundraiser id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function fundraiser($options = [])
+    {
+        if (empty($options['fundraiser']) &amp;&amp; empty($this-&gt;fundraiser)) {
+            throw new EmpyrMissingRequiredFields('No fundraiser id given.');
+        }
+
+        if (empty($options['fundraiser'])) {
+            $options['fundraiser'] = $this-&gt;fundraiser;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['fundraiser']);
+
+        return $this-&gt;callAPI('fundraisers/'.$options['fundraiser']);
+    }
+
+    /**
+     * Searches for fundraisers.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Fundraisers/search
+     *
+     * #### Options
+     * * query	**required** The query to search for fundraisers.
+     * * offset	Offset into the results.
+     * * numResults	Number of results to return per page.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function search($options = [])
+    {
+        if (empty($options['query'])) {
+            throw new EmpyrMissingRequiredFields('No query given.');
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['query', 'offset', 'numResults']);
+
+        return $this-&gt;callAPI('fundraisers/search', $options, 'post');
+    }
+
+    /**
+     * Returns a list of donations.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Fundraisers/donations
+     *
+     * #### Options
+     * * fundraiser **required** The fundraiser id.
+     * * offset	Start offset.
+     * * numResults	Number of results to retrieve (max 100).
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function donations($options = [])
+    {
+        if (empty($options['fundraiser']) &amp;&amp; empty($this-&gt;fundraiser)) {
+            throw new EmpyrMissingRequiredFields('No fundraiser id given.');
+        }
+
+        if (empty($options['fundraiser'])) {
+            $options['fundraiser'] = $this-&gt;fundraiser;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['fundraiser', 'offset', 'numResults']);
+
+        return $this-&gt;callAPI('fundraisers/'.$options['fundraiser'].'/donations', $options);
+    }
+
+    /**
+     * Returns earnings/donations summary information for a given fundraiser.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Fundraisers/summary
+     *
+     * #### Options
+     * * fundraiser **required** The fundraiser id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function summary($options = [])
+    {
+        if (empty($options['fundraiser']) &amp;&amp; empty($this-&gt;fundraiser)) {
+            throw new EmpyrMissingRequiredFields('No fundraiser id given.');
+        }
+
+        if (empty($options['fundraiser'])) {
+            $options['fundraiser'] = $this-&gt;fundraiser;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['fundraiser']);
+
+        return $this-&gt;callAPI('fundraisers/'.$options['fundraiser'].'/summary', $options);
+    }
+
+    /**
+     * Returns a list of fundraiser user totals.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Fundraisers/userFundraiserTotals
+     *
+     * #### Options
+     * * fundraiser **required** The fundraiser id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function userFundraiserTotals($options = [])
+    {
+        if (empty($options['fundraiser']) &amp;&amp; empty($this-&gt;fundraiser)) {
+            throw new EmpyrMissingRequiredFields('No fundraiser id given.');
+        }
+
+        if (empty($options['fundraiser'])) {
+            $options['fundraiser'] = $this-&gt;fundraiser;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['fundraiser']);
+
+        return $this-&gt;callAPI('fundraisers/'.$options['fundraiser'].'/userFundraiserTotals', $options);
+    }
+
+    /**
+     * Will join the logged in user to this fundraiser.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Fundraisers/join
+     *
+     * #### Options
+     * * fundraiser **required** The fundraiser id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function join($options = [])
+    {
+        if (empty($options['fundraiser']) &amp;&amp; empty($this-&gt;fundraiser)) {
+            throw new EmpyrMissingRequiredFields('No fundraiser id given.');
+        }
+
+        if (empty($options['fundraiser'])) {
+            $options['fundraiser'] = $this-&gt;fundraiser;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['fundraiser']);
+
+        return $this-&gt;callUserAPI('fundraisers/'.$options['fundraiser'].'/join', $options, 'post');
+    }
+
+    /**
+     * Will cause the currently logged in user to leave a fundraiser.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Fundraisers/leave
+     *
+     * #### Options
+     * * fundraiser **required** The fundraiser id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function leave($options = [])
+    {
+        if (empty($options['fundraiser']) &amp;&amp; empty($this-&gt;fundraiser)) {
+            throw new EmpyrMissingRequiredFields('No fundraiser id given.');
+        }
+
+        if (empty($options['fundraiser'])) {
+            $options['fundraiser'] = $this-&gt;fundraiser;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['fundraiser']);
+
+        return $this-&gt;callUserAPI('fundraisers/'.$options['fundraiser'].'/leave', $options, 'post');
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

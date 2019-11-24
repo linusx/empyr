@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Offer Controller
+ */
+namespace Linusx\Empyr\Controllers;
+
+use GuzzleHttp\Exception\GuzzleException;
+use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
+
+/**
+ * Class EmpyrOffer
+ * @package Linusx\Empyr\Controllers
+ */
+class EmpyrOffer extends EmpyrController
+{
+    /**
+     * Empyr Offers Methods.
+     *
+     * @param array $data Data to set field with.
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+    }
+
+    /**
+     * Add a new business offer.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Offers/add
+     *
+     * #### Options
+     * * business	**required** The business to add the offer to.
+     * * campaign	The campaign associated with this offer which determines distribution. If not provided the default campaign will be used.
+     * * startDate	The date that the offer is active/should be available.
+     * * endDate	When the offer should terminate. Should be empty if it's unknown in the future.
+     * * requiresActivation	Whether this offer must be linked to the user in order for it to be redeemed.
+     * * minPurchaseAmount	The minimum amount of spend for this offer to be redeemed.
+     * * scheduleType	The type of the schedule [EXCLUDE, REWARD].
+     * * hasSchedule	Whether or not this offer enforces a schedule (must be set in addition to scheduleType).
+     * * maxUserRedemptionsPerInterval	Specifies the maximum number of times an individual can redeem the offer within the user rewnewal interval.
+     * * maximumQualifiedUserSpendPerInterval	Specfies the maximum amount of qualified user spend that can be redeemed per offer interval.
+     * * userRedemptionRenewalInterval	Specifies the interval increment.
+     * * userRedemptionRenewalIntervalType	Specifies the interval type [DAY, WEEK, MONTH], DAY is day of year while week and month are calendar based.
+     * * budget	When specified sets a threshold at which the offer will no longer match. Once the budget is consumed the offer is no longer available.
+     * * rewardMax	Specifies the maximum amount of reward that can be given per redemption.
+     * * rewardValue	Specifies the redemption value amount.
+     * * rewardType	Specifies the kind of reward [PERCENT, FIXED].
+     * * feeMax	The maximum referral/marketing fee that can be collected per redemption of the offer.
+     * * marketingFeeType	Specifies the kind of marketing fee [PERCENT, FIXED].
+     * * feeValue	Specifies the marketing fee value that is to be charged upon redemption of the offer.
+     * * maxRedeemDate	Specifies the date at which transacitons will NO LONGER HONOR redemption.
+     * * dynamic	Specifies that the offer is dynamic and the reward value could change after offer creation. Default is false.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function add($options = [])
+    {
+        if (empty($options['business'])) {
+            throw new EmpyrMissingRequiredFields('No business id given.');
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, [
+            'business',
+            'campaign',
+            'startDate',
+            'endDate',
+            'requiresActivation',
+            'minPurchaseAmount',
+            'scheduleType',
+            'hasSchedule',
+            'maxUserRedemptionsPerInterval',
+            'maximumQualifiedUserSpendPerInterval',
+            'userRedemptionRenewalInterval',
+            'userRedemptionRenewalIntervalType',
+            'budget',
+            'rewardMax',
+            'rewardValue',
+            'rewardType',
+            'feeMax',
+            'marketingFeeType',
+            'feeValue',
+            'maxRedeemDate',
+            'dynamic',
+        ]);
+
+        return $this-&gt;callAPI('offers/add', $options, 'post');
+    }
+
+    /**
+     * Add a new business offer.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Offers/add
+     *
+     * #### Options
+     * * offer **required** The offer ID
+     * * endDate	The expiration date for the business.
+     * * rewardValue	The new reward value for the offer (offer must have been created as dynamic).
+     * * feeValue	The new fee value for the offer (offer must have been created as dynamic).
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function update($options = [])
+    {
+        if (empty($options['offer']) &amp;&amp; empty($this-&gt;offer)) {
+            throw new EmpyrMissingRequiredFields('No offer id given.');
+        }
+
+        if (empty($options['offer'])) {
+            $options['offer'] = $this-&gt;offer;
+        }
+
+        $offer_id = $options['offer'];
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, [
+            'business',
+            'rewardValue',
+            'feeValue',
+        ]);
+
+        return $this-&gt;callAPI('offers/'.$offer_id.'/update', $options, 'post');
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

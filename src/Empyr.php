@@ -1,10 +1,16 @@
 <?php
+/**
+ * Handle Empyr Facades.
+ */
 
 namespace Linusx\Empyr;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class Empyr.
+ */
 class Empyr
 {
     /**
@@ -131,7 +137,7 @@ class Empyr
      * @return Controllers\EmpyrInvoice
      * @throws EmpyrMissingRequiredFields
      * @throws GuzzleException
-     * @throws Exceptions\EmpyrNotPartnerCredentials
+     * @throws Exceptions\EmpyrNotPublisherCredentials
      */
     public function invoice($data = [])
     {

@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Register Empyr
+ */
+namespace Linusx\Empyr\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * Class EmpyrServiceProvider
+ * @package Linusx\Empyr\Providers
+ */
+class EmpyrServiceProvider extends ServiceProvider
+{
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        // $this-&gt;loadTranslationsFrom(__DIR__.'/../resources/lang', 'linusx');
+        // $this-&gt;loadViewsFrom(__DIR__.'/../resources/views', 'linusx');
+        // $this-&gt;loadMigrationsFrom(__DIR__.'/../database/migrations');
+        // $this-&gt;loadRoutesFrom(__DIR__.'/routes.php');
+
+        // Publishing is only necessary when using the CLI.
+        if ($this-&gt;app-&gt;runningInConsole()) {
+            $this-&gt;bootForConsole();
+        }
+    }
+
+    /**
+     * Register any package services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this-&gt;mergeConfigFrom(__DIR__.'/../../config/empyr.php', 'empyr');
+
+        // Register the service the package provides.
+        $this-&gt;app-&gt;singleton('Empyr', function ($app) {
+            return new Empyr;
+        });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['empyr'];
+    }
+
+    /**
+     * Console-specific booting.
+     *
+     * @return void
+     */
+    protected function bootForConsole()
+    {
+        // Publishing the configuration file.
+        $this-&gt;publishes([
+            __DIR__.'/../../config/empyr.php' =&gt; config_path('empyr.php'),
+        ], 'empyr');
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

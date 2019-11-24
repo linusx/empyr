@@ -1,6 +1,7 @@
 <?php
-
-/** @noinspection DuplicatedCode */
+/**
+ * Venue Controller.
+ */
 
 namespace Linusx\Empyr\Controllers;
 
@@ -10,6 +11,9 @@ use GuzzleHttp\Exception\ServerException;
 use Illuminate\Support\Facades\File;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrVenue.
+ */
 class EmpyrVenue extends EmpyrController
 {
     /**
@@ -28,6 +32,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Returns the venue with the associated id.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/get
      *
      * @param int $venue_id
@@ -51,32 +56,33 @@ class EmpyrVenue extends EmpyrController
     /**
      * Searches the venue directory for active venues with the given parameters.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/search
      *
-     * Options:
-     * query	A user entered query to search venues by.
-     * queryLocation	A user entered location to search venues by (could be a city/state or zip).
-     * city	The name of a city to search in. Not required if lat and long are provided.
-     * state	The two letter abbreviation of the state. Required if city is provided.
-     * lat	Specific latitude to search within. If specified then requires long and distance.
-     * long	Specific longitude to search within. If specified then requires lat and distance.
-     * page	Page number of results.
-     * numResults	Number of results to return per page.
-     * checkBookmarks	Whether to check whether the results are in bookmarks (and mark them)
-     * checkLinks	Whether to check whether the offers have links to the current user.
-     * featured	Whether to only return featured businesses.
-     * sort	The sort order for the business.
-     * cities	multi A list of cities to restrict the results to. (Use facet filtering).
-     * distance	A distance filter to restrict results to.
-     * attributes	multi A list of attributes to restrict the results to. (Use facet filtering).
-     * categories	multi A list of categories to restrict the results to. (Use facet filtering).
-     * features	multi A list of features to restrict the results to. (Use facet filtering).
-     * ambiances	multi A list of ambiances to restrict the results to. (Use facet filtering).
-     * serves	multi A list of serves to restrict the results to. (Use facet filtering).
-     * priceRanges	multi A list of priceranges to restrict the results to. (Use facet filtering).
-     * bestNights	multi A list of best nights to restrict the results to. (Use facet filtering).
-     * minRating	Minimum rating for the business.
-     * facet	Return a facet map for filtering results. Defaults to false for better performance.
+     * @options
+     * * query	A user entered query to search venues by.
+     * * queryLocation	A user entered location to search venues by (could be a city/state or zip).
+     * * city	The name of a city to search in. Not required if lat and long are provided.
+     * * state	The two letter abbreviation of the state. Required if city is provided.
+     * * lat	Specific latitude to search within. If specified then requires long and distance.
+     * * long	Specific longitude to search within. If specified then requires lat and distance.
+     * * page	Page number of results.
+     * * numResults	Number of results to return per page.
+     * * checkBookmarks	Whether to check whether the results are in bookmarks (and mark them)
+     * * checkLinks	Whether to check whether the offers have links to the current user.
+     * * featured	Whether to only return featured businesses.
+     * * sort	The sort order for the business.
+     * * cities	multi A list of cities to restrict the results to. (Use facet filtering).
+     * * distance	A distance filter to restrict results to.
+     * * attributes	multi A list of attributes to restrict the results to. (Use facet filtering).
+     * * categories	multi A list of categories to restrict the results to. (Use facet filtering).
+     * * features	multi A list of features to restrict the results to. (Use facet filtering).
+     * * ambiances	multi A list of ambiances to restrict the results to. (Use facet filtering).
+     * * serves	multi A list of serves to restrict the results to. (Use facet filtering).
+     * * priceRanges	multi A list of priceranges to restrict the results to. (Use facet filtering).
+     * * bestNights	multi A list of best nights to restrict the results to. (Use facet filtering).
+     * * minRating	Minimum rating for the business.
+     * * facet	Return a facet map for filtering results. Defaults to false for better performance.
      *
      * @param array $options
      * @return bool|mixed
@@ -90,6 +96,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Searches the venue directory for venues by phone.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/searchByPhone
      *
      * @param string $phone_number
@@ -104,6 +111,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Returns all the businesses that require segmentation data.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/segmented
      *
      * @return bool|mixed
@@ -117,6 +125,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Retrieves the summary of information and data about a business for a given number of months.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/summary
      *
      * @param int $venue_id
@@ -141,13 +150,14 @@ class EmpyrVenue extends EmpyrController
     /**
      * Returns user venue totals for the given month. Can be used to build leaderboards.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/userVenueTotals
      *
-     * Options:
-     * user	The id of the specific user we want to find totals for.
-     * date	The month that we want to look at totals for. If not provided then will be the most current.
-     * page	Page number of results.
-     * numResults	Number of results to return per page.
+     * @options
+     * * user	The id of the specific user we want to find totals for.
+     * * date	The month that we want to look at totals for. If not provided then will be the most current.
+     * * page	Page number of results.
+     * * numResults	Number of results to return per page.
      *
      * @param int $venue_id
      * @param array $options
@@ -171,6 +181,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Creates a new business in the business directory.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/add
      *
      * @param array $options
@@ -230,6 +241,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Add a new business image.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/addPhoto
      *
      * @param string $file_path File path to send.
@@ -292,6 +304,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Bookmarks the business for the authenticated user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/bookmark
      *
      * @param int $venue_id
@@ -316,6 +329,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Removes the venue bookmark for the authenticated user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/removeBookmark
      *
      * @param int $venue_id
@@ -342,6 +356,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Removes the venue bookmark for the authenticated user.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/removePhoto
      *
      * @todo Not working. Have to figure out what 'media' is.
@@ -370,6 +385,7 @@ class EmpyrVenue extends EmpyrController
     /**
      * Updates a business in the business directory.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Venues/update
      *
      * @param array $options

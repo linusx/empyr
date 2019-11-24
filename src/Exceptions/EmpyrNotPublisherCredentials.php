@@ -1,0 +1,16 @@
+<?php
+/**
+ * Missing Publisher Credentials Exception.
+ */
+
+namespace Linusx\Empyr\Exceptions;
+
+use Exception;
+
+/**
+ * Class EmpyrNotPublisherCredentials.
+ */
+class EmpyrNotPublisherCredentials extends Exception
+{
+    //
+}

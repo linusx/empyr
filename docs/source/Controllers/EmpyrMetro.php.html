@@ -1,0 +1,215 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Metro Controller
+ * @package Linusx\Empyr\Controllers
+ */
+namespace Linusx\Empyr\Controllers;
+
+use GuzzleHttp\Exception\GuzzleException;
+use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
+
+/**
+ * Class EmpyrMetro
+ * @package Linusx\Empyr\Controllers
+ */
+class EmpyrMetro extends EmpyrController
+{
+    /**
+     * Empyr Metro Methods.
+     *
+     * @param array $data Data to set field with.
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+    }
+
+    /**
+     * Returns details for the given metro.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Metros/get
+     *
+     * #### Options
+     * * metro	**required** The metro id.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function metro($options = [])
+    {
+        if (empty($options['metro']) &amp;&amp; empty($this-&gt;metro)) {
+            throw new EmpyrMissingRequiredFields('No metro id given.');
+        }
+
+        if (empty($options['metro'])) {
+            $options['metro'] = $this-&gt;metro;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['metro']);
+
+        return $this-&gt;callAPI('metros/'.$options['metro']);
+    }
+
+    /**
+     * Lists all the metros that are currently active.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Metros/list
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function list($options = [])
+    {
+        return $this-&gt;callAPI('metros/', $options);
+    }
+
+    /**
+     * Retrieves summary information about the metro for the given number of months.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Metros/summary
+     *
+     * #### Options
+     * * metro	**required** The metro id.
+     * * offset	The offset to pull months from (e.g. 0 is the current which is the default).
+     * * numResults	The number of months of summary to pull.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function summary($options = [])
+    {
+        if (empty($options['metro']) &amp;&amp; empty($this-&gt;metro)) {
+            throw new EmpyrMissingRequiredFields('No metro id given.');
+        }
+
+        if (empty($options['metro'])) {
+            $options['metro'] = $this-&gt;metro;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['metro', 'offset', 'numResults']);
+
+        return $this-&gt;callAPI('metros/'.$options['metro'].'/summary');
+    }
+
+    /**
+     * Retrieves business summary information for the top businesses in the metro.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Metros/topBusinesses
+     *
+     * #### Options
+     * * metro	**required** The metro id.
+     * * offset	The offset to pull months from (e.g. 0 is the current which is the default).
+     * * numResults	The number of months of summary to pull.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function topBusinesses($options = [])
+    {
+        if (empty($options['metro']) &amp;&amp; empty($this-&gt;metro)) {
+            throw new EmpyrMissingRequiredFields('No metro id given.');
+        }
+
+        if (empty($options['metro'])) {
+            $options['metro'] = $this-&gt;metro;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['metro', 'offset', 'numResults']);
+
+        return $this-&gt;callAPI('metros/'.$options['metro'].'/topBusinesses');
+    }
+
+    /**
+     * Retrieves user summary information for the top users in the metro.
+     *
+     * #### Mogl URL
+     * https://www.mogl.com/api/docs/v2/Metros/topUsers
+     *
+     * #### Options
+     * * metro	**required** The metro id.
+     * * offset	The offset to pull months from (e.g. 0 is the current which is the default).
+     * * numResults	The number of months of summary to pull.
+     *
+     * @param array $options
+     * @return bool|mixed
+     * @throws GuzzleException
+     * @throws EmpyrMissingRequiredFields
+     */
+    public function topUsers($options = [])
+    {
+        if (empty($options['metro']) &amp;&amp; empty($this-&gt;metro)) {
+            throw new EmpyrMissingRequiredFields('No metro id given.');
+        }
+
+        if (empty($options['metro'])) {
+            $options['metro'] = $this-&gt;metro;
+        }
+
+        // Filter options.
+        $options = $this-&gt;allowedKeys($options, ['metro', 'offset', 'numResults']);
+
+        return $this-&gt;callAPI('metros/'.$options['metro'].'/topUsers');
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

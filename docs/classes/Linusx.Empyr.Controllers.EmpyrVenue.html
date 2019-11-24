@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Empyr Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Empyr Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Linusx.html">\Linusx</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">6</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-919625149"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-919625149" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1361804032"></a>
+                                <a href="../namespaces/Linusx.html" style="margin-left: 30px; padding-left: 0">Linusx</a>
+            </div>
+            <div id="namespace-1361804032" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1475205492"></a>
+                                <a href="../namespaces/Linusx.Empyr.html" style="margin-left: 30px; padding-left: 0">Empyr</a>
+            </div>
+            <div id="namespace-1475205492" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-322938091"></a>
+                                <a href="../namespaces/Linusx.Empyr.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
+            </div>
+            <div id="namespace-322938091" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrBillingAccounts.html">EmpyrBillingAccounts</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrFundraiser.html">EmpyrFundraiser</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrInvoice.html">EmpyrInvoice</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrOffer.html">EmpyrOffer</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrPayment.html">EmpyrPayment</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrReport.html">EmpyrReport</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrSubscription.html">EmpyrSubscription</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrUser.html">EmpyrUser</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrUtility.html">EmpyrUtility</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html">EmpyrVenue</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1291035825"></a>
+                                <a href="../namespaces/Linusx.Empyr.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+            </div>
+            <div id="namespace-1291035825" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Linusx.Empyr.Exceptions.EmpyrMissingRequiredFields.html">EmpyrMissingRequiredFields</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Exceptions.EmpyrNotPublisherCredentials.html">EmpyrNotPublisherCredentials</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1955359100"></a>
+                                <a href="../namespaces/Linusx.Empyr.Facades.html" style="margin-left: 30px; padding-left: 0">Facades</a>
+            </div>
+            <div id="namespace-1955359100" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Linusx.Empyr.Facades.Empyr.html">Empyr</a></li>
+                                                    <li class="class"><a href="../classes/Linusx.Empyr.Facades.EmpyrPublisher.html">EmpyrPublisher</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-350538307"></a>
+                                <a href="../namespaces/Linusx.Empyr.Providers.html" style="margin-left: 30px; padding-left: 0">Providers</a>
+            </div>
+            <div id="namespace-350538307" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Linusx.Empyr.Providers.EmpyrServiceProvider.html">EmpyrServiceProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Linusx.Empyr.Empyr.html">Empyr</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Linusx.Empyr.Controllers.html">\Linusx\Empyr\Controllers</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Linusx\Empyr\Controllers</small>EmpyrVenue</h1>
+                    <p><em>Class EmpyrVenue.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_venue" class="">venue()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_search" class="">search()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_searchByPhone" class="">searchByPhone()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_segmented" class="">segmented()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_summary" class="">summary()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_userVenueTotals" class="">userVenueTotals()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_add" class="">add()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_addPhoto" class="">addPhoto()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_bookmark" class="">bookmark()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_removeBookmark" class="">removeBookmark()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_removePhoto" class="">removePhoto()</a><br />
+                                                                    <a href="../classes/Linusx.Empyr.Controllers.EmpyrVenue.html#method_update" class="">update()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Controllers.EmpyrVenue.html"><div class="path-wrapper">Controllers/EmpyrVenue.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Empyr</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\Linusx\Empyr\Controllers\EmpyrController</div>
+                                                                                                    <div class="namespace-wrapper">\Linusx\Empyr\Controllers\EmpyrVenue</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$data = array()</span>) </pre>
+                <p><em>Empyr Venue Constructor.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_venue" name="method_venue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">venue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">venue(integer  <span class="argument">$venue_id</span>) : boolean|mixed</pre>
+                <p><em>Returns the venue with the associated id.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$venue_id </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/get">https://www.mogl.com/api/docs/v2/Venues/get</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_search" name="method_search" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">search()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">search(array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Searches the venue directory for active venues with the given parameters.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/search">https://www.mogl.com/api/docs/v2/Venues/search</a></p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            options
+                        </th>
+                        <td>
+                                                                                            <ul>
+<li>query A user entered query to search venues by.</li>
+<li>queryLocation A user entered location to search venues by (could be a city/state or zip).</li>
+<li>city  The name of a city to search in. Not required if lat and long are provided.</li>
+<li>state The two letter abbreviation of the state. Required if city is provided.</li>
+<li>lat   Specific latitude to search within. If specified then requires long and distance.</li>
+<li>long  Specific longitude to search within. If specified then requires lat and distance.</li>
+<li>page  Page number of results.</li>
+<li>numResults    Number of results to return per page.</li>
+<li>checkBookmarks    Whether to check whether the results are in bookmarks (and mark them)</li>
+<li>checkLinks    Whether to check whether the offers have links to the current user.</li>
+<li>featured  Whether to only return featured businesses.</li>
+<li>sort  The sort order for the business.</li>
+<li>cities    multi A list of cities to restrict the results to. (Use facet filtering).</li>
+<li>distance  A distance filter to restrict results to.</li>
+<li>attributes    multi A list of attributes to restrict the results to. (Use facet filtering).</li>
+<li>categories    multi A list of categories to restrict the results to. (Use facet filtering).</li>
+<li>features  multi A list of features to restrict the results to. (Use facet filtering).</li>
+<li>ambiances multi A list of ambiances to restrict the results to. (Use facet filtering).</li>
+<li>serves    multi A list of serves to restrict the results to. (Use facet filtering).</li>
+<li>priceRanges   multi A list of priceranges to restrict the results to. (Use facet filtering).</li>
+<li>bestNights    multi A list of best nights to restrict the results to. (Use facet filtering).</li>
+<li>minRating Minimum rating for the business.</li>
+<li>facet Return a facet map for filtering results. Defaults to false for better performance.</li>
+</ul>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_searchByPhone" name="method_searchByPhone" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">searchByPhone()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">searchByPhone(string  <span class="argument">$phone_number</span>) : boolean|mixed</pre>
+                <p><em>Searches the venue directory for venues by phone.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$phone_number </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/searchByPhone">https://www.mogl.com/api/docs/v2/Venues/searchByPhone</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_segmented" name="method_segmented" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">segmented()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">segmented() : boolean|mixed</pre>
+                <p><em>Returns all the businesses that require segmentation data.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/segmented">https://www.mogl.com/api/docs/v2/Venues/segmented</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_summary" name="method_summary" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">summary()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">summary(integer  <span class="argument">$venue_id</span>, array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Retrieves the summary of information and data about a business for a given number of months.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$venue_id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/summary">https://www.mogl.com/api/docs/v2/Venues/summary</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_userVenueTotals" name="method_userVenueTotals" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">userVenueTotals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">userVenueTotals(integer  <span class="argument">$venue_id</span>, array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Returns user venue totals for the given month. Can be used to build leaderboards.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$venue_id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/userVenueTotals">https://www.mogl.com/api/docs/v2/Venues/userVenueTotals</a></p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            options
+                        </th>
+                        <td>
+                                                                                            <ul>
+<li>user  The id of the specific user we want to find totals for.</li>
+<li>date  The month that we want to look at totals for. If not provided then will be the most current.</li>
+<li>page  Page number of results.</li>
+<li>numResults    Number of results to return per page.</li>
+</ul>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_add" name="method_add" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">add()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">add(array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Creates a new business in the business directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/add">https://www.mogl.com/api/docs/v2/Venues/add</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPhoto" name="method_addPhoto" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPhoto()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPhoto(string  <span class="argument">$file_path</span>, array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Add a new business image.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file_path </td>
+                                <td><p>File path to send.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/addPhoto">https://www.mogl.com/api/docs/v2/Venues/addPhoto</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_bookmark" name="method_bookmark" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">bookmark()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">bookmark(integer  <span class="argument">$venue_id</span>, array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Bookmarks the business for the authenticated user.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$venue_id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/bookmark">https://www.mogl.com/api/docs/v2/Venues/bookmark</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeBookmark" name="method_removeBookmark" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeBookmark()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeBookmark(integer  <span class="argument">$venue_id</span>, array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Removes the venue bookmark for the authenticated user.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$venue_id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/removeBookmark">https://www.mogl.com/api/docs/v2/Venues/removeBookmark</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removePhoto" name="method_removePhoto" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removePhoto()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removePhoto(integer  <span class="argument">$venue_id</span>, array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Removes the venue bookmark for the authenticated user.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$venue_id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/removePhoto">https://www.mogl.com/api/docs/v2/Venues/removePhoto</a></p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>Not working. Have to figure out what 'media' is.</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_update" name="method_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">update(array  <span class="argument">$options = array()</span>) : boolean|mixed</pre>
+                <p><em>Updates a business in the business directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields</dt>
+                            <dd></dd>
+                                                    <dt>\GuzzleHttp\Exception\GuzzleException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean|mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            mogl
+                        </th>
+                        <td>
+                                                                                            <p><a href="https://www.mogl.com/api/docs/v2/Venues/update">https://www.mogl.com/api/docs/v2/Venues/update</a></p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">EmpyrVenue.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Controllers/EmpyrVenue.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Linusx.html">\Linusx</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 24th, 2019 at 10:45.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

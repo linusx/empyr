@@ -1,10 +1,16 @@
 <?php
+/**
+ * Fundraiser Controller.
+ */
 
 namespace Linusx\Empyr\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Linusx\Empyr\Exceptions\EmpyrMissingRequiredFields;
 
+/**
+ * Class EmpyrFundraiser.
+ */
 class EmpyrFundraiser extends EmpyrController
 {
     /**
@@ -22,10 +28,11 @@ class EmpyrFundraiser extends EmpyrController
     /**
      * Returns details of a fundraiser.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Fundraisers/get
      *
-     * Options:
-     * fundraiser	required The fundraiser id.
+     * @options
+     * * fundraiser	**required** The fundraiser id.
      *
      * @param array $options
      * @return bool|mixed
@@ -51,12 +58,13 @@ class EmpyrFundraiser extends EmpyrController
     /**
      * Searches for fundraisers.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Fundraisers/search
      *
-     * Options:
-     * query	required The query to search for fundraisers.
-     * offset	Offset into the results.
-     * numResults	Number of results to return per page.
+     * @options
+     * * query	**required** The query to search for fundraisers.
+     * * offset	Offset into the results.
+     * * numResults	Number of results to return per page.
      *
      * @param array $options
      * @return bool|mixed
@@ -78,12 +86,13 @@ class EmpyrFundraiser extends EmpyrController
     /**
      * Returns a list of donations.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Fundraisers/donations
      *
-     * Options:
-     * fundraiser required The fundraiser id.
-     * offset	Start offset.
-     * numResults	Number of results to retrieve (max 100).
+     * @options
+     * * fundraiser **required** The fundraiser id.
+     * * offset	Start offset.
+     * * numResults	Number of results to retrieve (max 100).
      *
      * @param array $options
      * @return bool|mixed
@@ -109,10 +118,11 @@ class EmpyrFundraiser extends EmpyrController
     /**
      * Returns earnings/donations summary information for a given fundraiser.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Fundraisers/summary
      *
-     * Options:
-     * fundraiser required The fundraiser id.
+     * @options
+     * * fundraiser **required** The fundraiser id.
      *
      * @param array $options
      * @return bool|mixed
@@ -138,10 +148,11 @@ class EmpyrFundraiser extends EmpyrController
     /**
      * Returns a list of fundraiser user totals.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Fundraisers/userFundraiserTotals
      *
-     * Options:
-     * fundraiser required The fundraiser id.
+     * @options
+     * * fundraiser **required** The fundraiser id.
      *
      * @param array $options
      * @return bool|mixed
@@ -167,10 +178,11 @@ class EmpyrFundraiser extends EmpyrController
     /**
      * Will join the logged in user to this fundraiser.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Fundraisers/join
      *
-     * Options:
-     * fundraiser required The fundraiser id.
+     * @options
+     * * fundraiser **required** The fundraiser id.
      *
      * @param array $options
      * @return bool|mixed
@@ -196,10 +208,11 @@ class EmpyrFundraiser extends EmpyrController
     /**
      * Will cause the currently logged in user to leave a fundraiser.
      *
+     * @mogl
      * https://www.mogl.com/api/docs/v2/Fundraisers/leave
      *
-     * Options:
-     * fundraiser required The fundraiser id.
+     * @options
+     * * fundraiser **required** The fundraiser id.
      *
      * @param array $options
      * @return bool|mixed
