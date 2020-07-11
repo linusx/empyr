@@ -29,5 +29,13 @@
         }
     },
     "extra": {
+        "laravel": {
+            "providers": [
+                "Linusx\\Empyr\\Providers\\EmpyrServiceProvider"
+            ],
+            "aliases": {
+                "Empyr": "Linusx\\Empyr\\Facades\\Empyr"
+            }
+        }
     }
 }
