@@ -20,9 +20,20 @@ class EmpyrUtility extends EmpyrController
      * @throws GuzzleException
      * @throws EmpyrMissingRequiredFields
      */
-    public function __construct($data = [])
-    {
+    public function __construct($data = []) {
         parent::__construct($data);
+    }
+
+    public function getToken($grant_type = 'client_credentials', $user_email = '', $break_cache = false) {
+
+        $token = $this->getAccessToken($grant_type, $user_email, $break_cache);
+
+        return [
+            'token' => $token->access_token,
+            'client_id' => $token->client_id,
+            'grant_type' => $token->grant_type,
+
+        ];
     }
 
     /**

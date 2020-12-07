@@ -58,7 +58,7 @@ class EmpyrController
      *
      * @var string
      */
-    private $client_id;
+    protected $client_id;
 
     /**
      * Empyr CP client secret.
@@ -214,12 +214,14 @@ class EmpyrController
      *
      * @param string $grant_type What type of grant (default: client_usertoken).
      * @param string $user_email User email for user token.
+     * @param boolean $break_cache Whether or not to break cache.
      *
      * @return array
      * @throws GuzzleException
      */
-    public function getAccessToken($grant_type = 'client_credentials', $user_email = '')
+    public function getAccessToken($grant_type = 'client_credentials', $user_email = '', $break_cache = false)
     {
+
         if (! empty($user_email)) {
             $this->token_session_key = $this->token_session_key.'_'.Str::slug($user_email);
         }
@@ -227,7 +229,7 @@ class EmpyrController
         $token_expire = session()->get($this->token_session_key.'_expires');
         $token_arr = session()->get($this->token_session_key);
 
-        if (time() < $token_expire && (! empty($token_arr) && (int) $token_arr->expires_in > 5)) {
+        if (false === $break_cache && ( time() < $token_expire && (! empty($token_arr) && (int) $token_arr->expires_in > 5 ) ) ) {
             return $token_arr;
         }
 
@@ -250,9 +252,9 @@ class EmpyrController
             $status = (int) $response->getStatusCode();
         } catch (ClientException $e) {
             $this->log(__METHOD__.' Error: '.$e->getResponse()->getBody()->getContents());
-
             return [];
         }
+
 
         if (200 !== $status) {
             $this->log(__METHOD__.' Error: '.$status.' was returned');
@@ -261,6 +263,9 @@ class EmpyrController
         }
 
         $token_arr = json_decode($response->getBody());
+
+        $token_arr->client_id = $params['client_id'];
+        $token_arr->grant_type = $params['grant_type'];
 
         $expire_date = time() + (int) $token_arr->expires_in;
 
@@ -284,7 +289,6 @@ class EmpyrController
      */
     protected function callUserAPI($url, $options = [], $method = 'get', $file = false)
     {
-
         // Make sure we have an email address.
         if (empty($this->email)) {
             throw new EmpyrMissingRequiredFields('Missing user email address');
@@ -312,7 +316,7 @@ class EmpyrController
             $this->handleEmpyrError($error);
         }
 
-        if (! empty($data_response->meta) && 200 !== (int) $data_response->meta->code) {
+        if (! empty($response->meta) && 200 !== (int) $response->meta->code) {
             $this->setError('Bad request. No error given.');
         }
 
@@ -403,7 +407,12 @@ class EmpyrController
      */
     public function collection() : Collection
     {
-        return collect($this->data);
+        if ( ! empty( $this->data->results ) ) {
+            return collect($this->data->results);
+        } else {
+            return collect($this->data);
+        }
+
     }
 
     /**

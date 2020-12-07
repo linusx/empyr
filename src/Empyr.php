@@ -20,6 +20,13 @@ class Empyr
     private $data = [];
 
     /**
+     * Options passed from Facade.
+     *
+     * @var array
+     */
+    public $class_options = [];
+
+    /**
      * Empyr constructor.
      * @param array $data
      */
