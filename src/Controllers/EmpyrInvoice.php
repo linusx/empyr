@@ -318,6 +318,10 @@ class EmpyrInvoice extends EmpyrController
             'Cash Back',
             'Cash Back Billed',
             'Referral Fee',
+            'Address',
+            'City',
+            'State',
+            'Zip Code',
             'Invoice State',
         ]);
 
@@ -335,6 +339,10 @@ class EmpyrInvoice extends EmpyrController
                     $venue['total_cash_back'],
                     $venue['total_cash_back_billed'],
                     $venue['total_referral_fee'],
+                    $venue['business_address']->streetAddress,
+                    $venue['business_address']->city,
+                    $venue['business_address']->state,
+                    $venue['business_address']->postalCode,
                     $venue['state'],
                 ]);
 
