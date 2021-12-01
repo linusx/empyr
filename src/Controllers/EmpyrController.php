@@ -37,7 +37,7 @@ class EmpyrController
     /**
      * @var array
      */
-    private $user;
+    protected $user;
 
     /**
      * Error message.
@@ -153,8 +153,14 @@ class EmpyrController
 
         $this->token_session_key = $this->publisher ? $this->token_session_key.'_publisher' : $this->token_session_key;
 
-        if (! empty($this->email)) {
-            $this->user = Empyr::user()->lookup($this->email)->array();
+        if (! empty( $this->email ) ) {
+
+            $user = Empyr::user()->lookup( $this->email );
+            if ( empty( $user ) || $user->isError() ) {
+                throw new EmpyrMissingRequiredFields('User not found for ' . $this->email );
+            }
+
+            $this->user = $user->get()->get('user');
         }
 
         $this->guzzle_options = [

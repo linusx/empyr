@@ -333,11 +333,11 @@ class EmpyrUser extends EmpyrController
      */
     public function summary($options = [])
     {
-        if (empty($this->user)) {
+        if ( empty( $this->user ) ) {
             throw new EmpyrMissingRequiredFields('No user found.');
         }
 
-        return $this->callAPI('users/'.$this->user->id.'/summary', $options);
+        return $this->callAPI('users/' . $this->user->id . '/summary', $options);
     }
 
     /**
